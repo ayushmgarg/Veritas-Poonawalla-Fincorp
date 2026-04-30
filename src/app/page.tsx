@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   Shield,
   Fingerprint,
@@ -14,6 +15,7 @@ import {
   Lock,
   Zap,
   Eye,
+  LayoutDashboard,
 } from "lucide-react";
 
 const FEATURES = [
@@ -100,11 +102,20 @@ export default function LandingPage() {
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Lock className="w-3.5 h-3.5 text-[#00C9A7]" />
-            <span className="text-xs text-text-secondary">
-              End-to-end encrypted
-            </span>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] text-xs text-text-secondary hover:bg-white/[0.07] transition-colors"
+            >
+              <LayoutDashboard className="w-3 h-3" />
+              Agent Dashboard
+            </Link>
+            <div className="flex items-center gap-1.5">
+              <Lock className="w-3.5 h-3.5 text-[#00C9A7]" />
+              <span className="text-xs text-text-secondary hidden sm:block">
+                End-to-end encrypted
+              </span>
+            </div>
           </div>
         </nav>
 

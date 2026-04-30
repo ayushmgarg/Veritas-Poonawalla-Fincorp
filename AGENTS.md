@@ -1,5 +1,5 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# VERITAS — Agentic V-CIP Platform
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+Built with Next.js 15 App Router. All routes use the `params: Promise<{...}>` pattern — always `await params` before destructuring.
+
+API routes are in `src/app/api/`. All DB calls use the Supabase service role client from `lib/supabase.ts`. Never use the anon client in API routes.
