@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, MicOff, Video, VideoOff, PhoneOff, Lock, Shield } from "lucide-react";
+import { Mic, MicOff, Video, VideoOff, PhoneOff, Lock, Shield, Zap } from "lucide-react";
 
 import { useWebRTC } from "@/hooks/useWebRTC";
 import { useFaceDetection } from "@/hooks/useFaceDetection";
@@ -19,6 +19,8 @@ import { ConsentModal } from "@/components/session/ConsentModal";
 import { DigiLockerModal } from "@/components/session/DigiLockerModal";
 import { FraudAlertOverlay } from "@/components/session/FraudAlertOverlay";
 import { XPCelebration } from "@/components/session/XPCelebration";
+import { LiveRiskMeter } from "@/components/session/LiveRiskMeter";
+import { QuestionPrompt } from "@/components/session/QuestionPrompt";
 
 import { AGENT_CONVERSATION_PROMPTS } from "@/constants/prompts";
 import { SESSION_STEPS } from "@/constants/steps";
@@ -56,6 +58,7 @@ export default function SessionPage() {
   const [xpCelebration, setXpCelebration] = useState<{ show: boolean; xp: number; label: string }>({ show: false, xp: 0, label: "" });
   const [stepsDone, setStepsDone] = useState<Set<number>>(new Set());
   const [interimText, setInterimText] = useState("");
+  const [currentQuestion, setCurrentQuestion] = useState<{ text: string; hint?: string } | null>(null);
 
   const speakAgent = useCallback((text: string) => {
     setIsAgentTyping(true);
@@ -140,10 +143,12 @@ export default function SessionPage() {
     setCurrentStep(1);
     celebrateStep(0);
     startSpeech();
+    setCurrentQuestion({ text: "Please state your full name and date of birth clearly.", hint: "e.g. \"My name is Arjun Kumar, born 15th March 1990\"" });
     setTimeout(() => runStep2(), 8000);
   }
 
   async function runStep2() {
+    setCurrentQuestion({ text: "Please blink twice slowly, then turn your head left and right.", hint: "Keep your face centred in the frame" });
     speakAgent(AGENT_CONVERSATION_PROMPTS[2]);
     await sessionCtx.advanceStep(2);
     setCurrentStep(2);
@@ -157,12 +162,14 @@ export default function SessionPage() {
     );
 
     celebrateStep(1);
+    setCurrentQuestion(null);
     if (livenessData.isLive) {
       setTimeout(() => runStep3(), 2000);
     }
   }
 
   async function runStep3() {
+    setCurrentQuestion({ text: "Is this mobile number registered with your Aadhaar?", hint: "Say \"Yes\" or confirm your Aadhaar-linked number" });
     speakAgent(AGENT_CONVERSATION_PROMPTS[3]);
     await sessionCtx.advanceStep(3);
     setCurrentStep(3);
@@ -171,6 +178,7 @@ export default function SessionPage() {
     await sessionCtx.verifyAadhaar();
     setIsProcessing(false);
     celebrateStep(2);
+    setCurrentQuestion(null);
 
     speakAgent("Identity verified. Your Aadhaar face match score is 98.4%. Age confirmed: 34 years.");
     setTimeout(() => runStep4(), 3000);
@@ -192,6 +200,7 @@ export default function SessionPage() {
 
   async function runStep5() {
     setModalState("none");
+    setCurrentQuestion({ text: "What is your current monthly income from all sources?", hint: "Include salary, freelance, rental income etc." });
     speakAgent(AGENT_CONVERSATION_PROMPTS[5]);
     await sessionCtx.advanceStep(5);
     setCurrentStep(5);
@@ -202,12 +211,14 @@ export default function SessionPage() {
     celebrateStep(4);
 
     const store = sessionCtx.store;
+    setCurrentQuestion(null);
     const cibil = store.financialData?.cibil_score || 762;
     speakAgent(`Financial data received. CIBIL score: ${cibil} — ${cibil >= 750 ? "Excellent" : cibil >= 650 ? "Good" : "Fair"} rating.`);
     setTimeout(() => runStep6(), 3000);
   }
 
   async function runStep6() {
+    setCurrentQuestion({ text: "Do you have any existing EMIs or outstanding loan obligations?", hint: "Mention the approximate monthly EMI amount if any" });
     speakAgent(AGENT_CONVERSATION_PROMPTS[6]);
     await sessionCtx.advanceStep(6);
     setCurrentStep(6);
@@ -216,6 +227,7 @@ export default function SessionPage() {
     await sessionCtx.runRiskAssessment();
     setIsProcessing(false);
     celebrateStep(5);
+    setCurrentQuestion(null);
 
     const tier = sessionCtx.store.llmDecision?.risk_tier || 1;
     const tierLabel = tier === 1 ? "TIER 1 — LOW RISK" : tier === 2 ? "TIER 2 — MEDIUM RISK" : "TIER 3 — HIGH RISK";
@@ -273,6 +285,18 @@ export default function SessionPage() {
           </span>
         </div>
         <div className="flex items-center gap-3">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={sessionCtx.store.currentXP}
+              initial={{ scale: 1.3, color: "#FFB800" }}
+              animate={{ scale: 1, color: "#FFB800" }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-[#FFB800]/10 border border-[#FFB800]/20"
+            >
+              <Zap className="w-3 h-3 text-[#FFB800]" />
+              <span className="font-mono text-xs font-bold text-[#FFB800]">{sessionCtx.store.currentXP} XP</span>
+            </motion.div>
+          </AnimatePresence>
           <div className="flex items-center gap-1.5">
             <Lock className="w-3 h-3 text-[#00C9A7]" />
             <span className="text-[10px] text-text-muted hidden sm:block">AES-256-GCM</span>
@@ -314,6 +338,12 @@ export default function SessionPage() {
               xp={xpCelebration.xp}
               label={xpCelebration.label}
               onDone={() => setXpCelebration({ show: false, xp: 0, label: "" })}
+            />
+
+            <QuestionPrompt
+              question={currentQuestion?.text ?? null}
+              hint={currentQuestion?.hint}
+              isListening={speechState.isListening}
             />
 
             <div className="absolute bottom-3 left-3 right-3">
@@ -364,6 +394,8 @@ export default function SessionPage() {
               isTyping={isAgentTyping}
             />
           </div>
+
+          <LiveRiskMeter sessionId={id} />
 
           <div className="rounded-2xl bg-bg-card border border-white/[0.06] p-4 flex-1 min-h-0 flex flex-col" style={{ maxHeight: "220px" }}>
             <TranscriptPanel

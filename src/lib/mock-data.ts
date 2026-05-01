@@ -163,3 +163,8 @@ export function getPersona(key: PersonaKey) {
 export function getDefaultPersona() {
   return MOCK_PERSONAS.priya;
 }
+
+export function getPersonaForPhone(phone: string) {
+  const lastDigit = parseInt(phone.slice(-1), 10);
+  return lastDigit % 2 === 0 ? MOCK_PERSONAS.rahul : MOCK_PERSONAS.priya;
+}

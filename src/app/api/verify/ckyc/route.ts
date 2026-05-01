@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getDefaultPersona } from "@/lib/mock-data";
+import { getPersonaForPhone } from "@/lib/mock-data";
 
 export async function POST(request: Request) {
   const { session_id } = await request.json();
   const db = getServiceClient();
-  const persona = getDefaultPersona();
+  const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
+  const persona = getPersonaForPhone(sess?.phone ?? "");
 
   await new Promise((r) => setTimeout(r, 1000));
 

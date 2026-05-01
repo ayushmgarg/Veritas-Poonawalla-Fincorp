@@ -29,7 +29,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg-primary text-text-primary">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-bg-primary text-text-primary">
         {children}
       </body>
     </html>

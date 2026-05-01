@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Shield,
@@ -79,11 +80,21 @@ function StatCard({
 }
 
 export default function DashboardPage() {
+  const router = useRouter();
+  const authChecked = useRef(false);
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [detail, setDetail] = useState<SessionDetail | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
   const [lastRefresh, setLastRefresh] = useState(new Date());
+
+  useEffect(() => {
+    if (authChecked.current) return;
+    authChecked.current = true;
+    if (typeof window !== "undefined" && !localStorage.getItem("veritas_dashboard_auth")) {
+      router.replace("/dashboard/login");
+    }
+  }, [router]);
 
   const fetchStats = useCallback(async () => {
     const res = await fetch("/api/dashboard/stats");
@@ -159,6 +170,15 @@ export default function DashboardPage() {
           >
             Customer View
           </Link>
+          <button
+            onClick={() => {
+              localStorage.removeItem("veritas_dashboard_auth");
+              router.push("/dashboard/login");
+            }}
+            className="text-xs text-text-muted hover:text-[#FF4136] transition-colors"
+          >
+            Sign out
+          </button>
         </div>
       </nav>
 

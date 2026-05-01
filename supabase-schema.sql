@@ -11,7 +11,12 @@ CREATE TABLE sessions (
   geo_location JSONB,
   started_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   completed_at TIMESTAMP WITH TIME ZONE,
-  is_immutable BOOLEAN DEFAULT FALSE
+  is_immutable BOOLEAN DEFAULT FALSE,
+  -- Live risk tracking (updated in real-time throughout session)
+  live_risk_score INT DEFAULT 35,
+  risk_events JSONB DEFAULT '[]',
+  -- Speech assessment (updated every 3rd transcript)
+  speech_assessment JSONB
 );
 
 CREATE TABLE customer_data (
@@ -91,7 +96,9 @@ CREATE TABLE financial_data (
   income_regularity_score DECIMAL DEFAULT 0,
   digital_trust_score DECIMAL DEFAULT 0,
   shadow_nlp_score DECIMAL DEFAULT 0,
-  composite_score DECIMAL DEFAULT 0
+  composite_score DECIMAL DEFAULT 0,
+  -- Speech quality affects interest rate
+  speech_assessment_score INT DEFAULT 70
 );
 
 CREATE TABLE llm_decisions (
@@ -144,6 +151,24 @@ CREATE TABLE audit_log (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Trust graph tables (fraud network analysis)
+CREATE TABLE trust_nodes (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  session_id UUID REFERENCES sessions(id),
+  node_type TEXT NOT NULL,   -- 'phone', 'pan', 'aadhaar', 'email'
+  node_value TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(node_type, node_value)
+);
+
+CREATE TABLE trust_edges (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  session_id UUID REFERENCES sessions(id),
+  from_node_id UUID REFERENCES trust_nodes(id),
+  to_node_id UUID REFERENCES trust_nodes(id),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Indexes for performance
 CREATE INDEX idx_sessions_status ON sessions(status);
 CREATE INDEX idx_sessions_phone ON sessions(phone);
@@ -156,6 +181,8 @@ CREATE INDEX idx_audit_log_session ON audit_log(session_id);
 CREATE INDEX idx_audit_log_created ON audit_log(created_at);
 CREATE INDEX idx_loan_offers_session ON loan_offers(session_id);
 CREATE INDEX idx_llm_decisions_session ON llm_decisions(session_id);
+CREATE INDEX idx_trust_nodes_value ON trust_nodes(node_type, node_value);
+CREATE INDEX idx_trust_edges_session ON trust_edges(session_id);
 
 -- Enable Row Level Security (required by Supabase)
 ALTER TABLE sessions ENABLE ROW LEVEL SECURITY;
@@ -169,6 +196,8 @@ ALTER TABLE llm_decisions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE loan_offers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE transcripts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE audit_log ENABLE ROW LEVEL SECURITY;
+ALTER TABLE trust_nodes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE trust_edges ENABLE ROW LEVEL SECURITY;
 
 -- Allow service role full access (API routes use service role key)
 CREATE POLICY "Service role full access" ON sessions FOR ALL USING (true) WITH CHECK (true);
@@ -182,11 +211,25 @@ CREATE POLICY "Service role full access" ON llm_decisions FOR ALL USING (true) W
 CREATE POLICY "Service role full access" ON loan_offers FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Service role full access" ON transcripts FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Service role full access" ON audit_log FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Service role full access" ON trust_nodes FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Service role full access" ON trust_edges FOR ALL USING (true) WITH CHECK (true);
 
--- Enable realtime for dashboard SSE
+-- Enable realtime for dashboard live updates
 ALTER PUBLICATION supabase_realtime ADD TABLE sessions;
 ALTER PUBLICATION supabase_realtime ADD TABLE fraud_events;
 ALTER PUBLICATION supabase_realtime ADD TABLE verifications;
 ALTER PUBLICATION supabase_realtime ADD TABLE liveness_checks;
 ALTER PUBLICATION supabase_realtime ADD TABLE transcripts;
 ALTER PUBLICATION supabase_realtime ADD TABLE loan_offers;
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- MIGRATION: run this block if you already have an existing database
+-- (skip if running the schema fresh)
+-- ─────────────────────────────────────────────────────────────────────────────
+-- ALTER TABLE sessions
+--   ADD COLUMN IF NOT EXISTS live_risk_score INT DEFAULT 35,
+--   ADD COLUMN IF NOT EXISTS risk_events JSONB DEFAULT '[]',
+--   ADD COLUMN IF NOT EXISTS speech_assessment JSONB;
+--
+-- ALTER TABLE financial_data
+--   ADD COLUMN IF NOT EXISTS speech_assessment_score INT DEFAULT 70;

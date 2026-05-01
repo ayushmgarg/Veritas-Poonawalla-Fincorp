@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
+import { updateLiveRisk } from "@/lib/risk-engine";
 
 export async function POST(request: Request) {
   const {
@@ -33,6 +34,12 @@ export async function POST(request: Request) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  await updateLiveRisk(
+    session_id,
+    isLive ? "liveness_pass" : "liveness_fail",
+    isLive ? `Live confirmed: ${blink_count} blinks, confidence ${Math.round(face_confidence * 100)}%` : "Liveness check failed"
+  );
 
   return NextResponse.json({ livenessCheck: data, isLive });
 }

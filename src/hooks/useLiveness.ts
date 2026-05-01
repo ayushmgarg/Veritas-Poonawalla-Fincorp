@@ -81,45 +81,48 @@ export function useLiveness(faceResult: FaceDetectionResult) {
       ? Math.min(100, 40 + (1 - totalMovement / SPOOF_MOVEMENT_THRESHOLD) * 60)
       : Math.max(0, (SPOOF_MOVEMENT_THRESHOLD - totalMovement) / SPOOF_MOVEMENT_THRESHOLD * 30);
 
-    let newBlinkCount = liveness.blinkCount;
-    if (blendShapes) {
-      const blinkLeft = blendShapes["eyeBlinkLeft"] || 0;
-      const blinkRight = blendShapes["eyeBlinkRight"] || 0;
-      const avgBlink = (blinkLeft + blinkRight) / 2;
-
-      if (avgBlink > BLINK_THRESHOLD && !blinkInProgress.current) {
-        blinkInProgress.current = true;
-      } else if (avgBlink < BLINK_THRESHOLD * 0.6 && blinkInProgress.current) {
-        const now = Date.now();
-        if (now - lastBlinkTime.current > BLINK_COOLDOWN_MS) {
-          newBlinkCount++;
-          lastBlinkTime.current = now;
-        }
-        blinkInProgress.current = false;
-      }
-    }
-
     const { yaw, pitch } = estimateHeadPose(landmarks);
 
-    const isLive = newBlinkCount >= 1 && microMovements > 5 && spoofConfidence < 50;
+    setLiveness((prev) => {
+      let newBlinkCount = prev.blinkCount;
 
-    const status: LivenessState["status"] =
-      spoofConfidence > 75
-        ? "spoof_confirmed"
-        : spoofConfidence > 40
-        ? "spoof_suspected"
-        : isLive
-        ? "live"
-        : "checking";
+      if (blendShapes) {
+        const blinkLeft = blendShapes["eyeBlinkLeft"] || 0;
+        const blinkRight = blendShapes["eyeBlinkRight"] || 0;
+        const avgBlink = (blinkLeft + blinkRight) / 2;
 
-    setLiveness({
-      isLive,
-      blinkCount: newBlinkCount,
-      microMovements,
-      spoofConfidence: Math.round(spoofConfidence),
-      headYaw: Math.round(yaw),
-      headPitch: Math.round(pitch),
-      status,
+        if (avgBlink > BLINK_THRESHOLD && !blinkInProgress.current) {
+          blinkInProgress.current = true;
+        } else if (avgBlink < BLINK_THRESHOLD * 0.6 && blinkInProgress.current) {
+          const now = Date.now();
+          if (now - lastBlinkTime.current > BLINK_COOLDOWN_MS) {
+            newBlinkCount++;
+            lastBlinkTime.current = now;
+          }
+          blinkInProgress.current = false;
+        }
+      }
+
+      const isLive = newBlinkCount >= 1 && microMovements > 5 && spoofConfidence < 50;
+
+      const status: LivenessState["status"] =
+        spoofConfidence > 75
+          ? "spoof_confirmed"
+          : spoofConfidence > 40
+          ? "spoof_suspected"
+          : isLive
+          ? "live"
+          : "checking";
+
+      return {
+        isLive,
+        blinkCount: newBlinkCount,
+        microMovements,
+        spoofConfidence: Math.round(spoofConfidence),
+        headYaw: Math.round(yaw),
+        headPitch: Math.round(pitch),
+        status,
+      };
     });
   }, [faceResult]);
 

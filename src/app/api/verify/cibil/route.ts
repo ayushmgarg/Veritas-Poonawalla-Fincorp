@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getDefaultPersona } from "@/lib/mock-data";
+import { getPersonaForPhone } from "@/lib/mock-data";
+import { updateLiveRisk } from "@/lib/risk-engine";
 
 export async function POST(request: Request) {
   const { session_id } = await request.json();
   const db = getServiceClient();
-  const persona = getDefaultPersona();
+  const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
+  const persona = getPersonaForPhone(sess?.phone ?? "");
 
   await new Promise((r) => setTimeout(r, 1800));
 
@@ -27,6 +29,9 @@ export async function POST(request: Request) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  const cibilEvent = result.score >= 750 ? "cibil_good" : result.score >= 650 ? "cibil_fair" : "cibil_poor";
+  await updateLiveRisk(session_id, cibilEvent, `CIBIL ${result.score} — ${result.band}`);
 
   await logAuditEvent(session_id, "cibil_check", {
     score: result.score,

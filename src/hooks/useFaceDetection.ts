@@ -27,6 +27,8 @@ const MEDIAPIPE_VISION_URL =
 const MODEL_URL =
   "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
 
+const STATE_UPDATE_INTERVAL_MS = 150;
+
 export function useFaceDetection(
   videoRef: React.RefObject<HTMLVideoElement | null>,
   canvasRef: React.RefObject<HTMLCanvasElement | null>,
@@ -34,6 +36,9 @@ export function useFaceDetection(
 ) {
   const landmarkerRef = useRef<FaceLandmarkerInstance | null>(null);
   const rafRef = useRef<number>(0);
+  const lastStateUpdateRef = useRef<number>(0);
+  const lastFaceDetectedRef = useRef<boolean>(false);
+
   const [result, setResult] = useState<FaceDetectionResult>({
     landmarks: null,
     blendShapes: null,
@@ -52,7 +57,7 @@ export function useFaceDetection(
         );
         const vision = await FilesetResolver.forVisionTasks(MEDIAPIPE_VISION_URL);
         const landmarker = await FaceLandmarker.createFromOptions(vision, {
-          baseOptions: { modelAssetPath: MODEL_URL, delegate: "GPU" },
+          baseOptions: { modelAssetPath: MODEL_URL, delegate: "CPU" },
           outputFaceBlendshapes: true,
           runningMode: "VIDEO",
           numFaces: 1,
@@ -100,7 +105,7 @@ export function useFaceDetection(
   );
 
   useEffect(() => {
-    if (!isActive || !isReady || !landmarkerRef.current) return;
+    if (!isActive || !isReady) return;
 
     let lastVideoTime = -1;
 
@@ -119,6 +124,10 @@ export function useFaceDetection(
             performance.now()
           );
 
+          const now = performance.now();
+          const shouldUpdateState =
+            now - lastStateUpdateRef.current > STATE_UPDATE_INTERVAL_MS;
+
           if (detection.faceLandmarks?.length > 0) {
             const landmarks = detection.faceLandmarks[0] as FaceLandmark[];
             const shapes: Record<string, number> = {};
@@ -129,15 +138,25 @@ export function useFaceDetection(
               }
             }
 
-            setResult({ landmarks, blendShapes: shapes, faceDetected: true });
             drawLandmarks(landmarks);
+
+            if (shouldUpdateState || !lastFaceDetectedRef.current) {
+              lastStateUpdateRef.current = now;
+              lastFaceDetectedRef.current = true;
+              setResult({ landmarks, blendShapes: shapes, faceDetected: true });
+            }
           } else {
-            setResult({ landmarks: null, blendShapes: null, faceDetected: false });
             const canvas = canvasRef.current;
             if (canvas) canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (shouldUpdateState || lastFaceDetectedRef.current) {
+              lastStateUpdateRef.current = now;
+              lastFaceDetectedRef.current = false;
+              setResult({ landmarks: null, blendShapes: null, faceDetected: false });
+            }
           }
         } catch {
-          // continue
+          // continue on detection errors
         }
       }
 

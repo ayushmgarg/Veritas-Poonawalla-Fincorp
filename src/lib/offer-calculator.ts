@@ -1,6 +1,7 @@
 import { LOAN_PRODUCTS } from "@/constants/policy-rules";
 import { LoanProduct, RiskTier, LoanOffer } from "@/types";
 import { v4 as uuidv4 } from "uuid";
+import { speechScoreToRateAdjustment } from "./speech-analysis";
 
 function calculateEMI(
   principal: number,
@@ -17,10 +18,13 @@ export function generateOffers(
   sessionId: string,
   requestedAmount: number,
   riskTier: RiskTier,
-  monthlyIncome: number
+  monthlyIncome: number,
+  speechAssessmentScore = 75
 ): LoanOffer[] {
   const maxEligibleByIncome = monthlyIncome * 60;
   const offers: LoanOffer[] = [];
+  const speechRateAdjBps = speechScoreToRateAdjustment(speechAssessmentScore);
+  const speechRateAdj = speechRateAdjBps / 100;
 
   for (const product of LOAN_PRODUCTS) {
     const amount = Math.min(
@@ -31,7 +35,8 @@ export function generateOffers(
 
     if (amount < product.minAmount) continue;
 
-    const rate = product.rateByTier[riskTier];
+    const baseRate = product.rateByTier[riskTier];
+    const rate = Math.round((baseRate + speechRateAdj) * 100) / 100;
     const preferredTenure =
       product.tenureOptions[Math.floor(product.tenureOptions.length / 2)];
     const emi = calculateEMI(amount, rate, preferredTenure);

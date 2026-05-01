@@ -14,6 +14,17 @@ export async function POST(request: Request) {
 
   const db = getServiceClient();
 
+  const { data: existing } = await db
+    .from("sessions")
+    .select("id")
+    .eq("phone", phone)
+    .in("status", ["initiated", "consent", "in_progress"])
+    .maybeSingle();
+
+  if (existing) {
+    return NextResponse.json({ error: "duplicate", session_id: existing.id }, { status: 409 });
+  }
+
   const { data: session, error } = await db
     .from("sessions")
     .insert({

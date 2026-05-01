@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getDefaultPersona } from "@/lib/mock-data";
+import { getPersonaForPhone } from "@/lib/mock-data";
+import { updateLiveRisk } from "@/lib/risk-engine";
 
 export async function POST(request: Request) {
   const { session_id } = await request.json();
   const db = getServiceClient();
-  const persona = getDefaultPersona();
+  const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
+  const persona = getPersonaForPhone(sess?.phone ?? "");
 
   await new Promise((r) => setTimeout(r, 1500));
 
@@ -36,6 +38,8 @@ export async function POST(request: Request) {
       aadhaar_last4: persona.customer.aadhaar_last4,
     })
     .eq("session_id", session_id);
+
+  await updateLiveRisk(session_id, "aadhaar_verified", `Face match ${result.match_score}%`);
 
   await logAuditEvent(session_id, "uidai_verification", {
     match_score: result.match_score,

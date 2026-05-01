@@ -2,242 +2,313 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   Shield,
-  Fingerprint,
-  Brain,
-  Clock,
-  Languages,
-  FileCheck,
   ChevronRight,
   Lock,
-  Zap,
-  Eye,
   LayoutDashboard,
+  ScanFace,
+  FileText,
+  TrendingUp,
+  ArrowRight,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { SessionQRCode } from "@/components/ui/QRCode";
+import { GoogleSignIn } from "@/components/ui/GoogleSignIn";
 
-const FEATURES = [
+const STATS = [
+  { value: "< 8 min", label: "End-to-end onboarding" },
+  { value: "1.3B+", label: "Aadhaar profiles" },
+  { value: "250M+", label: "DigiLocker documents" },
+  { value: "Zero", label: "Physical paperwork" },
+];
+
+const STEPS = [
   {
-    icon: Eye,
-    title: "Live Video KYC",
-    desc: "Complete your loan application via a secure, AI-guided video call in under 8 minutes",
+    icon: ScanFace,
+    step: "01",
+    title: "Live Video Identity",
+    desc: "Face matched against Aadhaar biometrics with real-time liveness detection. No document scanning.",
   },
   {
-    icon: Shield,
-    title: "Fraud Interception",
-    desc: "GAN-powered deepfake detection and 3D liveness verification blocks spoofing in real-time",
+    icon: FileText,
+    step: "02",
+    title: "Instant Document Pull",
+    desc: "PAN, driving license, and bank statements fetched directly from DigiLocker and Account Aggregator.",
   },
   {
-    icon: Brain,
-    title: "AI Credit Intelligence",
-    desc: "LLM-powered risk assessment with RBI-compliant explainable decisions",
-  },
-  {
-    icon: Fingerprint,
-    title: "India Stack Native",
-    desc: "UIDAI, DigiLocker, CKYC, Account Aggregator, CIBIL — unified in one session",
-  },
-  {
-    icon: Languages,
-    title: "22 Languages",
-    desc: "Speak in any Indian language. Our AI understands and responds naturally",
-  },
-  {
-    icon: FileCheck,
-    title: "Zero Paperwork",
-    desc: "100% digital document verification. No uploads, no forms, no waiting",
+    icon: TrendingUp,
+    step: "03",
+    title: "AI Credit Decision",
+    desc: "LLM risk engine cross-references 40+ signals for an RBI-compliant, explainable credit assessment.",
   },
 ];
 
-const COMPLIANCE_BADGES = [
-  "RBI V-CIP 2026",
-  "DPDP Act 2023",
-  "PMLA Compliant",
-  "UIDAI KUA",
-  "CERT-In Ready",
-];
+const COMPLIANCE = ["RBI V-CIP 2026", "DPDP Act 2023", "PMLA Compliant", "UIDAI KUA", "CERT-In"];
+
+const EASE = [0.25, 0.1, 0.25, 1] as [number, number, number, number];
+
+const stagger = {
+  container: { animate: { transition: { staggerChildren: 0.08 } } },
+  item: {
+    initial: { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
+  },
+};
 
 export default function LandingPage() {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [sessionUrl, setSessionUrl] = useState<string | null>(null);
   const router = useRouter();
 
   async function handleStart() {
     if (phone.length < 10) return;
     setLoading(true);
-
+    setError(null);
     try {
       const res = await fetch("/api/session/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone }),
       });
-      const { session } = await res.json();
-      router.push(`/session/${session.id}`);
+      const data = await res.json();
+      if (res.status === 409) {
+        router.push(`/session/${data.session_id}`);
+        return;
+      }
+      const url = `${window.location.origin}/session/${data.session.id}`;
+      setSessionUrl(url);
     } catch {
+      setError("Something went wrong. Please try again.");
       setLoading(false);
     }
   }
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#003B73] via-[#0A0E1A] to-[#0A0E1A]" />
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#0074D9]/8 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#00C9A7]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3" />
-
-      <div className="relative z-10">
-        <nav className="flex items-center justify-between px-6 lg:px-12 py-5">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0074D9] to-[#00C9A7] flex items-center justify-center">
-              <Shield className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <span className="text-lg font-semibold tracking-tight text-white">
-                VERITAS
-              </span>
-              <span className="hidden sm:inline text-xs text-text-secondary ml-2">
-                Poonawalla Fincorp
-              </span>
-            </div>
+    <main className="min-h-screen bg-[var(--bg-primary)] transition-colors duration-300">
+      {/* Nav */}
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16 h-14 border-b border-[var(--border-subtle)] bg-[var(--glass-bg)] backdrop-blur-md">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#0074D9] to-[#00C9A7] flex items-center justify-center shrink-0">
+            <Shield className="w-3.5 h-3.5 text-white" />
           </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] text-xs text-text-secondary hover:bg-white/[0.07] transition-colors"
-            >
-              <LayoutDashboard className="w-3 h-3" />
-              Agent Dashboard
-            </Link>
-            <div className="flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-[#00C9A7]" />
-              <span className="text-xs text-text-secondary hidden sm:block">
-                End-to-end encrypted
-              </span>
-            </div>
-          </div>
-        </nav>
-
-        <section className="max-w-6xl mx-auto px-6 lg:px-12 pt-16 pb-12 lg:pt-24 lg:pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-3xl"
+          <span className="text-sm font-semibold tracking-tight text-[var(--text-primary)]">VERITAS</span>
+          <span className="hidden sm:block text-xs text-[var(--text-muted)]">by Poonawalla Fincorp</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <ThemeToggle />
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] border border-[var(--border-subtle)] transition-all"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-text-secondary mb-6">
-              <Zap className="w-3 h-3 text-[#FFB800]" />
-              AI-Powered V-CIP Platform
-            </div>
+            <LayoutDashboard className="w-3 h-3" />
+            Dashboard
+          </Link>
+        </div>
+      </nav>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
-              Get your loan approved
-              <br />
-              <span className="bg-gradient-to-r from-[#0074D9] to-[#00C9A7] bg-clip-text text-transparent">
-                in under 8 minutes
-              </span>
-            </h1>
-
-            <p className="mt-6 text-lg text-text-secondary max-w-xl leading-relaxed">
-              VERITAS conducts your entire loan application via a secure video
-              call. AI-verified identity, instant document pull, real-time
-              credit assessment — zero paperwork.
-            </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
-              <div className="relative flex-1">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-sm">
-                  +91
-                </span>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) =>
-                    setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
-                  }
-                  placeholder="Enter mobile number"
-                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-muted focus:outline-none focus:border-[#0074D9]/50 focus:ring-1 focus:ring-[#0074D9]/30 transition-all text-sm"
-                />
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleStart}
-                disabled={phone.length < 10 || loading}
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0074D9] to-[#005FA3] text-white font-medium text-sm flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-[#0074D9]/20 transition-all"
-              >
-                {loading ? (
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                ) : (
-                  <>
-                    Start Application
-                    <ChevronRight className="w-4 h-4" />
-                  </>
-                )}
-              </motion.button>
-            </div>
-
-            <div className="mt-6 flex items-center gap-4">
-              <div className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#00C9A7]" />
-                <span className="text-xs text-text-secondary">
-                  ~7 min process
-                </span>
-              </div>
-              <div className="w-px h-3 bg-white/10" />
-              <span className="text-xs text-text-secondary">
-                No documents needed
-              </span>
-              <div className="w-px h-3 bg-white/10" />
-              <span className="text-xs text-text-secondary">
-                Instant decision
-              </span>
+      {/* Hero */}
+      <section className="max-w-5xl mx-auto px-6 lg:px-16 pt-20 pb-12">
+        <motion.div
+          variants={stagger.container}
+          initial="initial"
+          animate="animate"
+          className="max-w-2xl"
+        >
+          <motion.div variants={stagger.item}>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0074D9]/10 border border-[#0074D9]/20 text-[10px] font-semibold text-[#0074D9] mb-8 tracking-wider uppercase">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#0074D9] animate-pulse" />
+              AI-Powered Video KYC
             </div>
           </motion.div>
-        </section>
 
-        <section className="max-w-6xl mx-auto px-6 lg:px-12 py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {FEATURES.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * i }}
-                className="group p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-300"
-              >
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#0074D9]/20 to-[#00C9A7]/20 flex items-center justify-center mb-3">
-                  <feature.icon className="w-4 h-4 text-[#0074D9]" />
+          <motion.h1
+            variants={stagger.item}
+            className="text-5xl sm:text-6xl lg:text-[4.5rem] font-bold tracking-[-0.03em] leading-[1.05] text-[var(--text-primary)]"
+          >
+            Loan approved.
+            <br />
+            <span className="bg-gradient-to-r from-[#0074D9] to-[#00C9A7] bg-clip-text text-transparent">
+              In under 8 minutes.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            variants={stagger.item}
+            className="mt-6 text-base sm:text-lg text-[var(--text-secondary)] max-w-lg leading-relaxed"
+          >
+            A fully agentic V-CIP platform. AI verifies your identity, pulls
+            documents from India Stack, assesses credit — all in one live video
+            call.
+          </motion.p>
+
+          <AnimatePresence mode="wait">
+            {!sessionUrl ? (
+              <motion.div key="form" variants={stagger.item} className="space-y-3 max-w-sm">
+                <div className="flex gap-3">
+                  <div className="relative flex-1">
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-sm select-none pointer-events-none">
+                      +91
+                    </span>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) =>
+                        setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
+                      }
+                      onKeyDown={(e) => e.key === "Enter" && handleStart()}
+                      placeholder="Mobile number"
+                      className="w-full pl-11 pr-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-default)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[#0074D9]/60 focus:ring-2 focus:ring-[#0074D9]/15 transition-all text-sm"
+                    />
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={handleStart}
+                    disabled={phone.length < 10 || loading}
+                    className="px-5 py-3 rounded-xl bg-[#0074D9] hover:bg-[#0066CC] text-white font-medium text-sm flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-lg shadow-[#0074D9]/20 shrink-0"
+                  >
+                    {loading ? (
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <>Begin KYC <ChevronRight className="w-3.5 h-3.5" /></>
+                    )}
+                  </motion.button>
                 </div>
-                <h3 className="text-sm font-semibold text-white mb-1.5">
-                  {feature.title}
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  {feature.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
 
-        <section className="max-w-6xl mx-auto px-6 lg:px-12 py-8 pb-16">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {COMPLIANCE_BADGES.map((badge) => (
-              <div
-                key={badge}
-                className="px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-xs text-text-secondary flex items-center gap-1.5"
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 h-px bg-[var(--border-subtle)]" />
+                  <span className="text-[11px] text-[var(--text-muted)]">or</span>
+                  <div className="flex-1 h-px bg-[var(--border-subtle)]" />
+                </div>
+
+                <GoogleSignIn redirectTo={`${typeof window !== "undefined" ? window.location.origin : ""}/`} />
+
+                {error && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-xs text-[#FF4136]"
+                  >
+                    {error}
+                  </motion.p>
+                )}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="qr"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col sm:flex-row items-start gap-5 max-w-sm"
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00C9A7]" />
-                {badge}
+                <SessionQRCode url={sessionUrl} label="Scan to continue on your phone" />
+                <div className="flex flex-col gap-3 pt-1">
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">Session ready</p>
+                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                    Scan the QR with your phone camera, or continue on this device.
+                  </p>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => router.push(sessionUrl)}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0074D9] text-white text-sm font-medium shadow-lg shadow-[#0074D9]/20"
+                  >
+                    Continue here <ArrowRight className="w-3.5 h-3.5" />
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <motion.div
+            variants={stagger.item}
+            className="mt-5 flex items-center gap-1.5 text-xs text-[var(--text-muted)]"
+          >
+            <Lock className="w-3 h-3 shrink-0" />
+            AES-256-GCM encrypted · RBI V-CIP certified · No documents required
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Stats */}
+      <section className="max-w-5xl mx-auto px-6 lg:px-16 pb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          className="grid grid-cols-2 lg:grid-cols-4 overflow-hidden rounded-2xl border border-[var(--border-subtle)]"
+          style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
+        >
+          {STATS.map((stat, i) => (
+            <div
+              key={i}
+              className={`bg-[var(--bg-card)] px-6 py-5 ${
+                i < STATS.length - 1 ? "border-r border-[var(--border-subtle)]" : ""
+              } ${i < 2 ? "border-b lg:border-b-0 border-[var(--border-subtle)]" : ""}`}
+            >
+              <p className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
+                {stat.value}
+              </p>
+              <p className="text-xs text-[var(--text-muted)] mt-0.5">{stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* How it works */}
+      <section className="max-w-5xl mx-auto px-6 lg:px-16 pb-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+        >
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.step}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.42 + i * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
+              className="group p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-default)] hover:shadow-sm transition-all duration-200"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-9 h-9 rounded-xl bg-[#0074D9]/10 flex items-center justify-center group-hover:bg-[#0074D9]/15 transition-colors">
+                  <step.icon className="w-4 h-4 text-[#0074D9]" />
+                </div>
+                <span className="text-xs font-mono text-[var(--text-muted)]">{step.step}</span>
               </div>
+              <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-1.5">
+                {step.title}
+              </h3>
+              <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{step.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Footer */}
+      <footer className="max-w-5xl mx-auto px-6 lg:px-16 pb-8">
+        <div className="border-t border-[var(--border-subtle)] pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-2">
+            {COMPLIANCE.map((badge) => (
+              <span
+                key={badge}
+                className="px-2.5 py-1 rounded-full border border-[var(--border-subtle)] text-[10px] text-[var(--text-muted)] tracking-wide"
+              >
+                {badge}
+              </span>
             ))}
           </div>
-          <p className="text-center text-xs text-text-muted mt-6">
-            Poonawalla Fincorp &middot; TenzorX 2026 &middot; Team CodeBaes
+          <p className="text-[11px] text-[var(--text-muted)] whitespace-nowrap">
+            © 2026 Poonawalla Fincorp
           </p>
-        </section>
-      </div>
+        </div>
+      </footer>
     </main>
   );
 }

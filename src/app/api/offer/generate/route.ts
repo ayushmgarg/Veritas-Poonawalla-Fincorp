@@ -27,11 +27,18 @@ export async function POST(request: Request) {
     .eq("session_id", session_id)
     .single();
 
+  const { data: session } = await db
+    .from("sessions")
+    .select("speech_assessment")
+    .eq("id", session_id)
+    .single();
+
   const riskTier = (llmDecision?.risk_tier || 1) as 1 | 2 | 3;
   const requestedAmount = customer?.loan_amount_requested || 1500000;
   const monthlyIncome = financial?.monthly_income || 50000;
+  const speechScore = (session?.speech_assessment as { score?: number } | null)?.score ?? 75;
 
-  const offers = generateOffers(session_id, requestedAmount, riskTier, monthlyIncome);
+  const offers = generateOffers(session_id, requestedAmount, riskTier, monthlyIncome, speechScore);
 
   for (const offer of offers) {
     await db.from("loan_offers").insert({
