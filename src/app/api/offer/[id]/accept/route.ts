@@ -38,5 +38,17 @@ export async function PUT(
       "PMLA Section 12 - Session sealed with WORM lock. 10-year immutable retention.",
   });
 
+  // Fire WhatsApp notification (non-blocking — failure doesn't break accept)
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+    await fetch(`${baseUrl}/api/notify/whatsapp`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: offer.session_id, offer_id: id }),
+    });
+  } catch {
+    // silent — notification is best-effort
+  }
+
   return NextResponse.json({ offer, sealed: true });
 }

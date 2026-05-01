@@ -283,6 +283,17 @@ export default function SessionPage() {
           <span className="hidden sm:block text-xs text-text-muted">
             Step {currentStep + 1}/8 — {SESSION_STEPS[currentStep]?.label}
           </span>
+          {/* REC indicator — RBI V-CIP §3.1 session recording */}
+          {webrtcState.isActive && (
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FF4136]/10 border border-[#FF4136]/20 ml-1">
+              <motion.div
+                animate={{ opacity: [1, 0.2, 1] }}
+                transition={{ duration: 1.4, repeat: Infinity }}
+                className="w-1.5 h-1.5 rounded-full bg-[#FF4136]"
+              />
+              <span className="text-[9px] font-semibold text-[#FF4136] tracking-widest">REC</span>
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-3">
           <AnimatePresence mode="wait">

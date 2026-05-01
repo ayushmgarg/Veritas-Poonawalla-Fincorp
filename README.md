@@ -1,57 +1,169 @@
-# VERITAS — Agentic V-CIP Platform
+# VERITAS
 
-> AI-powered video KYC and instant loan onboarding. Identity verified, documents pulled, credit assessed, offer generated — in a single 8-minute live video call. Zero paperwork.
+> **Agentic V-CIP Platform** — AI-powered video KYC and instant loan onboarding by Poonawalla Fincorp.
+> Identity verified, documents pulled, credit assessed, offer generated — in a single 8-minute live video call. Zero paperwork.
 
-Built for Poonawalla Fincorp · TenzorX 2026
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://typescriptlang.org)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green?logo=supabase)](https://supabase.com)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
 
 ---
 
-## How It Works
+## Architecture
 
-An 8-step pipeline runs entirely within a single video session:
+```mermaid
+graph TD
+    subgraph Browser["Customer Browser (Chrome)"]
+        CAM[WebRTC Camera/Mic]
+        MP[MediaPipe Face Landmarker]
+        STT[Web Speech API STT]
+        TTS[Web Speech API TTS]
+    end
 
-| Step | What happens |
-|---|---|
-| 1. Session Init | Secure V-CIP session, device/geo fingerprinted, duplicate phone check |
-| 2. Consent Capture | Verbal consent recorded, SHA-256 hashed for PMLA audit trail |
-| 3. Liveness Check | MediaPipe face mesh — blink + micro-movement analysis blocks photo/video spoofs |
-| 4. Aadhaar Face Auth | UIDAI face match, match score returned, live risk score updated |
-| 5. DigiLocker | PAN + Driving License pulled via OAuth, application auto-filled |
-| 6. Account Aggregator + CIBIL | 6-month transaction data + bureau score fetched in parallel |
-| 7. AI Risk Assessment | LLM classifies risk tier (1/2/3) with RBI citations; deterministic policy engine has final override |
-| 8. Loan Offer | Personalised offers generated (speech-adjusted rate), negotiable via AI chat, sealed with tamper-proof audit record |
+    subgraph SessionFlow["Session Flow (8 Steps)"]
+        S1[1. Session Init] --> S2[2. Consent Capture]
+        S2 --> S3[3. Liveness Check]
+        S3 --> S4[4. Aadhaar Face Auth]
+        S4 --> S5[5. DigiLocker Pull]
+        S5 --> S6[6. AA + CIBIL]
+        S6 --> S7[7. AI Risk Assessment]
+        S7 --> S8[8. Offer Generation]
+    end
+
+    subgraph IndiaStack["India Stack Mocks"]
+        UIDAI[UIDAI Face Auth]
+        DL[DigiLocker OAuth]
+        CKYC[CKYC Registry]
+        AA[Account Aggregator]
+        CIBIL[CIBIL Bureau]
+    end
+
+    subgraph AI["AI Pipeline"]
+        GROQ[Groq llama-3.3-70b]
+        GEMINI[Gemini 1.5 Flash fallback]
+        POLICY[Policy Engine 13 rules]
+        SPEECH[Speech Analyser]
+        DRIFT[Intent Drift Detector]
+        TRUST[Trust Graph]
+        RISK[Live Risk Meter]
+    end
+
+    subgraph DB["Supabase PostgreSQL"]
+        SESSIONS[(sessions)]
+        TRANSCRIPTS[(transcripts)]
+        OFFERS[(loan_offers)]
+        AUDIT[(audit_log)]
+        TRUST_NODES[(trust_nodes)]
+    end
+
+    CAM --> MP --> S3
+    STT --> SPEECH --> S7
+    S4 --> UIDAI
+    S5 --> DL & CKYC
+    S6 --> AA & CIBIL
+    S7 --> GROQ -->|rate limit| GEMINI
+    S7 --> POLICY
+    SPEECH --> DRIFT --> RISK
+    TRUST --> RISK
+    S8 -->|accepted| WA[Twilio WhatsApp]
+    SessionFlow --> DB
+    AI --> DB
+```
+
+---
+
+## Request Flow
+
+```mermaid
+sequenceDiagram
+    participant C as Customer
+    participant UI as Session Page
+    participant API as Next.js API
+    participant DB as Supabase
+    participant LLM as Groq / Gemini
+    participant WA as WhatsApp
+
+    C->>UI: Enter phone, Begin KYC
+    UI->>API: POST /api/session/create
+    API->>DB: Insert session + customer_data
+    API-->>UI: session.id + QR URL
+
+    C->>UI: Allow camera, I Consent
+    UI->>API: POST /api/session/consent
+    UI->>API: POST /api/fraud/liveness
+    API->>DB: Insert liveness_check, update live_risk_score
+
+    UI->>API: POST /api/verify/aadhaar
+    API->>DB: Insert verification, update risk
+    UI->>API: POST /api/verify/digilocker + ckyc (parallel)
+    UI->>API: POST /api/verify/aa + cibil (parallel)
+    API->>DB: Insert financial_data
+
+    loop Every speech transcript
+        UI->>API: POST /api/speech/process
+        API->>DB: Insert transcript, run NER
+        API->>API: Intent drift check, speech score
+        API->>DB: Update live_risk_score
+    end
+
+    UI->>API: POST /api/credit/risk-classify
+    API->>LLM: Risk classification prompt
+    LLM-->>API: Risk tier 1/2/3 + citations
+    API->>DB: Insert llm_decision
+
+    UI->>API: POST /api/offer/generate
+    API->>DB: Insert loan_offers (speech-adjusted rate)
+    UI-->>C: Show 3 personalised offers
+
+    C->>UI: Accept offer
+    UI->>API: PUT /api/offer/accept
+    API->>DB: Seal session (is_immutable=true)
+    API->>WA: POST /api/notify/whatsapp
+    WA-->>C: WhatsApp sanction message
+```
 
 ---
 
 ## Features
 
-### Core KYC Flow
-- **Real video call** — WebRTC (`getUserMedia`), browser-native, no plugins
+### Core KYC Pipeline
+- **Real video call** — WebRTC `getUserMedia`, browser-native, no plugins
 - **Continuous speech recognition** — Web Speech API, NER extracts loan amount / income / employer mid-conversation
+- **Contextual question prompts** — overlaid on video at each step, feed into transcript analysis
 - **Agent TTS** — responds in Indian English via Web Speech Synthesis
-- **Question prompts** — contextual questions overlaid on video at each step, feed into transcript analysis
-- **India Stack mocks** — UIDAI, DigiLocker, CKYC, CIBIL, Account Aggregator simulated with realistic persona data (2 personas: Priya/Rahul, routed by phone last digit parity)
+- **India Stack mocks** — UIDAI, DigiLocker, CKYC, CIBIL, AA with 2 realistic personas:
+  - Even last digit → **Rahul** (freelancer, CIBIL 680, Tier 2 risk)
+  - Odd last digit → **Priya** (TCS employee, CIBIL 762, Tier 1 risk)
 
-### Fraud & Risk
-- **Live Risk Meter** — real-time 0–100 risk score, event-driven deltas from 15 signal types, circular gauge in UI
-- **Live fraud detection** — Eye Aspect Ratio blink detection, nose-tip micro-movement variance, GAN spoof confidence
-- **Intent Drift Detection** — rule-based + LLM detects contradictions in income / employer / name across transcripts
-- **Trust Graph** — cross-session PAN/phone/Aadhaar reuse detection (fraud ring analysis)
-- **Speech Analysis** — hesitation markers, evasion patterns, confidence scoring → adjusts interest rate by 0–300 bps
+### Fraud & Risk Intelligence
+| Feature | Details |
+|---|---|
+| Live Risk Meter | Real-time 0–100 score, 15 event types, circular gauge with pulse animation |
+| Liveness Detection | MediaPipe Face Landmarker, blink EAR + nose-tip micro-movement variance |
+| Spoof Check | GAN confidence score, triggers re-verification overlay |
+| Intent Drift | Rule-based (income/employer/name) + LLM semantic contradiction analysis |
+| Trust Graph | Cross-session PAN/phone/Aadhaar reuse detection, fraud ring clustering |
+| Speech Analysis | Hesitation markers, evasion patterns → 0–300 bps interest rate adjustment |
 
 ### AI Pipeline
-- **LLM** — Groq (llama-3.3-70b) primary, Gemini (gemini-1.5-flash) fallback, auto-switches on rate limit
-- **Policy engine** — 13 deterministic rules the LLM cannot override (age floor, CIBIL floor, FOIR cap, etc.)
-- **Digital Trust Score** — 5-dimension composite from AA transaction behaviour
-- **Shadow NLP Score** — LLM scores conversation quality as soft credit signal
-- **AI offer negotiation** — chat interface interprets tenure/amount requests, recalculates EMI
+| Component | Details |
+|---|---|
+| LLM | Groq llama-3.3-70b → Gemini 1.5 Flash (auto-fallback on 429) |
+| Policy Engine | 13 hard rules (age floor, CIBIL floor, FOIR cap) — LLM cannot override |
+| Digital Trust Score | 5-dimension AA transaction composite |
+| Shadow NLP Score | LLM grades conversation quality as soft credit signal |
+| Offer Negotiation | AI chat interface re-calculates EMI from natural language requests |
 
 ### UX & Auth
+- **Dual-path home page** — customer KYC flow + agent dashboard portal
 - **Google Sign-In** — Supabase OAuth, `/auth/callback` route
 - **QR code handoff** — scan to continue session on mobile
-- **Light / dark mode** — CSS variable theming, persisted in localStorage
-- **Gamification** — XP rewards at each step, particle burst celebration
-- **Hash chain audit trail** — every event SHA-256 chained, PMLA §12, 10-year WORM retention
+- **Light / dark mode** — CSS variable theming, persisted to localStorage
+- **Gamification** — XP rewards at each step, particle burst celebrations
+- **WhatsApp notification** — Twilio API, sanction details sent on offer acceptance
+- **REC indicator** — RBI V-CIP §3.1 session recording badge during video call
+- **Hash chain audit trail** — SHA-256 chained events, PMLA §12 compliant
 
 ---
 
@@ -64,9 +176,10 @@ An 8-step pipeline runs entirely within a single video session:
 | Video | WebRTC (`getUserMedia`) |
 | Face Detection | MediaPipe Face Landmarker (WASM, CPU delegate) |
 | Speech | Web Speech API (STT + TTS, browser-native) |
-| LLM | Groq (llama-3.3-70b) → Gemini 1.5 Flash (fallback) |
+| LLM | Groq llama-3.3-70b → Gemini 1.5 Flash |
 | Database | Supabase (PostgreSQL + RLS + Realtime) |
 | Auth | Supabase OAuth (Google) |
+| Notifications | Twilio WhatsApp Business API |
 | State | Zustand |
 | Crypto | CryptoJS (SHA-256 hash chain) |
 | Deploy | Vercel |
@@ -83,35 +196,45 @@ cd veritas
 npm install
 ```
 
-### 2. Configure environment
+### 2. Environment variables
 
 ```bash
 cp .env.example .env.local
 ```
 
-Fill in `.env.local`:
+| Variable | Source | Required |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API | Yes |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Same page | Yes |
+| `SUPABASE_SERVICE_ROLE_KEY` | Same page (keep secret) | Yes |
+| `GROQ_API_KEY` | [console.groq.com](https://console.groq.com) (free) | Yes |
+| `GEMINI_API_KEY` | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) (free) | Fallback |
+| `TWILIO_ACCOUNT_SID` | [twilio.com/console](https://twilio.com/console) | WhatsApp |
+| `TWILIO_AUTH_TOKEN` | Same page | WhatsApp |
+| `TWILIO_WHATSAPP_FROM` | Sandbox: `whatsapp:+14155238886` | WhatsApp |
+| `NEXT_PUBLIC_APP_URL` | Your domain (e.g. `https://veritas.vercel.app`) | Production |
 
-| Variable | Where to get it |
-|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | [supabase.com](https://supabase.com) → project → Settings → API |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Same page |
-| `SUPABASE_SERVICE_ROLE_KEY` | Same page (keep secret — server only) |
-| `GROQ_API_KEY` | [console.groq.com](https://console.groq.com) → API Keys (free) |
-| `GEMINI_API_KEY` | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) (free) |
+### 3. Database
 
-### 3. Set up the database
+Supabase → SQL Editor → paste `supabase-schema.sql` → Run.
 
-Supabase project → SQL Editor → paste entire `supabase-schema.sql` → Run.
+> **Existing DB?** Uncomment the migration block at the bottom of `supabase-schema.sql` and run only that section.
 
-> **Existing database?** Uncomment the migration block at the bottom of `supabase-schema.sql` and run only that.
+### 4. Google Sign-In (optional)
 
-### 4. Enable Google Sign-In (optional)
-
-1. [Google Cloud Console](https://console.cloud.google.com) → APIs & Services → Credentials → Create OAuth 2.0 Client ID (Web)
-2. Authorized redirect URI: `https://<your-supabase-ref>.supabase.co/auth/v1/callback`
+1. [Google Cloud Console](https://console.cloud.google.com) → Credentials → OAuth 2.0 Client ID (Web)
+2. Authorized redirect URI: `https://<supabase-ref>.supabase.co/auth/v1/callback`
 3. Supabase → Authentication → Providers → Google → paste Client ID + Secret
 
-### 5. Run locally
+### 5. Twilio WhatsApp Sandbox
+
+1. [twilio.com/console/sms/whatsapp/sandbox](https://twilio.com/console/sms/whatsapp/sandbox)
+2. Send `join <your-word>` from your WhatsApp to `+1-415-523-8886`
+3. Copy Account SID + Auth Token into `.env.local`
+
+> For production: upgrade to a Twilio WhatsApp Business sender (requires Meta approval).
+
+### 6. Run locally
 
 ```bash
 npm run dev
@@ -126,65 +249,106 @@ Open `http://localhost:3000` in **Chrome** — required for Web Speech API.
 ```
 src/
   app/
+    page.tsx              Home page (dual-path: customer + agent)
     api/
-      session/          Session CRUD, step advance, consent, risk endpoint
-      verify/           Aadhaar, DigiLocker, CKYC, CIBIL, AA (India Stack mocks)
-      fraud/            Liveness, spoof-check, trust-graph, intent-drift
-      credit/           Shadow score, risk classification, digital trust
-      offer/            Generate, negotiate, accept
-      speech/           Transcript processing + entity extraction
-      audit/            Audit log retrieval
-    session/[id]/       Customer video call UI + offer page
-    dashboard/          Agent monitoring dashboard (PIN gated)
-    audit/[sessionId]/  Audit trail viewer
-    auth/callback/      Supabase OAuth callback
+      session/            Session CRUD, step, consent, risk
+      verify/             Aadhaar, DigiLocker, CKYC, CIBIL, AA
+      fraud/              Liveness, spoof-check, trust-graph, intent-drift
+      credit/             Shadow score, risk classification, digital trust
+      offer/              Generate, negotiate, accept
+      speech/             Transcript processing + NER
+      notify/             WhatsApp notification
+      audit/              Audit log
+    session/[id]/         Customer video call + offer page
+    dashboard/            Agent monitoring (PIN: VERITAS)
+    audit/[sessionId]/    Hash chain audit trail
+    auth/callback/        Supabase OAuth
   components/
-    session/            AgentPanel, ConsentModal, DigiLockerModal, FraudAlertOverlay,
-                        LiveRiskMeter, LivenessIndicator, QuestionPrompt,
-                        StepProgress, TranscriptPanel, XPCelebration
-    dashboard/          EventTimeline, FinancialSummary, FraudGauges,
-                        IndiaStackChecklist, LLMReasoningPanel, SessionCard
-    ui/                 ThemeToggle, GoogleSignIn, QRCode, Modal, Badge
-  hooks/                useWebRTC, useFaceDetection, useLiveness,
-                        useSpeechRecognition, useSession, useSSE
-  lib/                  llm, supabase, mock-data, offer-calculator, policy-engine,
-                        risk-engine, speech-analysis, intent-drift, trust-graph,
-                        digital-trust, hash-chain, audit-logger
-  constants/            steps, prompts, policy-rules
-  types/                TypeScript interfaces
+    session/              AgentPanel, LiveRiskMeter, QuestionPrompt,
+                          ConsentModal, DigiLockerModal, FraudAlertOverlay,
+                          LivenessIndicator, StepProgress, TranscriptPanel, XPCelebration
+    dashboard/            EventTimeline, FinancialSummary, FraudGauges,
+                          IndiaStackChecklist, LLMReasoningPanel, SessionCard
+    ui/                   ThemeToggle, GoogleSignIn, QRCode, Modal, Badge
+  hooks/                  useWebRTC, useFaceDetection, useLiveness,
+                          useSpeechRecognition, useSession, useSSE
+  lib/                    llm, supabase, mock-data, offer-calculator,
+                          policy-engine, risk-engine, speech-analysis,
+                          intent-drift, trust-graph, digital-trust,
+                          hash-chain, audit-logger
+  constants/              steps, prompts, policy-rules
+  types/                  TypeScript interfaces
 ```
 
 ---
 
 ## Demo Flow
 
-1. Enter any 10-digit mobile number → **Begin KYC**
-2. Scan QR to continue on mobile, or click **Continue here**
-3. Allow camera + microphone
-4. Consent modal → **I Consent**
-5. Blink twice when prompted (liveness check)
-6. Speak your details naturally — agent extracts income / employer / loan purpose
-7. DigiLocker modal → **Authorize**
-8. AI risk assessment + speech analysis → personalised loan offers generated
-9. Accept an offer → confetti → session sealed with audit record
+1. Open `/` → click **Apply for a Loan**
+2. Enter any 10-digit number → **Begin KYC** (or Continue with Google)
+3. Scan QR to continue on mobile, or **Continue here**
+4. Allow camera + microphone
+5. Consent modal → **I Consent**
+6. Blink twice when prompted (liveness)
+7. Speak your details — agent extracts income / employer / loan purpose
+8. DigiLocker modal → **Authorize**
+9. AI risk + speech assessment → 3 personalised offers
+10. Accept → confetti + WhatsApp sanction message
 
-**Fraud demo:** hold a printed photo in front of the camera during liveness — spoof overlay triggers.
+**Try different personas:**
+- `9999999990` (even) → Rahul, freelancer, CIBIL 680
+- `9999999991` (odd) → Priya, TCS, CIBIL 762
 
-**Different personas:** even last digit → Rahul (freelancer, CIBIL 680), odd last digit → Priya (TCS, CIBIL 762).
+**Fraud demo:** hold a photo to camera during liveness — spoof overlay fires, risk score spikes red.
 
-**Agent dashboard:** `/dashboard` (PIN: `VERITAS`) — live session monitoring, fraud gauges, LLM reasoning.
+**Agent view:** `/dashboard` (PIN: `VERITAS`)
 
-**Audit trail:** `/audit/<session-id>` — full SHA-256 hash chain with integrity verification.
+**Audit trail:** `/audit/<session-id>`
 
 ---
 
-## Deployment
+## Deployment (Vercel)
+
+### 1. Push to GitHub
 
 ```bash
-npx vercel --prod
+git add .
+git commit -m "feat: VERITAS agentic V-CIP platform"
+git push origin main
 ```
 
-Set the same env vars in Vercel → Project Settings → Environment Variables.
+### 2. Import on Vercel
+
+1. [vercel.com/new](https://vercel.com/new) → Import Git Repository
+2. Select your repo → Framework: **Next.js** (auto-detected)
+
+### 3. Set environment variables
+
+Vercel → Project → Settings → Environment Variables — add all vars from `.env.local`:
+
+```
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY
+GROQ_API_KEY
+GEMINI_API_KEY
+TWILIO_ACCOUNT_SID
+TWILIO_AUTH_TOKEN
+TWILIO_WHATSAPP_FROM
+NEXT_PUBLIC_APP_URL=https://your-project.vercel.app
+```
+
+> Set `NEXT_PUBLIC_APP_URL` to your actual Vercel domain — it's used for internal API calls on offer accept.
+
+### 4. Deploy
+
+Click **Deploy**. Build takes ~60 seconds.
+
+### 5. Post-deploy
+
+- Update Google OAuth redirect URI to `https://your-domain.vercel.app` → callback
+- Update `NEXT_PUBLIC_APP_URL` in Vercel env vars to match production URL
+- Redeploy once after updating env vars (Vercel caches them at build time)
 
 ---
 
@@ -192,8 +356,8 @@ Set the same env vars in Vercel → Project Settings → Environment Variables.
 
 | Regulation | Coverage |
 |---|---|
-| RBI V-CIP Master Direction 2024 | §3.1 session recording, §5.1 verbal consent, §7.2 liveness, §9 offer generation |
-| PMLA §12 | Tamper-evident SHA-256 hash chain audit log, 10-year immutable retention |
-| DPDP Act 2023 §8 | Data minimisation, consent before any processing |
-| UIDAI KUA §4(e) | Face authentication via Aadhaar |
-| CERT-In | AES-256-GCM session encryption |
+| RBI V-CIP Master Direction 2024 | Section 3.1 session recording, 5.1 verbal consent, 7.2 liveness, 9 offer generation |
+| PMLA Section 12 | Tamper-evident SHA-256 hash chain, 10-year immutable WORM retention |
+| DPDP Act 2023 Section 8 | Data minimisation, explicit consent before any processing |
+| UIDAI KUA Section 4(e) | Face authentication via Aadhaar |
+| CERT-In Guidelines | AES-256-GCM session encryption |
