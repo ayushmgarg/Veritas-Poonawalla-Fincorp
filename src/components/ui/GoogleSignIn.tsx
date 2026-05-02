@@ -4,7 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { createBrowserClient } from "@supabase/ssr";
 
-export function GoogleSignIn({ redirectTo }: { redirectTo?: string }) {
+interface GoogleSignInProps {
+  /** Where to redirect after successful auth. Defaults to "/" */
+  afterAuthRedirect?: string;
+}
+
+export function GoogleSignIn({ afterAuthRedirect = "/" }: GoogleSignInProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleGoogleSignIn() {
@@ -13,11 +18,14 @@ export function GoogleSignIn({ redirectTo }: { redirectTo?: string }) {
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     );
+
+    // redirectTo MUST point to /auth/callback — Supabase exchanges the OAuth code there.
+    // The 'next' param tells /auth/callback where to send the user afterwards.
+    const callbackUrl = `${window.location.origin}/auth/callback?next=${encodeURIComponent(afterAuthRedirect)}`;
+
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: redirectTo ?? `${window.location.origin}/auth/callback`,
-      },
+      options: { redirectTo: callbackUrl },
     });
   }
 

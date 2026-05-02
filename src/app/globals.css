@@ -9,20 +9,18 @@
   --pf-red: #FF4136;
   --pf-green: #2ECC40;
 
-  --bg-primary: #0A0E1A;
-  --bg-secondary: #111827;
-  --bg-card: #1A1F2E;
-  --bg-elevated: #232838;
-
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.1);
-
-  --glass-bg: rgba(26, 31, 46, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* Default: LIGHT theme */
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #F4F4F5;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #E4E4E7;
+  --text-primary: #09090B;
+  --text-secondary: #52525B;
+  --text-muted: #A1A1AA;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-default: rgba(0, 0, 0, 0.12);
+  --glass-bg: rgba(250, 250, 250, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.06);
 }
 
 @theme inline {
@@ -49,19 +47,35 @@
   --color-text-muted: var(--text-muted);
 }
 
-/* Light theme override — applied when <html class="light"> */
-.light {
-  --bg-primary: #FAFAFA;
-  --bg-secondary: #F4F4F5;
-  --bg-card: #FFFFFF;
-  --bg-elevated: #E4E4E7;
-  --text-primary: #09090B;
-  --text-secondary: #52525B;
-  --text-muted: #A1A1AA;
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-default: rgba(0, 0, 0, 0.12);
-  --glass-bg: rgba(250, 250, 250, 0.88);
-  --glass-border: rgba(0, 0, 0, 0.06);
+/* Dark theme — applied when <html class="dark"> */
+.dark {
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-card: #1A1F2E;
+  --bg-elevated: #232838;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(26, 31, 46, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Force dark — used by session/dashboard/offer pages regardless of user theme */
+.force-dark {
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-card: #1A1F2E;
+  --bg-elevated: #232838;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(26, 31, 46, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  color-scheme: dark;
 }
 
 body {

@@ -158,7 +158,7 @@ export default function OfferPage({
 
   if (accepted) {
     return (
-      <main className="min-h-screen bg-bg-primary flex items-center justify-center p-6">
+      <main className="force-dark min-h-screen bg-bg-primary flex items-center justify-center p-6">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -223,7 +223,7 @@ export default function OfferPage({
   }
 
   return (
-    <main className="min-h-screen bg-bg-primary relative overflow-hidden">
+    <main className="force-dark min-h-screen bg-bg-primary relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0074D9]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#00C9A7]/4 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
 

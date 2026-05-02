@@ -91,9 +91,13 @@ export default function DashboardPage() {
   useEffect(() => {
     if (authChecked.current) return;
     authChecked.current = true;
-    if (typeof window !== "undefined" && !localStorage.getItem("veritas_dashboard_auth")) {
+    if (typeof window !== "undefined" && !sessionStorage.getItem("veritas_dashboard_auth")) {
       router.replace("/dashboard/login");
     }
+    // Clear auth when user navigates away — forces re-auth on next visit
+    return () => {
+      sessionStorage.removeItem("veritas_dashboard_auth");
+    };
   }, [router]);
 
   const fetchStats = useCallback(async () => {
@@ -141,7 +145,7 @@ export default function DashboardPage() {
   }, [selectedId, fetchDetail]);
 
   return (
-    <div className="min-h-screen bg-bg-primary">
+    <div className="force-dark min-h-screen bg-bg-primary">
       <nav className="flex items-center justify-between px-6 py-4 border-b border-white/[0.06]">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0074D9] to-[#00C9A7] flex items-center justify-center">
@@ -172,7 +176,7 @@ export default function DashboardPage() {
           </Link>
           <button
             onClick={() => {
-              localStorage.removeItem("veritas_dashboard_auth");
+              sessionStorage.removeItem("veritas_dashboard_auth");
               router.push("/dashboard/login");
             }}
             className="text-xs text-text-muted hover:text-[#FF4136] transition-colors"

@@ -5,21 +5,23 @@ import { Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const stored = localStorage.getItem("veritas-theme") as "dark" | "light" | null;
-    const initial = stored ?? "dark";
+    const initial = stored ?? "light"; // default: light
     setTheme(initial);
     applyTheme(initial);
   }, []);
 
   function applyTheme(t: "dark" | "light") {
-    if (t === "light") {
-      document.documentElement.classList.add("light");
+    if (t === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     } else {
+      document.documentElement.classList.remove("dark");
       document.documentElement.classList.remove("light");
     }
   }
@@ -37,7 +39,7 @@ export function ThemeToggle() {
     <motion.button
       onClick={toggle}
       whileTap={{ scale: 0.88 }}
-      className="w-8 h-8 rounded-lg flex items-center justify-center text-text-muted hover:text-text-secondary hover:bg-[var(--bg-elevated)] transition-all"
+      className="w-8 h-8 rounded-lg flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] transition-all"
       aria-label="Toggle theme"
     >
       <motion.div

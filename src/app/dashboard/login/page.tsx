@@ -21,7 +21,8 @@ export default function DashboardLogin() {
 
     setTimeout(() => {
       if (pin === DASHBOARD_PIN) {
-        localStorage.setItem("veritas_dashboard_auth", "1");
+        // sessionStorage: clears when tab closes or user navigates away from dashboard
+        sessionStorage.setItem("veritas_dashboard_auth", "1");
         router.push("/dashboard");
       } else {
         setError(true);
@@ -32,7 +33,7 @@ export default function DashboardLogin() {
   }
 
   return (
-    <div className="min-h-screen bg-bg-primary flex items-center justify-center px-4">
+    <div className="force-dark min-h-screen bg-bg-primary flex items-center justify-center px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -381,7 +381,7 @@ export default function HomePage() {
                       <div className="flex-1 h-px bg-[var(--border-subtle)]" />
                     </div>
 
-                    <GoogleSignIn redirectTo={typeof window !== "undefined" ? `${window.location.origin}/` : "/"} />
+                    <GoogleSignIn afterAuthRedirect="/" />
 
                     {error && (
                       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-[#FF4136]">

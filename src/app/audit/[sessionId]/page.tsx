@@ -85,7 +85,7 @@ export default function AuditPage({
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-bg-primary flex items-center justify-center">
+      <main className="force-dark min-h-screen bg-bg-primary flex items-center justify-center">
         <div className="w-10 h-10 rounded-full border-2 border-[#0074D9]/30 border-t-[#0074D9] animate-spin" />
       </main>
     );
@@ -93,14 +93,14 @@ export default function AuditPage({
 
   if (!data) {
     return (
-      <main className="min-h-screen bg-bg-primary flex items-center justify-center">
+      <main className="force-dark min-h-screen bg-bg-primary flex items-center justify-center">
         <p className="text-text-muted">Audit trail not found.</p>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-bg-primary">
+    <main className="force-dark min-h-screen bg-bg-primary">
       <nav className="flex items-center justify-between px-6 py-4 border-b border-white/[0.06]">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0074D9] to-[#00C9A7] flex items-center justify-center">
