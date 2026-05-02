@@ -1,275 +1,289 @@
 <mxfile host="app.diagrams.net" agent="VERITAS">
   <diagram id="veritas-blocks" name="Module Block Diagram">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
+    <mxGraphModel dx="2054" dy="1185" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="&lt;b&gt;VERITAS — Module Block Diagram&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Internal Code Architecture | src/ directory structure&lt;/font&gt;" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
-          <mxGeometry x="500" y="15" width="600" height="50" as="geometry" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" value="&lt;b&gt;VERITAS — Module Block Diagram&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Internal Code Architecture | src/ directory structure&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="600" x="500" y="15" as="geometry" />
         </mxCell>
-        <mxCell id="frontend-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#2563EB;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="40" y="80" width="500" height="540" as="geometry" />
+        <mxCell id="frontend-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#2563EB;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="540" width="500" x="40" y="80" as="geometry" />
         </mxCell>
-        <mxCell id="frontend-label" value="&lt;b&gt;Frontend Modules&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/app/ + src/hooks/ + src/components/&lt;/font&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#2563EB;" vertex="1" parent="1">
-          <mxGeometry x="55" y="85" width="350" height="35" as="geometry" />
+        <mxCell id="frontend-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#2563EB;" value="&lt;b&gt;Frontend Modules&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/app/ + src/hooks/ + src/components/&lt;/font&gt;" vertex="1">
+          <mxGeometry height="35" width="350" x="55" y="85" as="geometry" />
         </mxCell>
-        <mxCell id="pages-group" value="&lt;b&gt;Pages (App Router)&lt;/b&gt;" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="60" y="125" width="200" height="20" as="geometry" />
+        <mxCell id="pages-group" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" value="&lt;b&gt;Pages (App Router)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="200" x="60" y="125" as="geometry" />
         </mxCell>
-        <mxCell id="pg-session" value="&lt;b&gt;session/[id]/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Video call UI&lt;br&gt;8-step workflow&lt;br&gt;User-controlled advancement&lt;br&gt;Recording + Geo integration&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="60" y="150" width="210" height="85" as="geometry" />
+        <mxCell id="pg-session" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;session/[id]/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Video call UI&lt;br&gt;8-step workflow&lt;br&gt;User-controlled advancement&lt;br&gt;Recording + Geo integration&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="210" x="60" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="pg-offer" value="&lt;b&gt;session/[id]/offer/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Offer review + negotiation&lt;br&gt;Accept → WhatsApp notify&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="290" y="150" width="210" height="55" as="geometry" />
+        <mxCell id="pg-offer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;session/[id]/offer/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Offer review + negotiation&lt;br&gt;Accept → WhatsApp notify&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="210" x="290" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="pg-dashboard" value="&lt;b&gt;dashboard/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Agent portal + session cards&lt;br&gt;Real-time monitoring (SSE)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="290" y="215" width="210" height="55" as="geometry" />
+        <mxCell id="pg-dashboard" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;dashboard/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Agent portal + session cards&lt;br&gt;Real-time monitoring (SSE)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="210" x="290" y="215" as="geometry" />
         </mxCell>
-        <mxCell id="pg-audit" value="&lt;b&gt;audit/[sessionId]/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Hash chain viewer&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="290" y="280" width="210" height="40" as="geometry" />
+        <mxCell id="pg-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;audit/[sessionId]/page.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Hash chain viewer&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="290" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="hooks-group" value="&lt;b&gt;Custom Hooks (src/hooks/)&lt;/b&gt;" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="60" y="250" width="200" height="20" as="geometry" />
+        <mxCell id="hooks-group" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" value="&lt;b&gt;Custom Hooks (src/hooks/)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="200" x="60" y="250" as="geometry" />
         </mxCell>
-        <mxCell id="hook-webrtc" value="useWebRTC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="60" y="275" width="100" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-face" value="useFaceDetection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="170" y="275" width="105" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-liveness" value="useLiveness" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="60" y="315" width="100" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-speech" value="useSpeechRecognition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="170" y="315" width="125" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-recorder" value="&lt;b&gt;useMediaRecorder&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="355" width="110" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-geo" value="&lt;b&gt;useGeolocation&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="355" width="100" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-session" value="useSession" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="290" y="355" width="85" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="hook-sse" value="useSSE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="385" y="355" width="70" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="components-group" value="&lt;b&gt;Components (src/components/)&lt;/b&gt;" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="60" y="400" width="250" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="comp-session" value="&lt;b&gt;session/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;11 components&lt;br&gt;VideoFeed, AgentPanel&lt;br&gt;RiskMeter, StepIndicator&lt;br&gt;ConsentModal, DigiLockerModal&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="60" y="425" width="150" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="comp-dashboard" value="&lt;b&gt;dashboard/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;6 components&lt;br&gt;SessionCard, Timeline&lt;br&gt;RiskGauge, KPICard&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="220" y="425" width="140" height="75" as="geometry" />
-        </mxCell>
-        <mxCell id="comp-ui" value="&lt;b&gt;ui/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;5 components&lt;br&gt;Button, Modal&lt;br&gt;Spinner, Badge&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" vertex="1" parent="1">
-          <mxGeometry x="370" y="425" width="120" height="75" as="geometry" />
-        </mxCell>
-        <mxCell id="state-group" value="&lt;b&gt;State (src/lib/store.ts + src/constants/)&lt;/b&gt;" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="60" y="530" width="350" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="state-zustand" value="Zustand Store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="60" y="555" width="100" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="state-steps" value="constants/steps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="170" y="555" width="105" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="state-prompts" value="constants/prompts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="285" y="555" width="115" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="state-rules" value="constants/policy-rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="410" y="555" width="120" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="api-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="580" y="80" width="580" height="540" as="geometry" />
-        </mxCell>
-        <mxCell id="api-label" value="&lt;b&gt;API Routes&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/app/api/ — 26 serverless endpoints&lt;/font&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
-          <mxGeometry x="595" y="85" width="350" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-group" value="&lt;b&gt;Session (6 routes)&lt;/b&gt;" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="125" width="150" height="18" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-create" value="session/create" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="148" width="90" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-id" value="session/[id]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="698" y="148" width="80" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-step" value="[id]/step" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="786" y="148" width="70" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-consent" value="[id]/consent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="180" width="80" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-risk" value="[id]/risk" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="688" y="180" width="70" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-session-stream" value="[id]/stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="766" y="180" width="75" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-verify-group" value="&lt;b&gt;Verify (5 routes)&lt;/b&gt;" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="215" width="150" height="18" as="geometry" />
-        </mxCell>
-        <mxCell id="api-verify-aadhaar" value="verify/aadhaar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" vertex="1" parent="1">
-          <mxGeometry x="600" y="238" width="90" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-verify-dl" value="verify/digilocker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" vertex="1" parent="1">
-          <mxGeometry x="698" y="238" width="100" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-verify-ckyc" value="verify/ckyc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" vertex="1" parent="1">
-          <mxGeometry x="806" y="238" width="75" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-verify-cibil" value="verify/cibil" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" vertex="1" parent="1">
-          <mxGeometry x="600" y="270" width="75" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-verify-aa" value="verify/aa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" vertex="1" parent="1">
-          <mxGeometry x="683" y="270" width="65" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-fraud-group" value="&lt;b&gt;Fraud (4 routes)&lt;/b&gt;" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="305" width="150" height="18" as="geometry" />
-        </mxCell>
-        <mxCell id="api-fraud-live" value="fraud/liveness" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="600" y="328" width="90" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-fraud-spoof" value="fraud/spoof-check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="698" y="328" width="105" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-fraud-trust" value="fraud/trust-graph" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="811" y="328" width="100" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-fraud-drift" value="fraud/intent-drift" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="600" y="360" width="100" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-credit-group" value="&lt;b&gt;Credit (3 routes)&lt;/b&gt;" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="395" width="150" height="18" as="geometry" />
-        </mxCell>
-        <mxCell id="api-credit-dt" value="credit/digital-trust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="600" y="418" width="110" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-credit-shadow" value="credit/shadow-score" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="718" y="418" width="110" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-credit-risk" value="credit/risk-classify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="836" y="418" width="105" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-offer-group" value="&lt;b&gt;Offer (3 routes)&lt;/b&gt;" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="453" width="150" height="18" as="geometry" />
-        </mxCell>
-        <mxCell id="api-offer-gen" value="offer/generate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="600" y="476" width="90" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-offer-neg" value="offer/negotiate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="698" y="476" width="90" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-offer-accept" value="offer/[id]/accept" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="796" y="476" width="95" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-other-group" value="&lt;b&gt;Other (5 routes)&lt;/b&gt;" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="600" y="511" width="150" height="18" as="geometry" />
-        </mxCell>
-        <mxCell id="api-recording-upload" value="recording/upload" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" vertex="1" parent="1">
-          <mxGeometry x="600" y="534" width="100" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-recording-seal" value="recording/seal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" vertex="1" parent="1">
-          <mxGeometry x="708" y="534" width="85" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-geo" value="geo/verify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="801" y="534" width="70" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-speech" value="speech/process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="600" y="566" width="90" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-whatsapp" value="notify/whatsapp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" vertex="1" parent="1">
-          <mxGeometry x="698" y="566" width="100" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="api-audit-route" value="audit/[sessionId]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" vertex="1" parent="1">
-          <mxGeometry x="806" y="566" width="100" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="core-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="40" y="650" width="500" height="250" as="geometry" />
-        </mxCell>
-        <mxCell id="core-label" value="&lt;b&gt;Core Business Logic&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/lib/ — Pure functions, no I/O dependencies&lt;/font&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#059669;" vertex="1" parent="1">
-          <mxGeometry x="55" y="655" width="400" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="core-policy" value="&lt;b&gt;policy-engine.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;13 hard rules&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="700" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-risk" value="&lt;b&gt;risk-engine.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;15 event types&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="190" y="700" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-offer" value="&lt;b&gt;offer-calculator.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;EMI + rate calc&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="320" y="700" width="125" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-llm" value="&lt;b&gt;llm.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Groq → Gemini router&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="755" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-speech" value="&lt;b&gt;speech-analysis.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Hesitation scoring&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="190" y="755" width="130" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-drift" value="&lt;b&gt;intent-drift.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Contradiction detect&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="330" y="755" width="125" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-trust" value="&lt;b&gt;digital-trust.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;5-dim composite&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="810" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-graph" value="&lt;b&gt;trust-graph.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Fraud ring detect&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="190" y="810" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-hash" value="&lt;b&gt;hash-chain.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;SHA-256 audit&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="320" y="810" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="core-mock" value="&lt;b&gt;mock-data.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;2 test personas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="865" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="580" y="650" width="580" height="250" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-label" value="&lt;b&gt;Security &amp;amp; Infrastructure&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/lib/ + src/proxy.ts — Cross-cutting concerns&lt;/font&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#EA580C;" vertex="1" parent="1">
-          <mxGeometry x="595" y="655" width="400" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-encryption" value="&lt;b&gt;encryption.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;AES-256-GCM&lt;br&gt;encryptField / decryptField&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="600" y="700" width="160" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-validation" value="&lt;b&gt;validation/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;schemas.ts + index.ts&lt;br&gt;Zod schemas for all routes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="770" y="700" width="160" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-rate" value="&lt;b&gt;rate-limiter.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Token bucket&lt;br&gt;4 presets&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="940" y="700" width="120" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-sanitizer" value="&lt;b&gt;prompt-sanitizer.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;LLM injection prevention&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="600" y="770" width="160" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-token" value="&lt;b&gt;session-token.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;HMAC-SHA256 signing&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="770" y="770" width="150" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-geo" value="&lt;b&gt;geo-verifier.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;India bounds + VPN&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="930" y="770" width="130" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-india-stack" value="&lt;b&gt;india-stack/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;factory.ts + types.ts&lt;br&gt;mock/ (5 providers)&lt;br&gt;sandbox/aa-provider.ts&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="600" y="830" width="180" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-supabase" value="&lt;b&gt;supabase.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;requireEnv() + clients&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="790" y="830" width="140" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="infra-env" value="&lt;b&gt;env.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Zod env validation&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="940" y="830" width="120" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="arrow-hooks-pages" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2563EB;strokeWidth=1;dashed=1;" edge="1" source="hook-recorder" target="pg-session" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="arrow-api-core" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#059669;strokeWidth=2;fontColor=#059669;fontSize=9;" edge="1" source="api-credit-risk" target="core-policy" parent="1">
+        <mxCell id="CAQuUWxJZHETfSmG0NL3-1" edge="1" parent="1" source="hook-webrtc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="components-group" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="888" y="640" />
-              <mxPoint x="550" y="640" />
-              <mxPoint x="550" y="722" />
+              <mxPoint x="110" y="353" />
+              <mxPoint x="170" y="353" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="arrow-api-core-label" value="imports" style="edgeLabel;html=1;fontSize=9;fontColor=#059669;" vertex="1" connectable="0" parent="arrow-api-core">
-          <mxGeometry x="-0.4" relative="1" as="geometry">
+        <mxCell id="hook-webrtc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" value="useWebRTC" vertex="1">
+          <mxGeometry height="30" width="100" x="60" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-face" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" value="useFaceDetection" vertex="1">
+          <mxGeometry height="30" width="105" x="170" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-liveness" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" value="useLiveness" vertex="1">
+          <mxGeometry height="30" width="100" x="60" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-speech" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" value="useSpeechRecognition" vertex="1">
+          <mxGeometry height="30" width="125" x="170" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-recorder" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;fontStyle=1;" value="&lt;b&gt;useMediaRecorder&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="60" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-geo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;fontStyle=1;" value="&lt;b&gt;useGeolocation&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="100" x="180" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-session" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" value="useSession" vertex="1">
+          <mxGeometry height="30" width="85" x="290" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="hook-sse" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=9;fontColor=#1E40AF;" value="useSSE" vertex="1">
+          <mxGeometry height="30" width="70" x="385" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="components-group" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" value="&lt;b&gt;Components (src/components/)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="250" x="60" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-session" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;session/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;11 components&lt;br&gt;VideoFeed, AgentPanel&lt;br&gt;RiskMeter, StepIndicator&lt;br&gt;ConsentModal, DigiLockerModal&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="150" x="60" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-dashboard" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;dashboard/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;6 components&lt;br&gt;SessionCard, Timeline&lt;br&gt;RiskGauge, KPICard&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="140" x="220" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-ui" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;ui/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;5 components&lt;br&gt;Button, Modal&lt;br&gt;Spinner, Badge&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="120" x="370" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="state-group" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" value="&lt;b&gt;State (src/lib/store.ts + src/constants/)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="350" x="60" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="state-zustand" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" value="Zustand Store" vertex="1">
+          <mxGeometry height="30" width="100" x="60" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="state-steps" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" value="constants/steps" vertex="1">
+          <mxGeometry height="30" width="105" x="170" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="state-prompts" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" value="constants/prompts" vertex="1">
+          <mxGeometry height="30" width="115" x="285" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="state-rules" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;" value="constants/policy-rules" vertex="1">
+          <mxGeometry height="30" width="120" x="410" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="api-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="540" width="580" x="580" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="api-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#7C3AED;" value="&lt;b&gt;API Routes&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/app/api/ — 26 serverless endpoints&lt;/font&gt;" vertex="1">
+          <mxGeometry height="35" width="350" x="595" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-group" parent="1" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="&lt;b&gt;Session (6 routes)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="18" width="150" x="600" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-create" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="session/create" vertex="1">
+          <mxGeometry height="25" width="90" x="600" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="session/[id]" vertex="1">
+          <mxGeometry height="25" width="80" x="698" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-step" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="[id]/step" vertex="1">
+          <mxGeometry height="25" width="70" x="786" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-consent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="[id]/consent" vertex="1">
+          <mxGeometry height="25" width="80" x="600" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-risk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="[id]/risk" vertex="1">
+          <mxGeometry height="25" width="70" x="688" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="api-session-stream" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="[id]/stream" vertex="1">
+          <mxGeometry height="25" width="75" x="766" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="api-verify-group" parent="1" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="&lt;b&gt;Verify (5 routes)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="18" width="150" x="600" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="api-verify-aadhaar" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" value="verify/aadhaar" vertex="1">
+          <mxGeometry height="25" width="90" x="600" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="api-verify-dl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" value="verify/digilocker" vertex="1">
+          <mxGeometry height="25" width="100" x="698" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="api-verify-ckyc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" value="verify/ckyc" vertex="1">
+          <mxGeometry height="25" width="75" x="806" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="api-verify-cibil" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" value="verify/cibil" vertex="1">
+          <mxGeometry height="25" width="75" x="600" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="api-verify-aa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" value="verify/aa" vertex="1">
+          <mxGeometry height="25" width="65" x="683" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="api-fraud-group" parent="1" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="&lt;b&gt;Fraud (4 routes)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="18" width="150" x="600" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="api-fraud-live" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="fraud/liveness" vertex="1">
+          <mxGeometry height="25" width="90" x="600" y="328" as="geometry" />
+        </mxCell>
+        <mxCell id="api-fraud-spoof" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="fraud/spoof-check" vertex="1">
+          <mxGeometry height="25" width="105" x="698" y="328" as="geometry" />
+        </mxCell>
+        <mxCell id="api-fraud-trust" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="fraud/trust-graph" vertex="1">
+          <mxGeometry height="25" width="100" x="811" y="328" as="geometry" />
+        </mxCell>
+        <mxCell id="api-fraud-drift" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="fraud/intent-drift" vertex="1">
+          <mxGeometry height="25" width="100" x="600" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="api-credit-group" parent="1" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="&lt;b&gt;Credit (3 routes)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="18" width="150" x="600" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="api-credit-dt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="credit/digital-trust" vertex="1">
+          <mxGeometry height="25" width="110" x="600" y="418" as="geometry" />
+        </mxCell>
+        <mxCell id="api-credit-shadow" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="credit/shadow-score" vertex="1">
+          <mxGeometry height="25" width="110" x="718" y="418" as="geometry" />
+        </mxCell>
+        <mxCell id="api-credit-risk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="credit/risk-classify" vertex="1">
+          <mxGeometry height="25" width="105" x="836" y="418" as="geometry" />
+        </mxCell>
+        <mxCell id="api-offer-group" parent="1" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="&lt;b&gt;Offer (3 routes)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="18" width="150" x="600" y="453" as="geometry" />
+        </mxCell>
+        <mxCell id="api-offer-gen" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#78350F;" value="offer/generate" vertex="1">
+          <mxGeometry height="25" width="90" x="600" y="476" as="geometry" />
+        </mxCell>
+        <mxCell id="api-offer-neg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#78350F;" value="offer/negotiate" vertex="1">
+          <mxGeometry height="25" width="90" x="698" y="476" as="geometry" />
+        </mxCell>
+        <mxCell id="api-offer-accept" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#78350F;" value="offer/[id]/accept" vertex="1">
+          <mxGeometry height="25" width="95" x="796" y="476" as="geometry" />
+        </mxCell>
+        <mxCell id="api-other-group" parent="1" style="text;html=1;fontSize=10;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="&lt;b&gt;Other (5 routes)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="18" width="150" x="600" y="511" as="geometry" />
+        </mxCell>
+        <mxCell id="api-recording-upload" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" value="recording/upload" vertex="1">
+          <mxGeometry height="25" width="100" x="600" y="534" as="geometry" />
+        </mxCell>
+        <mxCell id="api-recording-seal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" value="recording/seal" vertex="1">
+          <mxGeometry height="25" width="85" x="708" y="534" as="geometry" />
+        </mxCell>
+        <mxCell id="api-geo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=9;fontColor=#4C1D95;" value="geo/verify" vertex="1">
+          <mxGeometry height="25" width="70" x="801" y="534" as="geometry" />
+        </mxCell>
+        <mxCell id="api-speech" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=9;fontColor=#7C2D12;" value="speech/process" vertex="1">
+          <mxGeometry height="25" width="90" x="600" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="api-whatsapp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" value="notify/whatsapp" vertex="1">
+          <mxGeometry height="25" width="100" x="698" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="api-audit-route" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;" value="audit/[sessionId]" vertex="1">
+          <mxGeometry height="25" width="100" x="806" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="core-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="250" width="500" x="40" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="core-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#059669;" value="&lt;b&gt;Core Business Logic&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/lib/ — Pure functions, no I/O dependencies&lt;/font&gt;" vertex="1">
+          <mxGeometry height="35" width="400" x="55" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="core-policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;policy-engine.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;13 hard rules&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="60" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="core-risk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;risk-engine.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;15 event types&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="190" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="core-offer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;offer-calculator.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;EMI + rate calc&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="125" x="320" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="core-llm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;llm.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Groq → Gemini router&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="60" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="core-speech" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;speech-analysis.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Hesitation scoring&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="130" x="190" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="core-drift" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;intent-drift.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Contradiction detect&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="125" x="330" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="core-trust" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;digital-trust.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;5-dim composite&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="60" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="core-graph" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;trust-graph.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Fraud ring detect&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="190" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="core-hash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;hash-chain.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;SHA-256 audit&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="320" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="core-mock" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;mock-data.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;2 test personas&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="120" x="60" y="865" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="250" width="580" x="580" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#EA580C;" value="&lt;b&gt;Security &amp;amp; Infrastructure&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;src/lib/ + src/proxy.ts — Cross-cutting concerns&lt;/font&gt;" vertex="1">
+          <mxGeometry height="35" width="400" x="595" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-encryption" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;encryption.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;AES-256-GCM&lt;br&gt;encryptField / decryptField&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="160" x="600" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-validation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;validation/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;schemas.ts + index.ts&lt;br&gt;Zod schemas for all routes&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="160" x="770" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-rate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;rate-limiter.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Token bucket&lt;br&gt;4 presets&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="120" x="940" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-sanitizer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;prompt-sanitizer.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;LLM injection prevention&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="160" x="600" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-token" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;session-token.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;HMAC-SHA256 signing&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="150" x="770" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-geo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;geo-verifier.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;India bounds + VPN&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="130" x="930" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-india-stack" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" value="&lt;b&gt;india-stack/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;factory.ts + types.ts&lt;br&gt;mock/ (5 providers)&lt;br&gt;sandbox/aa-provider.ts&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="180" x="600" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-supabase" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;supabase.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;requireEnv() + clients&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="140" x="790" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-env" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;env.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Zod env validation&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="120" x="940" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-hooks-pages" edge="1" parent="1" source="hook-recorder" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2563EB;strokeWidth=1;dashed=1;" target="pg-session">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="370" />
+              <mxPoint x="20" y="250" />
+              <mxPoint x="165" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-api-core" edge="1" parent="1" source="api-credit-risk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#059669;strokeWidth=2;fontColor=#059669;fontSize=9;" target="core-policy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="640" />
+              <mxPoint x="20" y="640" />
+              <mxPoint x="20" y="723" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-api-core-label" connectable="0" parent="arrow-api-core" style="edgeLabel;html=1;fontSize=9;fontColor=#059669;" value="imports" vertex="1">
+          <mxGeometry relative="1" x="-0.4" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>

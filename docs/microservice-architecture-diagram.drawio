@@ -1,182 +1,191 @@
 <mxfile host="app.diagrams.net" agent="VERITAS">
   <diagram id="veritas-microservice" name="Bounded Context Architecture">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" math="0" shadow="0">
+    <mxGraphModel dx="2054" dy="1185" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="&lt;b&gt;VERITAS — Bounded Context Architecture&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Logical Service Boundaries (Modular Monolith)&lt;/font&gt;" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
-          <mxGeometry x="400" y="20" width="600" height="50" as="geometry" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" value="&lt;b&gt;VERITAS — Bounded Context Architecture&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Logical Service Boundaries (Modular Monolith)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="600" x="400" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="identity-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#2563EB;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" vertex="1" parent="1">
-          <mxGeometry x="40" y="90" width="460" height="300" as="geometry" />
+        <mxCell id="identity-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#2563EB;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" value="" vertex="1">
+          <mxGeometry height="300" width="460" x="40" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="identity-label" value="&lt;b&gt;Identity &amp;amp; Verification Context&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#2563EB;" vertex="1" parent="1">
-          <mxGeometry x="55" y="95" width="300" height="25" as="geometry" />
+        <mxCell id="identity-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#2563EB;" value="&lt;b&gt;Identity &amp;amp; Verification Context&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="300" x="55" y="95" as="geometry" />
         </mxCell>
-        <mxCell id="aadhaar-svc" value="&lt;b&gt;Aadhaar Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/aadhaar&lt;br&gt;Face match + age estimation&lt;br&gt;Provider: UIDAI (mock/sandbox/prod)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="130" width="200" height="75" as="geometry" />
+        <mxCell id="aadhaar-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Aadhaar Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/aadhaar&lt;br&gt;Face match + age estimation&lt;br&gt;Provider: UIDAI (mock/sandbox/prod)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="60" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="digilocker-svc" value="&lt;b&gt;DigiLocker Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/digilocker&lt;br&gt;PAN + DL document pull&lt;br&gt;OAuth 2.0 consent flow&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="280" y="130" width="200" height="75" as="geometry" />
+        <mxCell id="digilocker-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;DigiLocker Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/digilocker&lt;br&gt;PAN + DL document pull&lt;br&gt;OAuth 2.0 consent flow&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="280" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="ckyc-svc" value="&lt;b&gt;CKYC Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/ckyc&lt;br&gt;CERSAI KIN lookup&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="220" width="200" height="55" as="geometry" />
+        <mxCell id="ckyc-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;CKYC Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/ckyc&lt;br&gt;CERSAI KIN lookup&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="60" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="liveness-svc" value="&lt;b&gt;Liveness Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/fraud/liveness&lt;br&gt;Blink EAR + micro-movement&lt;br&gt;MediaPipe Face Landmarker&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="280" y="220" width="200" height="70" as="geometry" />
+        <mxCell id="liveness-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Liveness Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/fraud/liveness&lt;br&gt;Blink EAR + micro-movement&lt;br&gt;MediaPipe Face Landmarker&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="280" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="spoof-svc" value="&lt;b&gt;Spoof Detection&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/fraud/spoof-check&lt;br&gt;Static variance → GAN confidence&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="290" width="200" height="55" as="geometry" />
+        <mxCell id="spoof-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Spoof Detection&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/fraud/spoof-check&lt;br&gt;Static variance → GAN confidence&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="60" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="trust-graph-svc" value="&lt;b&gt;Trust Graph&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/fraud/trust-graph&lt;br&gt;Cross-session fraud rings&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="280" y="300" width="200" height="55" as="geometry" />
+        <mxCell id="trust-graph-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=10;fontColor=#1E40AF;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Trust Graph&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/fraud/trust-graph&lt;br&gt;Cross-session fraud rings&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="280" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="financial-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" vertex="1" parent="1">
-          <mxGeometry x="540" y="90" width="460" height="180" as="geometry" />
+        <mxCell id="financial-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" value="" vertex="1">
+          <mxGeometry height="180" width="460" x="540" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="financial-label" value="&lt;b&gt;Financial Context&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#059669;" vertex="1" parent="1">
-          <mxGeometry x="555" y="95" width="200" height="25" as="geometry" />
+        <mxCell id="financial-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#059669;" value="&lt;b&gt;Financial Context&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="200" x="555" y="95" as="geometry" />
         </mxCell>
-        <mxCell id="cibil-svc" value="&lt;b&gt;CIBIL Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/cibil&lt;br&gt;Credit score + report&lt;br&gt;TransUnion bureau pull&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="560" y="130" width="200" height="70" as="geometry" />
+        <mxCell id="cibil-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;CIBIL Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/cibil&lt;br&gt;Credit score + report&lt;br&gt;TransUnion bureau pull&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="560" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="aa-svc" value="&lt;b&gt;Account Aggregator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/aa&lt;br&gt;Setu consent → fetch flow&lt;br&gt;6-month transaction analysis&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="780" y="130" width="200" height="70" as="geometry" />
+        <mxCell id="aa-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Account Aggregator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/verify/aa&lt;br&gt;Setu consent → fetch flow&lt;br&gt;6-month transaction analysis&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="780" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="digital-trust-svc" value="&lt;b&gt;Digital Trust Score&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/credit/digital-trust&lt;br&gt;5-dimension AA composite&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="560" y="210" width="200" height="50" as="geometry" />
+        <mxCell id="digital-trust-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Digital Trust Score&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/credit/digital-trust&lt;br&gt;5-dimension AA composite&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="560" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="risk-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" vertex="1" parent="1">
-          <mxGeometry x="540" y="300" width="460" height="230" as="geometry" />
+        <mxCell id="risk-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" value="" vertex="1">
+          <mxGeometry height="230" width="460" x="540" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="risk-label" value="&lt;b&gt;Risk &amp;amp; Intelligence Context&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#EA580C;" vertex="1" parent="1">
-          <mxGeometry x="555" y="305" width="280" height="25" as="geometry" />
+        <mxCell id="risk-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#EA580C;" value="&lt;b&gt;Risk &amp;amp; Intelligence Context&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="280" x="555" y="305" as="geometry" />
         </mxCell>
-        <mxCell id="policy-svc" value="&lt;b&gt;Policy Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;13 deterministic hard rules&lt;br&gt;Age, CIBIL, FOIR, income...&lt;br&gt;LLM CANNOT override&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="560" y="340" width="200" height="75" as="geometry" />
+        <mxCell id="policy-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Policy Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;13 deterministic hard rules&lt;br&gt;Age, CIBIL, FOIR, income...&lt;br&gt;LLM CANNOT override&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="560" y="340" as="geometry" />
         </mxCell>
-        <mxCell id="risk-svc" value="&lt;b&gt;Risk Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Live 0-100 score&lt;br&gt;15 event types&lt;br&gt;Baseline 35 + deltas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="780" y="340" width="200" height="75" as="geometry" />
+        <mxCell id="risk-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Risk Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Live 0-100 score&lt;br&gt;15 event types&lt;br&gt;Baseline 35 + deltas&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="780" y="340" as="geometry" />
         </mxCell>
-        <mxCell id="llm-svc" value="&lt;b&gt;LLM Router&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/credit/risk-classify&lt;br&gt;Groq → Gemini fallback&lt;br&gt;Prompt sanitization&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="560" y="430" width="200" height="70" as="geometry" />
+        <mxCell id="llm-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;LLM Router&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/credit/risk-classify&lt;br&gt;Groq → Gemini fallback&lt;br&gt;Prompt sanitization&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="560" y="430" as="geometry" />
         </mxCell>
-        <mxCell id="speech-svc" value="&lt;b&gt;Speech Analysis&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/speech/process&lt;br&gt;Hesitation + evasion scoring&lt;br&gt;Intent drift detection&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="780" y="430" width="200" height="70" as="geometry" />
+        <mxCell id="speech-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=10;fontColor=#7C2D12;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Speech Analysis&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/speech/process&lt;br&gt;Hesitation + evasion scoring&lt;br&gt;Intent drift detection&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="780" y="430" as="geometry" />
         </mxCell>
-        <mxCell id="session-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" vertex="1" parent="1">
-          <mxGeometry x="40" y="420" width="460" height="260" as="geometry" />
+        <mxCell id="session-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" value="" vertex="1">
+          <mxGeometry height="260" width="460" x="40" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="session-label" value="&lt;b&gt;Session Context&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
-          <mxGeometry x="55" y="425" width="200" height="25" as="geometry" />
+        <mxCell id="session-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#7C3AED;" value="&lt;b&gt;Session Context&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="200" x="55" y="425" as="geometry" />
         </mxCell>
-        <mxCell id="session-svc" value="&lt;b&gt;Session Lifecycle&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/session/create, [id], step&lt;br&gt;8-step workflow orchestration&lt;br&gt;User-controlled advancement&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="460" width="200" height="75" as="geometry" />
+        <mxCell id="session-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Session Lifecycle&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/session/create, [id], step&lt;br&gt;8-step workflow orchestration&lt;br&gt;User-controlled advancement&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="60" y="460" as="geometry" />
         </mxCell>
-        <mxCell id="consent-svc" value="&lt;b&gt;Consent Capture&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/session/[id]/consent&lt;br&gt;Verbal KYC + audio hash&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="280" y="460" width="200" height="55" as="geometry" />
+        <mxCell id="consent-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Consent Capture&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/session/[id]/consent&lt;br&gt;Verbal KYC + audio hash&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="280" y="460" as="geometry" />
         </mxCell>
-        <mxCell id="recording-svc" value="&lt;b&gt;Recording Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/recording/upload, seal&lt;br&gt;VP9/Opus 30s chunks&lt;br&gt;SHA-256 per chunk + composite&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="550" width="200" height="75" as="geometry" />
+        <mxCell id="recording-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Recording Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/recording/upload, seal&lt;br&gt;VP9/Opus 30s chunks&lt;br&gt;SHA-256 per chunk + composite&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="60" y="550" as="geometry" />
         </mxCell>
-        <mxCell id="geo-svc" value="&lt;b&gt;Geolocation Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/geo/verify&lt;br&gt;GPS + IP cross-check&lt;br&gt;India boundary + VPN detect&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="280" y="530" width="200" height="70" as="geometry" />
+        <mxCell id="geo-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=10;fontColor=#4C1D95;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Geolocation Service&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/geo/verify&lt;br&gt;GPS + IP cross-check&lt;br&gt;India boundary + VPN detect&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="280" y="530" as="geometry" />
         </mxCell>
-        <mxCell id="offer-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" vertex="1" parent="1">
-          <mxGeometry x="40" y="710" width="460" height="170" as="geometry" />
+        <mxCell id="offer-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" value="" vertex="1">
+          <mxGeometry height="170" width="460" x="40" y="710" as="geometry" />
         </mxCell>
-        <mxCell id="offer-label" value="&lt;b&gt;Offer Context&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#D97706;" vertex="1" parent="1">
-          <mxGeometry x="55" y="715" width="200" height="25" as="geometry" />
+        <mxCell id="offer-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#D97706;" value="&lt;b&gt;Offer Context&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="200" x="55" y="715" as="geometry" />
         </mxCell>
-        <mxCell id="offer-gen-svc" value="&lt;b&gt;Offer Generator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/offer/generate&lt;br&gt;3 personalised offers per tier&lt;br&gt;EMI + rate + tenure calculation&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="750" width="200" height="75" as="geometry" />
+        <mxCell id="offer-gen-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Offer Generator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/offer/generate&lt;br&gt;3 personalised offers per tier&lt;br&gt;EMI + rate + tenure calculation&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="60" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="negotiate-svc" value="&lt;b&gt;Negotiation AI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/offer/negotiate&lt;br&gt;Natural language re-calc&lt;br&gt;LLM-powered chat&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="280" y="750" width="200" height="75" as="geometry" />
+        <mxCell id="negotiate-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Negotiation AI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/offer/negotiate&lt;br&gt;Natural language re-calc&lt;br&gt;LLM-powered chat&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="280" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="whatsapp-svc" value="&lt;b&gt;WhatsApp Notify&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/notify/whatsapp&lt;br&gt;Twilio Business API&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="60" y="840" width="200" height="50" as="geometry" />
+        <mxCell id="whatsapp-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;fontColor=#78350F;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;WhatsApp Notify&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;/api/notify/whatsapp&lt;br&gt;Twilio Business API&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="60" y="840" as="geometry" />
         </mxCell>
-        <mxCell id="audit-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" vertex="1" parent="1">
-          <mxGeometry x="540" y="560" width="460" height="200" as="geometry" />
+        <mxCell id="audit-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=8;opacity=90;" value="" vertex="1">
+          <mxGeometry height="200" width="460" x="540" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="audit-label" value="&lt;b&gt;Audit &amp;amp; Compliance Context&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#DC2626;" vertex="1" parent="1">
-          <mxGeometry x="555" y="565" width="280" height="25" as="geometry" />
+        <mxCell id="audit-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#DC2626;" value="&lt;b&gt;Audit &amp;amp; Compliance Context&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="280" x="555" y="565" as="geometry" />
         </mxCell>
-        <mxCell id="hash-chain-svc" value="&lt;b&gt;Hash Chain&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;SHA-256 append-only log&lt;br&gt;Genesis hash → chained events&lt;br&gt;Tamper-evident audit trail&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="560" y="600" width="200" height="75" as="geometry" />
+        <mxCell id="hash-chain-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Hash Chain&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;SHA-256 append-only log&lt;br&gt;Genesis hash → chained events&lt;br&gt;Tamper-evident audit trail&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="560" y="600" as="geometry" />
         </mxCell>
-        <mxCell id="encryption-svc" value="&lt;b&gt;Encryption Layer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;AES-256-GCM&lt;br&gt;Field-level PII encryption&lt;br&gt;base64(IV + tag + cipher)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="780" y="600" width="200" height="75" as="geometry" />
+        <mxCell id="encryption-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Encryption Layer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;AES-256-GCM&lt;br&gt;Field-level PII encryption&lt;br&gt;base64(IV + tag + cipher)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="200" x="780" y="600" as="geometry" />
         </mxCell>
-        <mxCell id="audit-logger-svc" value="&lt;b&gt;Audit Logger&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Event capture + RBI citations&lt;br&gt;Session immutability flag&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="560" y="690" width="200" height="55" as="geometry" />
+        <mxCell id="audit-logger-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Audit Logger&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Event capture + RBI citations&lt;br&gt;Session immutability flag&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="560" y="690" as="geometry" />
         </mxCell>
-        <mxCell id="immutability-svc" value="&lt;b&gt;Immutability Guard&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;is_immutable = true on seal&lt;br&gt;PMLA Section 12 compliant&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="780" y="690" width="200" height="55" as="geometry" />
+        <mxCell id="immutability-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=10;fontColor=#991B1B;shadow=1;align=left;spacingLeft=10;spacingRight=10;verticalAlign=top;spacingTop=5;" value="&lt;b&gt;Immutability Guard&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;is_immutable = true on seal&lt;br&gt;PMLA Section 12 compliant&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="780" y="690" as="geometry" />
         </mxCell>
-        <mxCell id="crosscut-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=1;dashed=1;dashPattern=3 3;arcSize=5;opacity=80;" vertex="1" parent="1">
-          <mxGeometry x="540" y="790" width="460" height="130" as="geometry" />
+        <mxCell id="crosscut-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=1;dashed=1;dashPattern=3 3;arcSize=5;opacity=80;" value="" vertex="1">
+          <mxGeometry height="130" width="460" x="540" y="790" as="geometry" />
         </mxCell>
-        <mxCell id="crosscut-label" value="&lt;b&gt;Cross-Cutting Concerns&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="555" y="795" width="250" height="25" as="geometry" />
+        <mxCell id="crosscut-label" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#666666;" value="&lt;b&gt;Cross-Cutting Concerns&lt;/b&gt;" vertex="1">
+          <mxGeometry height="25" width="250" x="555" y="795" as="geometry" />
         </mxCell>
-        <mxCell id="zod-cc" value="&lt;b&gt;Zod Validation&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;All 26 routes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontColor=#333333;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="560" y="830" width="130" height="45" as="geometry" />
+        <mxCell id="zod-cc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontColor=#333333;shadow=1;" value="&lt;b&gt;Zod Validation&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;All 26 routes&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="130" x="560" y="830" as="geometry" />
         </mxCell>
-        <mxCell id="rate-cc" value="&lt;b&gt;Rate Limiter&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Token bucket&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontColor=#333333;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="700" y="830" width="130" height="45" as="geometry" />
+        <mxCell id="rate-cc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontColor=#333333;shadow=1;" value="&lt;b&gt;Rate Limiter&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Token bucket&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="130" x="700" y="830" as="geometry" />
         </mxCell>
-        <mxCell id="india-stack-cc" value="&lt;b&gt;India Stack Factory&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Strategy pattern&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontColor=#333333;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="840" y="830" width="140" height="45" as="geometry" />
+        <mxCell id="india-stack-cc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontColor=#333333;shadow=1;" value="&lt;b&gt;India Stack Factory&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Strategy pattern&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="140" x="840" y="830" as="geometry" />
         </mxCell>
-        <mxCell id="ann-strategy" value="&lt;font style=&quot;font-size:10px&quot;&gt;⚙️ Strategy Pattern&lt;/font&gt;" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" vertex="1" parent="1">
-          <mxGeometry x="860" y="880" width="140" height="20" as="geometry" />
+        <mxCell id="ann-strategy" parent="1" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" value="&lt;font style=&quot;font-size:10px&quot;&gt;⚙️ Strategy Pattern&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="140" x="860" y="880" as="geometry" />
         </mxCell>
-        <mxCell id="ann-event-sourcing" value="&lt;font style=&quot;font-size:10px&quot;&gt;📋 Event Sourcing&lt;/font&gt;" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" vertex="1" parent="1">
-          <mxGeometry x="560" y="750" width="140" height="20" as="geometry" />
+        <mxCell id="ann-event-sourcing" parent="1" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" value="&lt;font style=&quot;font-size:10px&quot;&gt;📋 Event Sourcing&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="140" x="560" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="ann-token-bucket" value="&lt;font style=&quot;font-size:10px&quot;&gt;🪣 Token Bucket&lt;/font&gt;" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" vertex="1" parent="1">
-          <mxGeometry x="700" y="880" width="130" height="20" as="geometry" />
+        <mxCell id="ann-token-bucket" parent="1" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" value="&lt;font style=&quot;font-size:10px&quot;&gt;🪣 Token Bucket&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="130" x="700" y="880" as="geometry" />
         </mxCell>
-        <mxCell id="ann-aes" value="&lt;font style=&quot;font-size:10px&quot;&gt;🔐 AES-256-GCM&lt;/font&gt;" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" vertex="1" parent="1">
-          <mxGeometry x="780" y="750" width="140" height="20" as="geometry" />
+        <mxCell id="ann-aes" parent="1" style="text;html=1;fontSize=10;fontStyle=2;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" value="&lt;font style=&quot;font-size:10px&quot;&gt;🔐 AES-256-GCM&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="140" x="780" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="arrow-identity-risk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=9;" edge="1" source="aadhaar-svc" target="risk-svc" parent="1">
+        <mxCell id="arrow-identity-risk" edge="1" parent="1" source="aadhaar-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=9;" target="risk-svc">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="510" y="167" />
-              <mxPoint x="510" y="377" />
+              <mxPoint x="30" y="168" />
+              <mxPoint x="30" y="80" />
+              <mxPoint x="510" y="80" />
+              <mxPoint x="510" y="290" />
+              <mxPoint x="880" y="290" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="arrow-identity-risk-label" value="match_score" style="edgeLabel;html=1;fontSize=9;fontColor=#EA580C;" vertex="1" connectable="0" parent="arrow-identity-risk">
-          <mxGeometry x="0.3" relative="1" as="geometry">
+        <mxCell id="arrow-identity-risk-label" connectable="0" parent="arrow-identity-risk" style="edgeLabel;html=1;fontSize=9;fontColor=#EA580C;" value="match_score" vertex="1">
+          <mxGeometry relative="1" x="0.3" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="arrow-financial-risk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=9;" edge="1" source="cibil-svc" target="policy-svc" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="arrow-financial-risk-label" value="cibil_score" style="edgeLabel;html=1;fontSize=9;fontColor=#EA580C;" vertex="1" connectable="0" parent="arrow-financial-risk">
-          <mxGeometry x="-0.2" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="arrow-risk-offer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D97706;strokeWidth=2;fontColor=#D97706;fontSize=9;" edge="1" source="policy-svc" target="offer-gen-svc" parent="1">
+        <mxCell id="arrow-financial-risk" edge="1" parent="1" source="cibil-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=9;" target="policy-svc">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="530" y="377" />
-              <mxPoint x="530" y="787" />
+              <mxPoint x="520" y="165" />
+              <mxPoint x="520" y="378" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="arrow-risk-offer-label" value="risk_tier" style="edgeLabel;html=1;fontSize=9;fontColor=#D97706;" vertex="1" connectable="0" parent="arrow-risk-offer">
-          <mxGeometry x="0.5" relative="1" as="geometry">
+        <mxCell id="arrow-financial-risk-label" connectable="0" parent="arrow-financial-risk" style="edgeLabel;html=1;fontSize=9;fontColor=#EA580C;" value="cibil_score" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="arrow-session-audit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#DC2626;strokeWidth=2;dashed=1;fontColor=#DC2626;fontSize=9;" edge="1" source="session-svc" target="audit-logger-svc" parent="1">
+        <mxCell id="arrow-risk-offer" edge="1" parent="1" source="policy-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D97706;strokeWidth=2;fontColor=#D97706;fontSize=9;" target="offer-gen-svc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="378" />
+              <mxPoint x="530" y="690" />
+              <mxPoint x="160" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-risk-offer-label" connectable="0" parent="arrow-risk-offer" style="edgeLabel;html=1;fontSize=9;fontColor=#D97706;" value="risk_tier" vertex="1">
+          <mxGeometry relative="1" x="0.5" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-session-audit" edge="1" parent="1" source="session-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#DC2626;strokeWidth=2;dashed=1;fontColor=#DC2626;fontSize=9;" target="audit-logger-svc">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="160" y="700" />
@@ -185,58 +194,58 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="arrow-session-audit-label" value="all events" style="edgeLabel;html=1;fontSize=9;fontColor=#DC2626;" vertex="1" connectable="0" parent="arrow-session-audit">
-          <mxGeometry x="-0.2" relative="1" as="geometry">
+        <mxCell id="arrow-session-audit-label" connectable="0" parent="arrow-session-audit" style="edgeLabel;html=1;fontSize=9;fontColor=#DC2626;" value="all events" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="legend" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#D1D5DB;strokeWidth=1;arcSize=5;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="90" width="200" height="200" as="geometry" />
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#D1D5DB;strokeWidth=1;arcSize=5;" value="" vertex="1">
+          <mxGeometry height="200" width="200" x="1050" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="legend-title" value="&lt;b&gt;Bounded Contexts&lt;/b&gt;" style="text;html=1;fontSize=12;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
-          <mxGeometry x="1080" y="95" width="140" height="20" as="geometry" />
+        <mxCell id="legend-title" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" value="&lt;b&gt;Bounded Contexts&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="140" x="1080" y="95" as="geometry" />
         </mxCell>
-        <mxCell id="leg-id" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="122" width="18" height="14" as="geometry" />
+        <mxCell id="leg-id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="122" as="geometry" />
         </mxCell>
-        <mxCell id="leg-id-text" value="Identity &amp;amp; Verification" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="120" width="150" height="18" as="geometry" />
+        <mxCell id="leg-id-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" value="Identity &amp;amp; Verification" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="leg-fin" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="145" width="18" height="14" as="geometry" />
+        <mxCell id="leg-fin" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="145" as="geometry" />
         </mxCell>
-        <mxCell id="leg-fin-text" value="Financial" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#065F46;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="143" width="150" height="18" as="geometry" />
+        <mxCell id="leg-fin-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#065F46;" value="Financial" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="143" as="geometry" />
         </mxCell>
-        <mxCell id="leg-risk" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="168" width="18" height="14" as="geometry" />
+        <mxCell id="leg-risk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="168" as="geometry" />
         </mxCell>
-        <mxCell id="leg-risk-text" value="Risk &amp;amp; Intelligence" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#7C2D12;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="166" width="150" height="18" as="geometry" />
+        <mxCell id="leg-risk-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#7C2D12;" value="Risk &amp;amp; Intelligence" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="166" as="geometry" />
         </mxCell>
-        <mxCell id="leg-sess" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="191" width="18" height="14" as="geometry" />
+        <mxCell id="leg-sess" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="191" as="geometry" />
         </mxCell>
-        <mxCell id="leg-sess-text" value="Session" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="189" width="150" height="18" as="geometry" />
+        <mxCell id="leg-sess-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="Session" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="189" as="geometry" />
         </mxCell>
-        <mxCell id="leg-offer" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="214" width="18" height="14" as="geometry" />
+        <mxCell id="leg-offer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="214" as="geometry" />
         </mxCell>
-        <mxCell id="leg-offer-text" value="Offer" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#78350F;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="212" width="150" height="18" as="geometry" />
+        <mxCell id="leg-offer-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#78350F;" value="Offer" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="212" as="geometry" />
         </mxCell>
-        <mxCell id="leg-audit" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="237" width="18" height="14" as="geometry" />
+        <mxCell id="leg-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="237" as="geometry" />
         </mxCell>
-        <mxCell id="leg-audit-text" value="Audit &amp;amp; Compliance" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#991B1B;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="235" width="150" height="18" as="geometry" />
+        <mxCell id="leg-audit-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#991B1B;" value="Audit &amp;amp; Compliance" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="235" as="geometry" />
         </mxCell>
-        <mxCell id="leg-cc" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="260" width="18" height="14" as="geometry" />
+        <mxCell id="leg-cc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="1065" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="leg-cc-text" value="Cross-Cutting" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1088" y="258" width="150" height="18" as="geometry" />
+        <mxCell id="leg-cc-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#333333;" value="Cross-Cutting" vertex="1">
+          <mxGeometry height="18" width="150" x="1088" y="258" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
