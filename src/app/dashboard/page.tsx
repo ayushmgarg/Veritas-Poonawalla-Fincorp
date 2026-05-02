@@ -23,6 +23,7 @@ import { IndiaStackChecklist } from "@/components/dashboard/IndiaStackChecklist"
 import { FinancialSummary } from "@/components/dashboard/FinancialSummary";
 import { LLMReasoningPanel } from "@/components/dashboard/LLMReasoningPanel";
 import { EventTimeline } from "@/components/dashboard/EventTimeline";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 interface DashboardStats {
   totalSessions: number;
@@ -59,7 +60,7 @@ function StatCard({
   delta?: string;
 }) {
   return (
-    <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+    <div className="p-4 rounded-2xl bg-bg-card border border-[var(--border-subtle)]">
       <div className="flex items-center justify-between mb-3">
         <div
           className="w-8 h-8 rounded-lg flex items-center justify-center"
@@ -145,14 +146,14 @@ export default function DashboardPage() {
   }, [selectedId, fetchDetail]);
 
   return (
-    <div className="force-dark min-h-screen bg-bg-primary">
-      <nav className="flex items-center justify-between px-6 py-4 border-b border-white/[0.06]">
+    <div className="min-h-screen bg-bg-primary">
+      <nav className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-subtle)]">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0074D9] to-[#00C9A7] flex items-center justify-center">
             <Shield className="w-4 h-4 text-white" />
           </div>
           <div>
-            <span className="text-sm font-semibold text-white">VERITAS</span>
+            <span className="text-sm font-semibold text-text-primary">VERITAS</span>
             <span className="text-xs text-text-muted ml-2">Agent Dashboard</span>
           </div>
         </div>
@@ -163,7 +164,7 @@ export default function DashboardPage() {
           </div>
           <button
             onClick={fetchStats}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.07] transition-colors text-xs text-text-secondary"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-bg-elevated border border-[var(--border-subtle)] hover:bg-bg-elevated/80 transition-colors text-xs text-text-secondary"
           >
             <RefreshCw className="w-3 h-3" />
             Refresh
@@ -174,6 +175,7 @@ export default function DashboardPage() {
           >
             Customer View
           </Link>
+          <ThemeToggle />
           <button
             onClick={() => {
               sessionStorage.removeItem("veritas_dashboard_auth");
@@ -233,12 +235,12 @@ export default function DashboardPage() {
                 {[...Array(5)].map((_, i) => (
                   <div
                     key={i}
-                    className="h-16 rounded-xl bg-white/[0.02] border border-white/[0.04] animate-pulse"
+                    className="h-16 rounded-xl bg-bg-secondary border border-[var(--border-subtle)] animate-pulse"
                   />
                 ))}
               </div>
             ) : stats.recentSessions.length === 0 ? (
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] text-center">
+              <div className="p-4 rounded-xl bg-bg-card border border-[var(--border-subtle)] text-center">
                 <p className="text-xs text-text-muted">No sessions yet</p>
                 <Link
                   href="/"
@@ -273,7 +275,7 @@ export default function DashboardPage() {
                 {[...Array(3)].map((_, i) => (
                   <div
                     key={i}
-                    className="h-64 rounded-2xl bg-white/[0.02] border border-white/[0.04] animate-pulse"
+                    className="h-64 rounded-2xl bg-bg-secondary border border-[var(--border-subtle)] animate-pulse"
                   />
                 ))}
               </motion.div>
@@ -286,7 +288,7 @@ export default function DashboardPage() {
                 transition={{ duration: 0.3 }}
                 className="space-y-4"
               >
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-bg-card border border-[var(--border-subtle)]">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0074D9]/20 to-[#00C9A7]/20 border border-[#0074D9]/20 flex items-center justify-center">
                       <User className="w-5 h-5 text-[#0074D9]" />
@@ -321,7 +323,7 @@ export default function DashboardPage() {
                     <Link
                       href={`/audit/${detail.session.id}`}
                       target="_blank"
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] text-xs text-text-secondary hover:bg-white/[0.07] transition-colors"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-bg-elevated border border-[var(--border-subtle)] text-xs text-text-secondary hover:opacity-80 transition-colors"
                     >
                       Audit Trail
                     </Link>
@@ -352,7 +354,7 @@ export default function DashboardPage() {
                 key="empty"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex items-center justify-center h-64 rounded-2xl bg-white/[0.02] border border-white/[0.04] border-dashed"
+                className="flex items-center justify-center h-64 rounded-2xl bg-bg-secondary border border-[var(--border-subtle)] border-dashed"
               >
                 <p className="text-sm text-text-muted">Select a session to inspect</p>
               </motion.div>

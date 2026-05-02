@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Shield, Eye, EyeOff } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const DASHBOARD_PIN = "VERITAS";
 
@@ -33,7 +34,10 @@ export default function DashboardLogin() {
   }
 
   return (
-    <div className="force-dark min-h-screen bg-bg-primary flex items-center justify-center px-4">
+    <div className="min-h-screen bg-bg-primary flex items-center justify-center px-4 relative">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -44,7 +48,7 @@ export default function DashboardLogin() {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0074D9] to-[#00C9A7] flex items-center justify-center mb-4">
             <Shield className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-xl font-semibold text-white">Agent Dashboard</h1>
+          <h1 className="text-xl font-semibold text-text-primary">Agent Dashboard</h1>
           <p className="text-sm text-text-secondary mt-1">Enter access PIN to continue</p>
         </div>
 
@@ -56,10 +60,10 @@ export default function DashboardLogin() {
               onChange={(e) => { setPin(e.target.value.toUpperCase()); setError(false); }}
               placeholder="Access PIN"
               autoFocus
-              className={`w-full px-4 py-3.5 rounded-xl bg-white/5 border text-white placeholder:text-text-muted focus:outline-none focus:ring-1 transition-all text-sm tracking-widest font-mono ${
+              className={`w-full px-4 py-3.5 rounded-xl bg-bg-card border text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 transition-all text-sm tracking-widest font-mono ${
                 error
                   ? "border-[#FF4136]/50 focus:border-[#FF4136]/60 focus:ring-[#FF4136]/20"
-                  : "border-white/10 focus:border-[#0074D9]/50 focus:ring-[#0074D9]/20"
+                  : "border-[var(--border-default)] focus:border-[#0074D9]/50 focus:ring-[#0074D9]/20"
               }`}
             />
             <button
