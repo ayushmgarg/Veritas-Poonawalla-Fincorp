@@ -11,7 +11,7 @@ export interface RecordingState {
 
 interface UseMediaRecorderOptions {
   sessionId: string;
-  chunkIntervalMs?: number; // Default 30 seconds
+  chunkIntervalMs?: number; // Default 10 seconds (keeps chunks under Vercel's 4.5MB limit)
   mimeType?: string;
 }
 
@@ -24,7 +24,7 @@ interface UseMediaRecorderOptions {
  */
 export function useMediaRecorder({
   sessionId,
-  chunkIntervalMs = 30_000,
+  chunkIntervalMs = 10_000,
   mimeType,
 }: UseMediaRecorderOptions) {
   const recorderRef = useRef<MediaRecorder | null>(null);

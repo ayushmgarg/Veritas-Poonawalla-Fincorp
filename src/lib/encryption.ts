@@ -76,7 +76,12 @@ export function decrypt(encoded: string): string {
  */
 export function encryptField(value: string | null | undefined): string | null {
   if (!value) return null;
-  return encrypt(value);
+  try {
+    return encrypt(value);
+  } catch {
+    console.warn("encryptField: ENCRYPTION_MASTER_KEY not configured, storing plaintext");
+    return value;
+  }
 }
 
 /**

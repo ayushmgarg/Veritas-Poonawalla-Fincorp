@@ -33,14 +33,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  await db
-    .from("customer_data")
-    .update({
-      age_estimated: result.age_estimated,
-      full_name: encryptField(result.full_name ?? null),
-      aadhaar_last4: encryptField(result.aadhaar_last4 ?? null),
-    })
-    .eq("session_id", session_id);
+  try {
+    await db
+      .from("customer_data")
+      .update({
+        age_estimated: result.age_estimated,
+        full_name: encryptField(result.full_name ?? null),
+        aadhaar_last4: encryptField(result.aadhaar_last4 ?? null),
+      })
+      .eq("session_id", session_id);
+  } catch (err) {
+    console.error("customer_data update failed:", err);
+  }
 
   await updateLiveRisk(session_id, "aadhaar_verified", `Face match ${result.match_score}%`);
 
