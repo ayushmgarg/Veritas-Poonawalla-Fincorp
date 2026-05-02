@@ -1,659 +1,659 @@
 <mxfile host="app.diagrams.net" agent="VERITAS">
   <diagram id="veritas-db" name="Database ER Diagram">
-    <mxGraphModel dx="2054" dy="1185" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1800" math="0" shadow="0">
+    <mxGraphModel dx="3000" dy="2200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4200" pageHeight="3200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" value="&lt;b&gt;VERITAS — Database Schema (15 Tables)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Supabase PostgreSQL | Fields marked 🔒 are AES-256-GCM encrypted&lt;/font&gt;" vertex="1">
-          <mxGeometry height="50" width="700" x="700" y="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t-sessions" parent="1" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=12;fontColor=#4C1D95;shadow=1;" value="&lt;b&gt;sessions&lt;/b&gt;" vertex="1">
-          <mxGeometry height="300" width="280" x="80" y="100" as="geometry" />
-        </mxCell>
-        <mxCell id="t-sessions-r1" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="30" as="geometry" />
-        </mxCell>
-        <mxCell id="t-sessions-r1c1" parent="t-sessions-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r1c2" parent="t-sessions-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="UUID DEFAULT gen_random_uuid()" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r2" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="phone" vertex="1">
-          <mxGeometry height="25" width="280" y="55" as="geometry" />
-        </mxCell>
-        <mxCell id="t-sessions-r2c1" parent="t-sessions-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r2c2" parent="t-sessions-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="VARCHAR(10) NOT NULL" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r3" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="status" vertex="1">
-          <mxGeometry height="25" width="280" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="t-sessions-r3c1" parent="t-sessions-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r3c2" parent="t-sessions-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="ENUM(initiated,consent,in_progress,completed,rejected)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r4" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="current_step" vertex="1">
-          <mxGeometry height="25" width="280" y="105" as="geometry" />
-        </mxCell>
-        <mxCell id="t-sessions-r4c1" parent="t-sessions-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r4c2" parent="t-sessions-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="INT DEFAULT 0" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r5" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="live_risk_score" vertex="1">
-          <mxGeometry height="25" width="280" y="130" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- TITLE + SUBTITLE                                               -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=24;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" value="VERITAS — Database Schema (15 Tables)&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Supabase PostgreSQL  |  Fields marked 🔒 are AES-256-GCM encrypted  |  All tables have RLS enabled&lt;/font&gt;" vertex="1">
+          <mxGeometry x="1200" y="20" width="900" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r5c1" parent="t-sessions-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="t-sessions-r5c2" parent="t-sessions-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="INT DEFAULT 35" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- LEGEND                                                         -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;shadow=1;fontSize=11;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font color=&quot;#7C3AED&quot;&gt;■&lt;/font&gt; Session / Recording&lt;br&gt;&lt;font color=&quot;#DC2626&quot;&gt;■&lt;/font&gt; PII (Encrypted)&lt;br&gt;&lt;font color=&quot;#059669&quot;&gt;■&lt;/font&gt; Verifications&lt;br&gt;&lt;font color=&quot;#EA580C&quot;&gt;■&lt;/font&gt; AI / Audit&lt;br&gt;&lt;font color=&quot;#D97706&quot;&gt;■&lt;/font&gt; Offers&lt;br&gt;&lt;font color=&quot;#2563EB&quot;&gt;■&lt;/font&gt; Trust Graph&lt;br&gt;&lt;br&gt;🔒 = AES-256-GCM encrypted&lt;br&gt;PK = Primary Key&lt;br&gt;FK = Foreign Key" vertex="1">
+          <mxGeometry x="3700" y="80" width="200" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r6" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="risk_events" vertex="1">
-          <mxGeometry height="25" width="280" y="155" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- ROW 1: sessions, customer_data, consents, verifications        -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+
+        <!-- ─── sessions (Session/Recording = Purple) ─── -->
+        <mxCell id="t-sessions" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=13;fontColor=#4C1D95;shadow=1;rounded=1;arcSize=8;html=1;" value="sessions" vertex="1">
+          <mxGeometry x="60" y="120" width="420" height="340" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r6c1" parent="t-sessions-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-id" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r6c2" parent="t-sessions-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="JSONB DEFAULT &#39;[]&#39;" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-phone" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       phone  —  VARCHAR(15) NOT NULL" vertex="1">
+          <mxGeometry y="54" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r7" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="device_info" vertex="1">
-          <mxGeometry height="25" width="280" y="180" as="geometry" />
+        <mxCell id="s-status" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       status  —  VARCHAR(20) DEFAULT 'initiated'" vertex="1">
+          <mxGeometry y="80" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r7c1" parent="t-sessions-r7" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-step" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       current_step  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="106" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r7c2" parent="t-sessions-r7" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="JSONB DEFAULT &#39;{}&#39;" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-jwt" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       jwt_token  —  TEXT" vertex="1">
+          <mxGeometry y="132" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r8" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="geo_location" vertex="1">
-          <mxGeometry height="25" width="280" y="205" as="geometry" />
+        <mxCell id="s-device" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       device_info  —  JSONB DEFAULT '{}'" vertex="1">
+          <mxGeometry y="158" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r8c1" parent="t-sessions-r8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-geo" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       geo_location  —  JSONB" vertex="1">
+          <mxGeometry y="184" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r8c2" parent="t-sessions-r8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="JSONB {lat, lng, accuracy}" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-risk" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       live_risk_score  —  INT DEFAULT 35" vertex="1">
+          <mxGeometry y="210" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r9" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="is_immutable" vertex="1">
-          <mxGeometry height="25" width="280" y="230" as="geometry" />
+        <mxCell id="s-events" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       risk_events  —  JSONB DEFAULT '[]'" vertex="1">
+          <mxGeometry y="236" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r9c1" parent="t-sessions-r9" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-speech" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       speech_assessment  —  JSONB" vertex="1">
+          <mxGeometry y="262" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r9c2" parent="t-sessions-r9" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="BOOLEAN DEFAULT FALSE" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="s-immutable" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       is_immutable  —  BOOLEAN DEFAULT FALSE" vertex="1">
+          <mxGeometry y="288" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r10" parent="t-sessions" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="created_at" vertex="1">
-          <mxGeometry height="25" width="280" y="255" as="geometry" />
+        <mxCell id="s-started" parent="t-sessions" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       started_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="314" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r10c1" parent="t-sessions-r10" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry">
-            <mxRectangle height="25" width="40" as="alternateBounds" />
-          </mxGeometry>
+
+        <!-- ─── customer_data (PII = Red) ─── -->
+        <mxCell id="t-customer" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#FEE2E2;strokeColor=#DC2626;fontSize=13;fontColor=#991B1B;shadow=1;rounded=1;arcSize=8;html=1;" value="customer_data" vertex="1">
+          <mxGeometry x="560" y="120" width="440" height="470" as="geometry" />
         </mxCell>
-        <mxCell id="t-sessions-r10c2" parent="t-sessions-r10" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="TIMESTAMPTZ DEFAULT NOW()" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry">
-            <mxRectangle height="25" width="240" as="alternateBounds" />
-          </mxGeometry>
+        <mxCell id="c-id" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=#FECACA;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=12;fontColor=#991B1B;shadow=1;" value="&lt;b&gt;customer_data&lt;/b&gt;" vertex="1">
-          <mxGeometry height="250" width="280" x="440" y="100" as="geometry" />
+        <mxCell id="c-sid" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=#FECACA;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r1" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="c-name" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="  🔒  full_name  —  VARCHAR(255)" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r1c1" parent="t-customer-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#DC2626;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="c-aadhaar" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="  🔒  aadhaar_last4  —  VARCHAR(4)" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r1c2" parent="t-customer-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="c-pan" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="  🔒  pan  —  VARCHAR(10)" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r2" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="session_id" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="c-dob" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="  🔒  dob  —  TEXT (encrypted, was DATE)" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r2c1" parent="t-customer-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#DC2626;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="c-age-est" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       age_estimated  —  INT" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r2c2" parent="t-customer-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="c-age-decl" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       age_declared  —  INT" vertex="1">
+          <mxGeometry y="210" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r3" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="🔒 full_name" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="c-gender" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       gender  —  VARCHAR(10)" vertex="1">
+          <mxGeometry y="236" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r3c1" parent="t-customer-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="🔒" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="c-address" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="  🔒  address  —  TEXT" vertex="1">
+          <mxGeometry y="262" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r3c2" parent="t-customer-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="TEXT (AES-256-GCM encrypted)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="c-employer" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       employer  —  VARCHAR(255)" vertex="1">
+          <mxGeometry y="288" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r4" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="🔒 aadhaar_last4" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+        <mxCell id="c-income" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       income_declared  —  DECIMAL" vertex="1">
+          <mxGeometry y="314" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r4c1" parent="t-customer-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="🔒" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="c-purpose" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       loan_purpose  —  VARCHAR(255)" vertex="1">
+          <mxGeometry y="340" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r4c2" parent="t-customer-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="TEXT (AES-256-GCM encrypted)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="c-amount" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       loan_amount_requested  —  DECIMAL" vertex="1">
+          <mxGeometry y="366" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r5" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="🔒 pan" vertex="1">
-          <mxGeometry height="25" width="280" y="125" as="geometry" />
+        <mxCell id="c-email" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       email  —  VARCHAR(255)" vertex="1">
+          <mxGeometry y="392" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r5c1" parent="t-customer-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="🔒" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="c-via" parent="t-customer" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#DC2626;spacingLeft=8;fontColor=#991B1B;" value="       extracted_via  —  VARCHAR(20) DEFAULT 'speech'" vertex="1">
+          <mxGeometry y="418" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r5c2" parent="t-customer-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="TEXT (AES-256-GCM encrypted)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ─── consents (Session = Purple) ─── -->
+        <mxCell id="t-consents" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=13;fontColor=#4C1D95;shadow=1;rounded=1;arcSize=8;html=1;" value="consents" vertex="1">
+          <mxGeometry x="1080" y="120" width="420" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r6" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="🔒 dob" vertex="1">
-          <mxGeometry height="25" width="280" y="150" as="geometry" />
+        <mxCell id="co-id" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r6c1" parent="t-customer-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="🔒" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="co-sid" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r6c2" parent="t-customer-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="TEXT (AES-256-GCM encrypted)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="co-type" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       consent_type  —  VARCHAR(50)" vertex="1">
+          <mxGeometry y="80" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r7" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="🔒 address" vertex="1">
-          <mxGeometry height="25" width="280" y="175" as="geometry" />
+        <mxCell id="co-text" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       consent_text  —  TEXT" vertex="1">
+          <mxGeometry y="106" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r7c1" parent="t-customer-r7" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="🔒" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="co-hash" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       audio_hash  —  VARCHAR(64)" vertex="1">
+          <mxGeometry y="132" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r7c2" parent="t-customer-r7" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="TEXT (AES-256-GCM encrypted)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="co-lang" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       language  —  VARCHAR(10) DEFAULT 'en'" vertex="1">
+          <mxGeometry y="158" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r8" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="age_estimated" vertex="1">
-          <mxGeometry height="25" width="280" y="200" as="geometry" />
+        <mxCell id="co-at" parent="t-consents" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       captured_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="184" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r8c1" parent="t-customer-r8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+
+        <!-- ─── verifications (Green) ─── -->
+        <mxCell id="t-verifications" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#D1FAE5;strokeColor=#059669;fontSize=13;fontColor=#065F46;shadow=1;rounded=1;arcSize=8;html=1;" value="verifications" vertex="1">
+          <mxGeometry x="1580" y="120" width="440" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r8c2" parent="t-customer-r8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="INT" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="v-id" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=#A7F3D0;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r9" parent="t-customer" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" value="extracted_via" vertex="1">
-          <mxGeometry height="25" width="280" y="225" as="geometry" />
+        <mxCell id="v-sid" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=#A7F3D0;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r9c1" parent="t-customer-r9" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="v-provider" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       provider  —  VARCHAR(30) [aadhaar, digilocker, ckyc, cibil, aa]" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-customer-r9c2" parent="t-customer-r9" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" value="VARCHAR(20) DEFAULT &#39;speech&#39;" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="v-status" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       status  —  VARCHAR(20) DEFAULT 'pending'" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verifications" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=12;fontColor=#065F46;shadow=1;" value="&lt;b&gt;verifications&lt;/b&gt;" vertex="1">
-          <mxGeometry height="200" width="280" x="800" y="100" as="geometry" />
+        <mxCell id="v-score" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       match_score  —  DECIMAL (0-100)" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r1" parent="t-verifications" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="v-data" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       response_data  —  JSONB DEFAULT '{}'" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r1c1" parent="t-verif-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#059669;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="v-at" parent="t-verifications" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       verified_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r1c2" parent="t-verif-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- ROW 2: fraud_events, liveness_checks, financial_data           -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+
+        <!-- ─── fraud_events (Orange/AI) ─── -->
+        <mxCell id="t-fraud" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=13;fontColor=#9A3412;shadow=1;rounded=1;arcSize=8;html=1;" value="fraud_events" vertex="1">
+          <mxGeometry x="60" y="660" width="420" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r2" parent="t-verifications" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" value="session_id" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="f-id" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r2c1" parent="t-verif-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#059669;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="f-sid" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r2c2" parent="t-verif-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="f-type" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       event_type  —  VARCHAR(50)" vertex="1">
+          <mxGeometry y="80" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r3" parent="t-verifications" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" value="provider" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="f-conf" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       confidence  —  DECIMAL" vertex="1">
+          <mxGeometry y="106" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r3c1" parent="t-verif-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="f-details" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       details  —  JSONB DEFAULT '{}'" vertex="1">
+          <mxGeometry y="132" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r3c2" parent="t-verif-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" value="VARCHAR(50) (uidai, digilocker, ckyc, cibil, aa)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="f-action" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       action_taken  —  VARCHAR(50)" vertex="1">
+          <mxGeometry y="158" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r4" parent="t-verifications" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" value="status" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+        <mxCell id="f-hash" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       frame_hash  —  VARCHAR(64)" vertex="1">
+          <mxGeometry y="184" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r4c1" parent="t-verif-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="f-at" parent="t-fraud" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       detected_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="210" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r4c2" parent="t-verif-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" value="VARCHAR(20) (success, failed, pending)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ─── liveness_checks (Orange/AI) ─── -->
+        <mxCell id="t-liveness" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=13;fontColor=#9A3412;shadow=1;rounded=1;arcSize=8;html=1;" value="liveness_checks" vertex="1">
+          <mxGeometry x="560" y="660" width="440" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r5" parent="t-verifications" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" value="match_score" vertex="1">
-          <mxGeometry height="25" width="280" y="125" as="geometry" />
+        <mxCell id="l-id" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r5c1" parent="t-verif-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="l-sid" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r5c2" parent="t-verif-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" value="DECIMAL (0-100)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="l-blink" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       blink_count  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r6" parent="t-verifications" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" value="response_data" vertex="1">
-          <mxGeometry height="25" width="280" y="150" as="geometry" />
+        <mxCell id="l-micro" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       micro_movement_count  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r6c1" parent="t-verif-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="l-yaw" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       head_yaw  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-verif-r6c2" parent="t-verif-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" value="JSONB (full provider response)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="l-pitch" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       head_pitch  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=12;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;audit_log&lt;/b&gt;" vertex="1">
-          <mxGeometry height="200" width="280" x="1160" y="100" as="geometry" />
+        <mxCell id="l-conf" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       face_confidence  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r1" parent="t-audit" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="l-live" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       is_live  —  BOOLEAN DEFAULT FALSE" vertex="1">
+          <mxGeometry y="210" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r1c1" parent="t-audit-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="l-at" parent="t-liveness" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       checked_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="236" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r1c2" parent="t-audit-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ─── financial_data (Green) ─── -->
+        <mxCell id="t-financial" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#D1FAE5;strokeColor=#059669;fontSize=13;fontColor=#065F46;shadow=1;rounded=1;arcSize=8;html=1;" value="financial_data" vertex="1">
+          <mxGeometry x="1080" y="660" width="440" height="420" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r2" parent="t-audit" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="session_id" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="fd-id" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=#A7F3D0;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r2c1" parent="t-audit-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="fd-sid" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=#A7F3D0;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r2c2" parent="t-audit-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="fd-cibil" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       cibil_score  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r3" parent="t-audit" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="event_type" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="fd-band" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       cibil_band  —  VARCHAR(20)" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r3c1" parent="t-audit-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="fd-loans" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       existing_loans  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r3c2" parent="t-audit-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="VARCHAR(100)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="fd-delinq" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       delinquency_count  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r4" parent="t-audit" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="payload" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+        <mxCell id="fd-income" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       monthly_income  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r4c1" parent="t-audit-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="fd-expense" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       monthly_expenses  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="210" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r4c2" parent="t-audit-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="JSONB" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="fd-balance" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       avg_balance  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="236" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r5" parent="t-audit" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="prev_hash" vertex="1">
-          <mxGeometry height="25" width="280" y="125" as="geometry" />
+        <mxCell id="fd-txn" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       transaction_count_6m  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="262" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r5c1" parent="t-audit-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="fd-merch" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       unique_merchants  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="288" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r5c2" parent="t-audit-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="VARCHAR(64) SHA-256" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="fd-ireg" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       income_regularity_score  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="314" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r6" parent="t-audit" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="hash" vertex="1">
-          <mxGeometry height="25" width="280" y="150" as="geometry" />
+        <mxCell id="fd-dtrust" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       digital_trust_score  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="340" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r6c1" parent="t-audit-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="fd-shadow" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       shadow_nlp_score / composite_score  —  DECIMAL" vertex="1">
+          <mxGeometry y="366" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-audit-r6c2" parent="t-audit-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="VARCHAR(64) SHA-256 (chained)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="fd-speech" parent="t-financial" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#059669;spacingLeft=8;fontColor=#065F46;" value="       speech_assessment_score  —  INT DEFAULT 70" vertex="1">
+          <mxGeometry y="392" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-recordings" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=12;fontColor=#4C1D95;shadow=1;" value="&lt;b&gt;recordings&lt;/b&gt;" vertex="1">
-          <mxGeometry height="200" width="280" x="80" y="450" as="geometry" />
+
+        <!-- ─── transcripts (Session = Purple) ─── -->
+        <mxCell id="t-transcripts" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=13;fontColor=#4C1D95;shadow=1;rounded=1;arcSize=8;html=1;" value="transcripts" vertex="1">
+          <mxGeometry x="1580" y="660" width="440" height="264" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r1" parent="t-recordings" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="tr-id" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r1c1" parent="t-rec-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="tr-sid" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r1c2" parent="t-rec-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="tr-speaker" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       speaker  —  VARCHAR(20)" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r2" parent="t-recordings" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="session_id" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="tr-text" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       text  —  TEXT" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r2c1" parent="t-rec-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="tr-lang" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       language  —  VARCHAR(10) DEFAULT 'en'" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r2c2" parent="t-rec-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="tr-conf" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       confidence  —  DECIMAL DEFAULT 0" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r3" parent="t-recordings" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="total_chunks" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="tr-entities" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       entities_extracted  —  JSONB DEFAULT '[]'" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r3c1" parent="t-rec-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="tr-ts" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       timestamp_ms  —  BIGINT" vertex="1">
+          <mxGeometry y="210" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r3c2" parent="t-rec-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="INT DEFAULT 0" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="tr-at" parent="t-transcripts" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       created_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="236" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r4" parent="t-recordings" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="duration_seconds" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- ROW 3: audit_log, llm_decisions, loan_offers                   -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+
+        <!-- ─── audit_log (Orange/Audit) ─── -->
+        <mxCell id="t-audit" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=13;fontColor=#9A3412;shadow=1;rounded=1;arcSize=8;html=1;" value="audit_log" vertex="1">
+          <mxGeometry x="60" y="1180" width="420" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r4c1" parent="t-rec-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="a-id" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r4c2" parent="t-rec-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="INT DEFAULT 0" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="a-sid" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r5" parent="t-recordings" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="codec" vertex="1">
-          <mxGeometry height="25" width="280" y="125" as="geometry" />
+        <mxCell id="a-type" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       event_type  —  VARCHAR(50)" vertex="1">
+          <mxGeometry y="80" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r5c1" parent="t-rec-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="a-data" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       event_data  —  JSONB DEFAULT '{}'" vertex="1">
+          <mxGeometry y="106" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r5c2" parent="t-rec-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="VARCHAR(100) (video/webm;codecs=vp9,opus)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="a-hash" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       hash  —  VARCHAR(64) SHA-256" vertex="1">
+          <mxGeometry y="132" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r6" parent="t-recordings" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="composite_sha256" vertex="1">
-          <mxGeometry height="25" width="280" y="150" as="geometry" />
+        <mxCell id="a-prev" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       previous_hash  —  VARCHAR(64) SHA-256 (chained)" vertex="1">
+          <mxGeometry y="158" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r6c1" parent="t-rec-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="a-at" parent="t-audit" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       created_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="184" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-rec-r6c2" parent="t-rec-r6" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="VARCHAR(64)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ─── llm_decisions (Orange/AI) ─── -->
+        <mxCell id="t-llm" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=13;fontColor=#9A3412;shadow=1;rounded=1;arcSize=8;html=1;" value="llm_decisions" vertex="1">
+          <mxGeometry x="560" y="1180" width="440" height="316" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=12;fontColor=#4C1D95;shadow=1;" value="&lt;b&gt;recording_chunks&lt;/b&gt;" vertex="1">
-          <mxGeometry height="175" width="280" x="440" y="450" as="geometry" />
+        <mxCell id="llm-id" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r1" parent="t-chunks" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="llm-sid" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=#FED7AA;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r1c1" parent="t-chunks-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="llm-tier" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       risk_tier  —  INT" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r1c2" parent="t-chunks-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="llm-conf" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       confidence  —  DECIMAL" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r2" parent="t-chunks" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="session_id" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="llm-reason" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       reasoning  —  TEXT" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r2c1" parent="t-chunks-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="llm-rbi" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       rbi_citations  —  JSONB DEFAULT '[]'" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r2c2" parent="t-chunks-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="llm-persona" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       persona_classification  —  VARCHAR(50)" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r3" parent="t-chunks" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="chunk_index" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="llm-eval" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       policy_rules_evaluated / passed  —  INT" vertex="1">
+          <mxGeometry y="210" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r3c1" parent="t-chunks-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="llm-raw" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       raw_llm_response  —  JSONB DEFAULT '{}'" vertex="1">
+          <mxGeometry y="236" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r3c2" parent="t-chunks-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="INT NOT NULL" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="llm-at" parent="t-llm" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#EA580C;spacingLeft=8;fontColor=#9A3412;" value="       decided_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="262" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r4" parent="t-chunks" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="storage_path" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+
+        <!-- ─── loan_offers (Amber/Offers) ─── -->
+        <mxCell id="t-offers" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=13;fontColor=#92400E;shadow=1;rounded=1;arcSize=8;html=1;" value="loan_offers" vertex="1">
+          <mxGeometry x="1080" y="1180" width="440" height="316" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r4c1" parent="t-chunks-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="o-id" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=#FDE68A;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r4c2" parent="t-chunks-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="TEXT NOT NULL (Supabase Storage path)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="o-sid" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=#FDE68A;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r5" parent="t-chunks" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" value="sha256_hash" vertex="1">
-          <mxGeometry height="25" width="280" y="125" as="geometry" />
+        <mxCell id="o-product" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       product_name  —  VARCHAR(100)" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r5c1" parent="t-chunks-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="o-amount" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       eligible_amount  —  DECIMAL" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-chunks-r5c2" parent="t-chunks-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" value="VARCHAR(64)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="o-rate" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       interest_rate  —  DECIMAL" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-loan-offers" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=12;fontColor=#78350F;shadow=1;" value="&lt;b&gt;loan_offers&lt;/b&gt;" vertex="1">
-          <mxGeometry height="175" width="280" x="800" y="370" as="geometry" />
+        <mxCell id="o-tenure" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       tenure_months  —  INT" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r1" parent="t-loan-offers" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="o-emi" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       emi  —  DECIMAL" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r1c1" parent="t-offers-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#D97706;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="o-fee" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       processing_fee  —  DECIMAL" vertex="1">
+          <mxGeometry y="210" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r1c2" parent="t-offers-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="o-sel" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       is_selected  —  BOOLEAN DEFAULT FALSE" vertex="1">
+          <mxGeometry y="236" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r2" parent="t-loan-offers" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" value="session_id" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="o-status" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       offer_status  —  VARCHAR(20) DEFAULT 'generated'" vertex="1">
+          <mxGeometry y="262" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r2c1" parent="t-offers-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#D97706;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="o-at" parent="t-offers" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#D97706;spacingLeft=8;fontColor=#92400E;" value="       created_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="288" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r2c2" parent="t-offers-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- ROW 3 continued: recordings, recording_chunks                  -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+
+        <!-- ─── recordings (Purple/Recording) ─── -->
+        <mxCell id="t-recordings" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=13;fontColor=#4C1D95;shadow=1;rounded=1;arcSize=8;html=1;" value="recordings" vertex="1">
+          <mxGeometry x="1580" y="1180" width="440" height="238" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r3" parent="t-loan-offers" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" value="amount / rate / tenure / emi" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="rec-id" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r3c1" parent="t-offers-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="rec-sid" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r3c2" parent="t-offers-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" value="DECIMAL / DECIMAL / INT / DECIMAL" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="rec-chunks" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       total_chunks  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r4" parent="t-loan-offers" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" value="product_type" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+        <mxCell id="rec-dur" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       duration_seconds  —  INT DEFAULT 0" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r4c1" parent="t-offers-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="rec-codec" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       codec  —  VARCHAR(100) (video/webm;codecs=vp9,opus)" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r4c2" parent="t-offers-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" value="VARCHAR(50) (personal, business, education)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="rec-sha" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       composite_sha256  —  VARCHAR(64)" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r5" parent="t-loan-offers" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" value="accepted" vertex="1">
-          <mxGeometry height="25" width="280" y="125" as="geometry" />
+        <mxCell id="rec-sealed" parent="t-recordings" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       sealed_at  —  TIMESTAMPTZ" vertex="1">
+          <mxGeometry y="184" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r5c1" parent="t-offers-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+
+        <!-- ─── recording_chunks (Purple/Recording) ─── -->
+        <mxCell id="t-chunks" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=13;fontColor=#4C1D95;shadow=1;rounded=1;arcSize=8;html=1;" value="recording_chunks" vertex="1">
+          <mxGeometry x="2100" y="1180" width="440" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="t-offers-r5c2" parent="t-offers-r5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" value="BOOLEAN DEFAULT FALSE" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="rc-id" parent="t-chunks" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm" parent="1" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=12;fontColor=#7C2D12;shadow=1;" value="&lt;b&gt;llm_decisions&lt;/b&gt;" vertex="1">
-          <mxGeometry height="150" width="280" x="1160" y="370" as="geometry" />
+        <mxCell id="rc-sid" parent="t-chunks" style="text;html=1;fontSize=11;align=left;fillColor=#EDE9FE;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r1" parent="t-llm" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="&lt;b&gt;id&lt;/b&gt;" vertex="1">
-          <mxGeometry height="25" width="280" y="25" as="geometry" />
+        <mxCell id="rc-idx" parent="t-chunks" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       chunk_index  —  INT NOT NULL" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r1c1" parent="t-llm-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" value="PK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="rc-path" parent="t-chunks" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       storage_path  —  TEXT NOT NULL (Supabase Storage)" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r1c2" parent="t-llm-r1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="UUID" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="rc-size" parent="t-chunks" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       size_bytes  —  INT" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r2" parent="t-llm" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="session_id (FK)" vertex="1">
-          <mxGeometry height="25" width="280" y="50" as="geometry" />
+        <mxCell id="rc-sha" parent="t-chunks" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#7C3AED;spacingLeft=8;fontColor=#4C1D95;" value="       sha256_hash  —  VARCHAR(64)" vertex="1">
+          <mxGeometry y="158" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r2c1" parent="t-llm-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" value="FK" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- ROW 4: trust_nodes, trust_edges                                -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+
+        <!-- ─── trust_nodes (Blue/Trust Graph) ─── -->
+        <mxCell id="t-trust-nodes" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=13;fontColor=#1E40AF;shadow=1;rounded=1;arcSize=8;html=1;" value="trust_nodes" vertex="1">
+          <mxGeometry x="60" y="1620" width="420" height="186" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r2c2" parent="t-llm-r2" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="UUID REFERENCES sessions(id)" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="tn-id" parent="t-trust-nodes" style="text;html=1;fontSize=11;align=left;fillColor=#BFDBFE;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r3" parent="t-llm" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="risk_tier / reasoning / rbi_citations" vertex="1">
-          <mxGeometry height="25" width="280" y="75" as="geometry" />
+        <mxCell id="tn-sid" parent="t-trust-nodes" style="text;html=1;fontSize=11;align=left;fillColor=#BFDBFE;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r3c1" parent="t-llm-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="tn-type" parent="t-trust-nodes" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="       node_type  —  TEXT NOT NULL [phone, pan, aadhaar, email]" vertex="1">
+          <mxGeometry y="80" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r3c2" parent="t-llm-r3" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="INT / TEXT / JSONB" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+        <mxCell id="tn-val" parent="t-trust-nodes" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="       node_value  —  TEXT NOT NULL" vertex="1">
+          <mxGeometry y="106" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r4" parent="t-llm" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" value="composite_score" vertex="1">
-          <mxGeometry height="25" width="280" y="100" as="geometry" />
+        <mxCell id="tn-at" parent="t-trust-nodes" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="       created_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="132" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r4c1" parent="t-llm-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" value="" vertex="1">
-          <mxGeometry height="25" width="40" as="geometry" />
+        <mxCell id="tn-unique" parent="t-trust-nodes" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="       UNIQUE(node_type, node_value)" vertex="1">
+          <mxGeometry y="158" width="420" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="t-llm-r4c2" parent="t-llm-r4" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" value="DECIMAL" vertex="1">
-          <mxGeometry height="25" width="240" x="40" as="geometry" />
+
+        <!-- ─── trust_edges (Blue/Trust Graph) ─── -->
+        <mxCell id="t-trust-edges" parent="1" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=13;fontColor=#1E40AF;shadow=1;rounded=1;arcSize=8;html=1;" value="trust_edges" vertex="1">
+          <mxGeometry x="560" y="1620" width="440" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="rel-session-customer" edge="1" parent="1" source="t-sessions-r1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#DC2626;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=62;" target="t-customer">
+        <mxCell id="te-id" parent="t-trust-edges" style="text;html=1;fontSize=11;align=left;fillColor=#BFDBFE;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="&lt;b&gt;PK&lt;/b&gt;  id  —  UUID DEFAULT gen_random_uuid()" vertex="1">
+          <mxGeometry y="28" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="te-sid" parent="t-trust-edges" style="text;html=1;fontSize=11;align=left;fillColor=#BFDBFE;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="&lt;b&gt;FK&lt;/b&gt;  session_id  —  UUID REFERENCES sessions(id)" vertex="1">
+          <mxGeometry y="54" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="te-from" parent="t-trust-edges" style="text;html=1;fontSize=11;align=left;fillColor=#BFDBFE;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="&lt;b&gt;FK&lt;/b&gt;  from_node_id  —  UUID REFERENCES trust_nodes(id)" vertex="1">
+          <mxGeometry y="80" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="te-to" parent="t-trust-edges" style="text;html=1;fontSize=11;align=left;fillColor=#BFDBFE;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="&lt;b&gt;FK&lt;/b&gt;  to_node_id  —  UUID REFERENCES trust_nodes(id)" vertex="1">
+          <mxGeometry y="106" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="te-at" parent="t-trust-edges" style="text;html=1;fontSize=11;align=left;fillColor=none;strokeColor=#2563EB;spacingLeft=8;fontColor=#1E40AF;" value="       created_at  —  TIMESTAMPTZ DEFAULT NOW()" vertex="1">
+          <mxGeometry y="132" width="440" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- RELATIONSHIP ARROWS                                            -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+
+        <!-- sessions → customer_data (1:N) -->
+        <mxCell id="rel-s-c" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#DC2626;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.1;entryDx=0;entryDy=0;" edge="1" source="t-sessions" target="t-customer">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rel-session-customer-label" connectable="0" parent="rel-session-customer" style="edgeLabel;html=1;fontSize=10;fontColor=#DC2626;fontStyle=1;" value="1:1" vertex="1">
-          <mxGeometry relative="1" x="-0.3" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="rel-s-c-label" parent="rel-s-c" style="edgeLabel;html=1;fontSize=10;fontColor=#DC2626;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="rel-session-verif" edge="1" parent="1" source="t-sessions-r1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#059669;strokeWidth=2;" target="t-verif-r2">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="400" y="125" />
-              <mxPoint x="400" y="60" />
-              <mxPoint x="780" y="60" />
-              <mxPoint x="780" y="150" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rel-session-verif-label" connectable="0" parent="rel-session-verif" style="edgeLabel;html=1;fontSize=10;fontColor=#059669;fontStyle=1;" value="1:N" vertex="1">
-          <mxGeometry relative="1" x="0.2" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rel-session-audit" edge="1" parent="1" source="t-sessions-r1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;" target="t-audit-r2">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="400" y="125" />
-              <mxPoint x="400" y="60" />
-              <mxPoint x="1140" y="60" />
-              <mxPoint x="1140" y="150" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rel-session-audit-label" connectable="0" parent="rel-session-audit" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" value="1:N" vertex="1">
-          <mxGeometry relative="1" x="0.5" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rel-session-rec" edge="1" parent="1" source="t-sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7C3AED;strokeWidth=2;" target="t-recordings">
+
+        <!-- sessions → consents (1:N) -->
+        <mxCell id="rel-s-co" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="t-sessions" target="t-consents">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rel-session-rec-label" connectable="0" parent="rel-session-rec" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" value="1:1" vertex="1">
-          <mxGeometry relative="1" x="-0.3" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="rel-s-co-label" parent="rel-s-co" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="rel-session-chunks" edge="1" parent="1" source="t-sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7C3AED;strokeWidth=2;" target="t-chunks">
+
+        <!-- sessions → verifications (1:N) -->
+        <mxCell id="rel-s-v" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#059669;strokeWidth=2;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="t-consents" target="t-verifications">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-s-v-label" parent="rel-s-v" style="edgeLabel;html=1;fontSize=10;fontColor=#059669;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- sessions → fraud_events (1:N) -->
+        <mxCell id="rel-s-f" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#EA580C;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-sessions" target="t-fraud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-s-f-label" parent="rel-s-f" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- sessions → liveness_checks (1:N) -->
+        <mxCell id="rel-s-l" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#EA580C;strokeWidth=2;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-customer" target="t-liveness">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-s-l-label" parent="rel-s-l" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- sessions → financial_data (1:N) -->
+        <mxCell id="rel-s-fd" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#059669;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-verifications" target="t-financial">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="380" y="430" />
-              <mxPoint x="580" y="430" />
+              <mxPoint x="1800" y="430" />
+              <mxPoint x="1560" y="430" />
+              <mxPoint x="1560" y="610" />
+              <mxPoint x="1300" y="610" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="rel-session-chunks-label" connectable="0" parent="rel-session-chunks" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" value="1:N" vertex="1">
-          <mxGeometry relative="1" x="-0.3" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="rel-s-fd-label" parent="rel-s-fd" style="edgeLabel;html=1;fontSize=10;fontColor=#059669;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="rel-session-offers" edge="1" parent="1" source="t-sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D97706;strokeWidth=2;" target="t-loan-offers">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="380" y="430" />
-              <mxPoint x="780" y="430" />
-            </Array>
-          </mxGeometry>
+
+        <!-- sessions → transcripts (1:N) -->
+        <mxCell id="rel-s-tr" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-verifications" target="t-transcripts">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rel-session-offers-label" connectable="0" parent="rel-session-offers" style="edgeLabel;html=1;fontSize=10;fontColor=#D97706;fontStyle=1;" value="1:N" vertex="1">
-          <mxGeometry relative="1" x="0.3" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="rel-s-tr-label" parent="rel-s-tr" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="rel-session-llm" edge="1" parent="1" source="t-sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;" target="t-llm">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="380" y="430" />
-              <mxPoint x="1140" y="430" />
-            </Array>
-          </mxGeometry>
+
+        <!-- sessions → audit_log (1:N) -->
+        <mxCell id="rel-s-a" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#EA580C;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-fraud" target="t-audit">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rel-session-llm-label" connectable="0" parent="rel-session-llm" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" value="1:1" vertex="1">
-          <mxGeometry relative="1" x="0.5" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="rel-s-a-label" parent="rel-s-a" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#D1D5DB;strokeWidth=1;arcSize=5;" value="" vertex="1">
-          <mxGeometry height="170" width="200" x="1520" y="100" as="geometry" />
+
+        <!-- sessions → llm_decisions (1:N) -->
+        <mxCell id="rel-s-llm" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#EA580C;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-liveness" target="t-llm">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="legend-title" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
-          <mxGeometry height="20" width="100" x="1570" y="105" as="geometry" />
+        <mxCell id="rel-s-llm-label" parent="rel-s-llm" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="leg-session-t" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="18" x="1535" y="132" as="geometry" />
+
+        <!-- sessions → loan_offers (1:N) -->
+        <mxCell id="rel-s-o" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#D97706;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-financial" target="t-offers">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="leg-session-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" value="Session / Recording" vertex="1">
-          <mxGeometry height="18" width="140" x="1558" y="130" as="geometry" />
+        <mxCell id="rel-s-o-label" parent="rel-s-o" style="edgeLabel;html=1;fontSize=10;fontColor=#D97706;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="leg-pii-t" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="18" x="1535" y="155" as="geometry" />
+
+        <!-- sessions → recordings (1:N) -->
+        <mxCell id="rel-s-rec" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#7C3AED;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-transcripts" target="t-recordings">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="leg-pii-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#991B1B;" value="PII (Encrypted)" vertex="1">
-          <mxGeometry height="18" width="140" x="1558" y="153" as="geometry" />
+        <mxCell id="rel-s-rec-label" parent="rel-s-rec" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" value="1:1" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="leg-verif-t" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="18" x="1535" y="178" as="geometry" />
+
+        <!-- sessions → recording_chunks (1:N) -->
+        <mxCell id="rel-s-rc" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="t-recordings" target="t-chunks">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="leg-verif-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#065F46;" value="Verifications" vertex="1">
-          <mxGeometry height="18" width="140" x="1558" y="176" as="geometry" />
+        <mxCell id="rel-s-rc-label" parent="rel-s-rc" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="leg-ai-t" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="18" x="1535" y="201" as="geometry" />
+
+        <!-- sessions → trust_nodes (1:N) -->
+        <mxCell id="rel-s-tn" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#2563EB;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="t-audit" target="t-trust-nodes">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="leg-ai-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#7C2D12;" value="AI / Audit" vertex="1">
-          <mxGeometry height="18" width="140" x="1558" y="199" as="geometry" />
+        <mxCell id="rel-s-tn-label" parent="rel-s-tn" style="edgeLabel;html=1;fontSize=10;fontColor=#2563EB;fontStyle=1;" value="1:N" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="leg-offer-t" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="18" x="1535" y="224" as="geometry" />
+
+        <!-- trust_nodes → trust_edges (1:N) -->
+        <mxCell id="rel-tn-te" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#2563EB;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="t-trust-nodes" target="t-trust-edges">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="leg-offer-text" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#78350F;" value="Offers" vertex="1">
-          <mxGeometry height="18" width="140" x="1558" y="222" as="geometry" />
+        <mxCell id="rel-tn-te-label" parent="rel-tn-te" style="edgeLabel;html=1;fontSize=10;fontColor=#2563EB;fontStyle=1;" value="1:N (from + to)" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
         </mxCell>
-        <mxCell id="note-encrypted" parent="1" style="text;html=1;fontSize=11;align=left;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;rounded=1;spacingLeft=8;spacingRight=8;spacingTop=4;spacingBottom=4;" value="&lt;font style=&quot;font-size:11px&quot;&gt;🔒 = AES-256-GCM encrypted fields&lt;br&gt;Stored as base64(IV + authTag + ciphertext)&lt;br&gt;Requires ENCRYPTION_KEY env var (32 bytes hex)&lt;/font&gt;" vertex="1">
-          <mxGeometry height="60" width="300" x="1520" y="300" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- ANNOTATION: Central hub note                                   -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="note-hub" parent="1" style="shape=note;size=14;fillColor=#FEF3C7;strokeColor=#D97706;shadow=1;fontSize=10;fontColor=#92400E;align=left;spacingLeft=8;spacingTop=4;whiteSpace=wrap;html=1;" value="All child tables reference &lt;b&gt;sessions(id)&lt;/b&gt;&lt;br&gt;via FK with ON DELETE CASCADE.&lt;br&gt;&lt;br&gt;🔒 Encrypted fields stored as&lt;br&gt;base64(IV + authTag + ciphertext)&lt;br&gt;Requires ENCRYPTION_KEY env var&lt;br&gt;(32 bytes hex)" vertex="1">
+          <mxGeometry x="2100" y="120" width="260" height="150" as="geometry" />
         </mxCell>
+
+        <!-- Realtime note -->
+        <mxCell id="note-realtime" parent="1" style="shape=note;size=14;fillColor=#DBEAFE;strokeColor=#2563EB;shadow=1;fontSize=10;fontColor=#1E40AF;align=left;spacingLeft=8;spacingTop=4;whiteSpace=wrap;html=1;" value="&lt;b&gt;Supabase Realtime&lt;/b&gt; enabled on:&lt;br&gt;sessions, fraud_events, verifications,&lt;br&gt;liveness_checks, transcripts, loan_offers&lt;br&gt;&lt;br&gt;Powers live dashboard updates" vertex="1">
+          <mxGeometry x="2100" y="300" width="260" height="100" as="geometry" />
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>
