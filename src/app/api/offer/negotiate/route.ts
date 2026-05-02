@@ -6,7 +6,7 @@ import { queryLLM, parseLLMJson } from "@/lib/llm";
 import { validateRequest, offerNegotiateSchema } from "@/lib/validation";
 
 interface NegotiateIntent {
-  intent: "extend_tenure" | "reduce_amount" | "explain" | "other";
+  intent: "extend_tenure" | "reduce_amount" | "increase_amount" | "reduce_emi" | "explain" | "other";
   new_tenure?: number;
   new_amount?: number;
   message: string;
@@ -37,17 +37,19 @@ export async function POST(request: Request) {
   if (message) {
     let intent: NegotiateIntent;
     try {
-      const llmRes = await queryLLM(`You are a loan officer AI. The customer has a loan offer:
-Amount: ₹${existingOffer.eligible_amount}, Rate: ${existingOffer.interest_rate}%, Tenure: ${existingOffer.tenure_months} months, EMI: ₹${existingOffer.emi}
+      const llmRes = await queryLLM(`You are a loan negotiation AI. The customer has an existing loan offer:
+Amount: ₹${existingOffer.eligible_amount} (${(Number(existingOffer.eligible_amount) / 100000).toFixed(1)} lakh), Rate: ${existingOffer.interest_rate}%, Tenure: ${existingOffer.tenure_months} months, EMI: ₹${existingOffer.emi}
 
 Customer says: "${message}"
 
-Respond with JSON:
+Parse the customer's request. Convert Indian number formats: 1 lakh = 100000, 1 crore = 10000000.
+
+Respond ONLY with valid JSON:
 {
-  "intent": "extend_tenure"|"reduce_amount"|"explain"|"other",
-  "new_tenure": <number in months if changing tenure, null otherwise>,
-  "new_amount": <number in rupees if changing amount, null otherwise>,
-  "message": "<your helpful, concise response to the customer>"
+  "intent": "increase_amount" | "reduce_amount" | "extend_tenure" | "reduce_emi" | "explain" | "other",
+  "new_amount": <number in rupees if changing amount, e.g. "20 lakh" = 2000000, null if not changing>,
+  "new_tenure": <number in months if changing tenure, null if not changing>,
+  "message": "<concise response to customer>"
 }`);
       intent = parseLLMJson<NegotiateIntent>(llmRes);
     } catch {
@@ -57,9 +59,23 @@ Respond with JSON:
       };
     }
 
-    finalTenure = intent.new_tenure || finalTenure;
-    finalAmount = intent.new_amount || finalAmount;
+    finalTenure = intent.new_tenure ?? finalTenure;
+    finalAmount = intent.new_amount ?? finalAmount;
     agentMessage = intent.message;
+  }
+
+  // Fallback: regex extraction if LLM didn't parse amount from message
+  if (!finalAmount && !finalTenure && message) {
+    const amountMatch = message.match(/(\d+\.?\d*)\s*(lakh|lac|lakhs|lacs|crore|crores|l)\b/i);
+    if (amountMatch) {
+      const num = parseFloat(amountMatch[1]);
+      const unit = amountMatch[2].toLowerCase();
+      if (unit.startsWith("lakh") || unit.startsWith("lac") || unit === "l") {
+        finalAmount = num * 100000;
+      } else if (unit.startsWith("crore")) {
+        finalAmount = num * 10000000;
+      }
+    }
   }
 
   if (!finalTenure && !finalAmount) {

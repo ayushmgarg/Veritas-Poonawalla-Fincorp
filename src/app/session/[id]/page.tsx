@@ -113,10 +113,11 @@ export default function SessionPage() {
 
   const { state: speechState, start: startSpeech, stop: stopSpeech } = useSpeechRecognition(handleSpeechResult);
 
-  // Start recording when stream becomes available
+  // Start recording when stream becomes available (delayed to let video element acquire frames first)
   useEffect(() => {
     if (webrtcState.stream && !recorder.state.isRecording) {
-      recorder.start(webrtcState.stream);
+      const timeout = setTimeout(() => recorder.start(webrtcState.stream!), 1500);
+      return () => clearTimeout(timeout);
     }
   }, [webrtcState.stream]);
 

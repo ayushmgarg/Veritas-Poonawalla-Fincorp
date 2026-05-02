@@ -31,7 +31,7 @@ const ENTITY_PATTERNS: { type: string; pattern: RegExp; extract: (m: RegExpMatch
   },
   {
     type: "employer",
-    pattern: /(?:work|working|employed)\s+(?:at|in|for|with)\s+(.+?)(?:\.|,|$)/i,
+    pattern: /(?:work|working|employed|company|employer|job)\s+(?:at|in|for|with|is)\s+(.+?)(?:\.|,|and\s|$)/i,
     extract: (m) => m[1].trim(),
   },
   {
@@ -41,7 +41,7 @@ const ENTITY_PATTERNS: { type: string; pattern: RegExp; extract: (m: RegExpMatch
   },
   {
     type: "name",
-    pattern: /(?:my name is|i am|this is|name's)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/,
+    pattern: /(?:my name is|i am|i'm|this is|name's|name is|call me)\s+([A-Za-z]+(?:[\s-][A-Za-z]+)*)/i,
     extract: (m) => m[1],
   },
 ];
@@ -100,7 +100,8 @@ export async function POST(request: Request) {
   }
 
   if (Object.keys(updates).length > 0) {
-    await db.from("customer_data").update(updates).eq("session_id", session_id);
+    const { error: updateErr } = await db.from("customer_data").update(updates).eq("session_id", session_id);
+    if (updateErr) console.error("customer_data update failed:", updateErr.message);
   }
 
   // 4. Intent drift check (only if we extracted something)

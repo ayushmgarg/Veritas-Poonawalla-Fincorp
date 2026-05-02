@@ -108,10 +108,16 @@ export function useFaceDetection(
     if (!isActive || !isReady) return;
 
     let lastVideoTime = -1;
+    let waitStart = performance.now();
 
     function detect() {
       const video = videoRef.current;
       if (!video || video.readyState < 2) {
+        // If stuck waiting >3s, retry video.play() to unstick the stream
+        if (video && video.readyState < 2 && performance.now() - waitStart > 3000) {
+          video.play().catch(() => {});
+          waitStart = performance.now();
+        }
         rafRef.current = requestAnimationFrame(detect);
         return;
       }
