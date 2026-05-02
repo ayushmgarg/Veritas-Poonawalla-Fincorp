@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { updateLiveRisk } from "@/lib/risk-engine";
+import { validateRequest, livenessSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
+  const validation = await validateRequest(request, livenessSchema);
+  if (!validation.success) return validation.response;
   const {
     session_id,
     blink_count,
@@ -10,7 +13,7 @@ export async function POST(request: Request) {
     head_yaw,
     head_pitch,
     face_confidence,
-  } = await request.json();
+  } = validation.data;
 
   const db = getServiceClient();
 

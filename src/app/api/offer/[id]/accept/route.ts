@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
+import { validateParam } from "@/lib/validation";
 
 export async function PUT(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const paramCheck = validateParam(rawId);
+  if (!paramCheck.success) return paramCheck.response;
+  const id = paramCheck.data;
   const db = getServiceClient();
 
   const { data: offer, error } = await db

@@ -2,13 +2,20 @@ import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
 import { SESSION_STEPS } from "@/constants/steps";
+import { validateRequest, validateParam, sessionStepSchema } from "@/lib/validation";
 
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
-  const { step } = await request.json();
+  const { id: rawId } = await params;
+  const paramCheck = validateParam(rawId);
+  if (!paramCheck.success) return paramCheck.response;
+  const id = paramCheck.data;
+
+  const validation = await validateRequest(request, sessionStepSchema);
+  if (!validation.success) return validation.response;
+  const { step } = validation.data;
   const db = getServiceClient();
 
   if (step < 0 || step >= SESSION_STEPS.length) {

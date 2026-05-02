@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { queryLLM, parseLLMJson } from "@/lib/llm";
 import { SHADOW_NLP_PROMPT } from "@/constants/prompts";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
+import { sanitizeForLLM } from "@/lib/prompt-sanitizer";
 
 interface ShadowScoreResult {
   overall_score: number;
@@ -15,7 +17,9 @@ interface ShadowScoreResult {
 }
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
 
   const { data: transcripts } = await db
@@ -25,9 +29,10 @@ export async function POST(request: Request) {
     .eq("speaker", "customer")
     .order("timestamp_ms", { ascending: true });
 
-  const transcript =
+  const rawTranscript =
     transcripts?.map((t) => t.text).join("\n") ||
     "Customer expressed interest in a home renovation loan of 15 lakhs. Works at TCS with monthly income of 85 thousand. Has been employed for 6 years. Agreed to all consent terms confidently.";
+  const { text: transcript } = sanitizeForLLM(rawTranscript);
 
   const prompt = SHADOW_NLP_PROMPT.replace("{transcript}", transcript);
 

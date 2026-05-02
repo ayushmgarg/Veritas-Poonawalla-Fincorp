@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { computeDigitalTrustScore } from "@/lib/digital-trust";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
 
   const { data: financial } = await db

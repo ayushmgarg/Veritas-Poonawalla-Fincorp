@@ -2,9 +2,12 @@ import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
 import { generateOffers } from "@/lib/offer-calculator";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
 
   const { data: customer } = await db

@@ -1,19 +1,23 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getPersonaForPhone } from "@/lib/mock-data";
+import { getIndiaStackProvider } from "@/lib/india-stack";
 import { computeDigitalTrustScore } from "@/lib/digital-trust";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
   const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
-  const persona = getPersonaForPhone(sess?.phone ?? "");
+  const phone = sess?.phone ?? "";
 
-  await new Promise((r) => setTimeout(r, 2500));
-
-  const aaData = persona.aa;
-  const cibilData = persona.cibil;
+  const provider = getIndiaStackProvider();
+  const [aaData, cibilData] = await Promise.all([
+    provider.aa.fetchFinancialData(session_id, phone),
+    provider.cibil.checkScore(session_id, phone),
+  ]);
 
   const trustScore = computeDigitalTrustScore({
     avg_balance: aaData.avg_balance,
@@ -65,7 +69,6 @@ export async function POST(request: Request) {
     .from("customer_data")
     .update({
       income_declared: aaData.monthly_income,
-      employer: persona.customer.employer,
     })
     .eq("session_id", session_id);
 

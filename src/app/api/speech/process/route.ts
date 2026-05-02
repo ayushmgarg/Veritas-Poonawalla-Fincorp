@@ -3,6 +3,8 @@ import { getServiceClient } from "@/lib/supabase";
 import { detectRuleDrift, ExtractedEntities } from "@/lib/intent-drift";
 import { analyzeSpeech } from "@/lib/speech-analysis";
 import { updateLiveRisk } from "@/lib/risk-engine";
+import { validateRequest, speechProcessSchema } from "@/lib/validation";
+import { encryptField } from "@/lib/encryption";
 
 const ENTITY_PATTERNS: { type: string; pattern: RegExp; extract: (m: RegExpMatchArray) => string }[] = [
   {
@@ -45,7 +47,9 @@ const ENTITY_PATTERNS: { type: string; pattern: RegExp; extract: (m: RegExpMatch
 ];
 
 export async function POST(request: Request) {
-  const { session_id, text, language, confidence, timestamp_ms } = await request.json();
+  const validation = await validateRequest(request, speechProcessSchema);
+  if (!validation.success) return validation.response;
+  const { session_id, text, language, confidence, timestamp_ms } = validation.data;
   const db = getServiceClient();
 
   // 1. Entity extraction
@@ -89,7 +93,7 @@ export async function POST(request: Request) {
         newEntities.employer = entity.value;
         break;
       case "name":
-        updates.full_name = entity.value;
+        updates.full_name = encryptField(entity.value);
         newEntities.name = entity.value;
         break;
     }

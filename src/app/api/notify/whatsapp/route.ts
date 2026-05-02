@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
+import { validateRequest, whatsappNotifySchema } from "@/lib/validation";
+import { decryptField } from "@/lib/encryption";
 
 function fmt(n: number) {
   return n.toLocaleString("en-IN");
 }
 
 export async function POST(request: Request) {
-  const { session_id, offer_id } = await request.json();
+  const validation = await validateRequest(request, whatsappNotifySchema);
+  if (!validation.success) return validation.response;
+  const { session_id, offer_id } = validation.data;
 
   if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_AUTH_TOKEN) {
     return NextResponse.json({ sent: false, reason: "Twilio not configured" });
@@ -42,9 +46,10 @@ export async function POST(request: Request) {
   const customerTo = phone.startsWith("91") ? `whatsapp:+${phone}` : `whatsapp:+91${phone}`;
 
   // ── Message 1: Customer sanction ──────────────────────────────────────────
+  const decryptedName = decryptField(customer?.full_name);
   const customerMsg =
     `✅ *VERITAS — Loan Approved!*\n\n` +
-    `Congratulations${customer?.full_name ? `, ${customer.full_name.split(" ")[0]}` : ""}! Your application has been approved.\n\n` +
+    `Congratulations${decryptedName ? `, ${decryptedName.split(" ")[0]}` : ""}! Your application has been approved.\n\n` +
     `*Sanctioned Terms*\n` +
     `• Product: ${offer.product_name}\n` +
     `• Amount: ₹${fmt(Number(offer.eligible_amount))}\n` +
@@ -74,7 +79,7 @@ export async function POST(request: Request) {
   const adminMsg =
     `📊 *VERITAS — New Loan Disbursed*\n\n` +
     `*Applicant*\n` +
-    `• Name: ${customer?.full_name ?? "—"}\n` +
+    `• Name: ${decryptedName ?? "—"}\n` +
     `• Phone: +91 ${phone.slice(-10, -6)}****\n` +
     `• Employer: ${employer}\n` +
     `• Income: ${income}\n` +

@@ -3,6 +3,7 @@ import { getServiceClient } from "@/lib/supabase";
 import { recalculateOffer } from "@/lib/offer-calculator";
 import { logAuditEvent } from "@/lib/audit-logger";
 import { queryLLM, parseLLMJson } from "@/lib/llm";
+import { validateRequest, offerNegotiateSchema } from "@/lib/validation";
 
 interface NegotiateIntent {
   intent: "extend_tenure" | "reduce_amount" | "explain" | "other";
@@ -12,8 +13,10 @@ interface NegotiateIntent {
 }
 
 export async function POST(request: Request) {
+  const validation = await validateRequest(request, offerNegotiateSchema);
+  if (!validation.success) return validation.response;
   const { session_id, offer_id, new_tenure, new_amount, message } =
-    await request.json();
+    validation.data;
   const db = getServiceClient();
 
   const { data: existingOffer, error } = await db

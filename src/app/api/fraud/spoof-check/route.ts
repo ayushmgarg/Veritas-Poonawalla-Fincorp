@@ -2,10 +2,13 @@ import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
 import { computeHash } from "@/lib/hash-chain";
+import { validateRequest, spoofCheckSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
+  const validation = await validateRequest(request, spoofCheckSchema);
+  if (!validation.success) return validation.response;
   const { session_id, micro_movements, face_confidence, depth_variance } =
-    await request.json();
+    validation.data;
 
   const db = getServiceClient();
 

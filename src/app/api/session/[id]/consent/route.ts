@@ -2,13 +2,20 @@ import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
 import { computeAudioHash } from "@/lib/hash-chain";
+import { validateRequest, validateParam, consentSchema } from "@/lib/validation";
 
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
-  const { consent_type, consent_text, language } = await request.json();
+  const { id: rawId } = await params;
+  const paramCheck = validateParam(rawId);
+  if (!paramCheck.success) return paramCheck.response;
+  const id = paramCheck.data;
+
+  const validation = await validateRequest(request, consentSchema);
+  if (!validation.success) return validation.response;
+  const { consent_type, consent_text, language } = validation.data;
   const db = getServiceClient();
 
   const audioHash = computeAudioHash(

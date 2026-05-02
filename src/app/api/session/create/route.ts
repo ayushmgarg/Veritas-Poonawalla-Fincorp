@@ -1,16 +1,12 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
+import { validateRequest, sessionCreateSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
-  const { phone } = await request.json();
-
-  if (!phone || phone.length < 10) {
-    return NextResponse.json(
-      { error: "Valid phone number required" },
-      { status: 400 }
-    );
-  }
+  const validation = await validateRequest(request, sessionCreateSchema);
+  if (!validation.success) return validation.response;
+  const { phone } = validation.data;
 
   const db = getServiceClient();
 

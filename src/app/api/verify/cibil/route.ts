@@ -1,18 +1,20 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getPersonaForPhone } from "@/lib/mock-data";
+import { getIndiaStackProvider } from "@/lib/india-stack";
 import { updateLiveRisk } from "@/lib/risk-engine";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
   const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
-  const persona = getPersonaForPhone(sess?.phone ?? "");
+  const phone = sess?.phone ?? "";
 
-  await new Promise((r) => setTimeout(r, 1800));
-
-  const result = persona.cibil;
+  const provider = getIndiaStackProvider();
+  const result = await provider.cibil.checkScore(session_id, phone);
 
   const { data: verification, error } = await db
     .from("verifications")

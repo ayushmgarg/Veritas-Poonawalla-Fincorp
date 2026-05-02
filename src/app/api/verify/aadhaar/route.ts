@@ -1,18 +1,21 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getPersonaForPhone } from "@/lib/mock-data";
+import { getIndiaStackProvider } from "@/lib/india-stack";
 import { updateLiveRisk } from "@/lib/risk-engine";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
+import { encryptField } from "@/lib/encryption";
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
   const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
-  const persona = getPersonaForPhone(sess?.phone ?? "");
+  const phone = sess?.phone ?? "";
 
-  await new Promise((r) => setTimeout(r, 1500));
-
-  const result = persona.aadhaar;
+  const provider = getIndiaStackProvider();
+  const result = await provider.aadhaar.verify(session_id, phone);
 
   const { data: verification, error } = await db
     .from("verifications")
@@ -34,8 +37,6 @@ export async function POST(request: Request) {
     .from("customer_data")
     .update({
       age_estimated: result.age_estimated,
-      full_name: persona.customer.full_name,
-      aadhaar_last4: persona.customer.aadhaar_last4,
     })
     .eq("session_id", session_id);
 

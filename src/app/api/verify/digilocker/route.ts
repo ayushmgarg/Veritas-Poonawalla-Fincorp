@@ -1,17 +1,20 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { logAuditEvent } from "@/lib/audit-logger";
-import { getPersonaForPhone } from "@/lib/mock-data";
+import { getIndiaStackProvider } from "@/lib/india-stack";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
+import { encryptField } from "@/lib/encryption";
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
   const { data: sess } = await db.from("sessions").select("phone").eq("id", session_id).single();
-  const persona = getPersonaForPhone(sess?.phone ?? "");
+  const phone = sess?.phone ?? "";
 
-  await new Promise((r) => setTimeout(r, 2000));
-
-  const result = persona.digilocker;
+  const provider = getIndiaStackProvider();
+  const result = await provider.digilocker.fetchDocuments(session_id, phone);
 
   const { data: verification, error } = await db
     .from("verifications")
@@ -32,10 +35,10 @@ export async function POST(request: Request) {
   await db
     .from("customer_data")
     .update({
-      pan: result.pan.number,
-      full_name: result.pan.name,
-      dob: persona.customer.dob,
-      address: result.dl.address,
+      pan: encryptField(result.pan.number),
+      full_name: encryptField(result.pan.name),
+      dob: result.pan.dob,
+      address: encryptField(result.dl.address),
     })
     .eq("session_id", session_id);
 

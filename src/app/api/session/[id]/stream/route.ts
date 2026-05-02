@@ -1,10 +1,14 @@
 import { getServiceClient } from "@/lib/supabase";
+import { validateParam } from "@/lib/validation";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const paramCheck = validateParam(rawId);
+  if (!paramCheck.success) return paramCheck.response;
+  const id = paramCheck.data;
 
   const stream = new ReadableStream({
     start(controller) {

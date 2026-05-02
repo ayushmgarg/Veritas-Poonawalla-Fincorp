@@ -3,9 +3,12 @@ import { getServiceClient } from "@/lib/supabase";
 import { detectRuleDrift, detectLLMDrift, ExtractedEntities } from "@/lib/intent-drift";
 import { updateLiveRisk } from "@/lib/risk-engine";
 import { logAuditEvent } from "@/lib/audit-logger";
+import { validateRequest, intentDriftSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
-  const { session_id, current_entities, transcript } = await request.json();
+  const validation = await validateRequest(request, intentDriftSchema);
+  if (!validation.success) return validation.response;
+  const { session_id, current_entities, transcript } = validation.data;
   const db = getServiceClient();
 
   const { data: customer } = await db

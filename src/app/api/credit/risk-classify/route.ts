@@ -4,6 +4,9 @@ import { queryLLM, parseLLMJson } from "@/lib/llm";
 import { logAuditEvent } from "@/lib/audit-logger";
 import { evaluatePolicy, determineRiskTier } from "@/lib/policy-engine";
 import { RISK_CLASSIFICATION_PROMPT } from "@/constants/prompts";
+import { validateRequest, sessionIdBody } from "@/lib/validation";
+import { decryptField } from "@/lib/encryption";
+import { sanitizeForLLM } from "@/lib/prompt-sanitizer";
 
 interface RiskClassification {
   risk_tier: 1 | 2 | 3;
@@ -17,7 +20,9 @@ interface RiskClassification {
 }
 
 export async function POST(request: Request) {
-  const { session_id } = await request.json();
+  const validation = await validateRequest(request, sessionIdBody);
+  if (!validation.success) return validation.response;
+  const { session_id } = validation.data;
   const db = getServiceClient();
 
   const { data: customer } = await db
@@ -43,9 +48,10 @@ export async function POST(request: Request) {
     .eq("session_id", session_id)
     .order("timestamp_ms", { ascending: true });
 
-  const transcript =
+  const rawTranscript =
     transcripts?.map((t) => `${t.speaker}: ${t.text}`).join("\n") ||
     "customer: I would like a home renovation loan of 15 lakhs\ncustomer: I work at TCS, earning about 85 thousand per month\ncustomer: I have been there for 6 years\ncustomer: Yes I consent to proceed";
+  const { text: transcript } = sanitizeForLLM(rawTranscript);
 
   const deterministicTier = determineRiskTier(
     financial?.cibil_score || 700,
@@ -68,7 +74,7 @@ export async function POST(request: Request) {
   });
 
   const prompt = RISK_CLASSIFICATION_PROMPT
-    .replace("{name}", customer?.full_name || "Customer")
+    .replace("{name}", decryptField(customer?.full_name) || "Customer")
     .replace("{age}", String(customer?.age_estimated || 34))
     .replace("{cibil_score}", String(financial?.cibil_score || 700))
     .replace("{income}", String(financial?.monthly_income || 50000))
