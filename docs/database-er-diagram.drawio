@@ -1,0 +1,620 @@
+<mxfile host="app.diagrams.net" agent="VERITAS">
+  <diagram id="veritas-db" name="Database ER Diagram">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;VERITAS — Database Schema (15 Tables)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Supabase PostgreSQL | Fields marked 🔒 are AES-256-GCM encrypted&lt;/font&gt;" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="700" y="20" width="700" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions" value="&lt;b&gt;sessions&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=12;fontColor=#4C1D95;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="280" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" vertex="1" parent="t-sessions-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r1c2" value="UUID DEFAULT gen_random_uuid()" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r2" value="phone" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r2c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r2c2" value="VARCHAR(10) NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r3" value="status" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r3c2" value="ENUM(initiated,consent,in_progress,completed,rejected)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r4" value="current_step" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r4c2" value="INT DEFAULT 0" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r5" value="live_risk_score" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r5c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r5c2" value="INT DEFAULT 35" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r6" value="risk_events" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="150" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r6c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r6">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r6c2" value="JSONB DEFAULT '[]'" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r6">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r7" value="device_info" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="175" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r7c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r7">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r7c2" value="JSONB DEFAULT '{}'" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r7">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r8" value="geo_location" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="200" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r8c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r8">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r8c2" value="JSONB {lat, lng, accuracy}" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r8">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r9" value="is_immutable" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="225" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r9c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r9">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r9c2" value="BOOLEAN DEFAULT FALSE" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r9">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r10" value="created_at" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-sessions">
+          <mxGeometry y="250" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r10c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-sessions-r10">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-sessions-r10c2" value="TIMESTAMPTZ DEFAULT NOW()" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-sessions-r10">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer" value="&lt;b&gt;customer_data&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=12;fontColor=#991B1B;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="100" width="280" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#DC2626;" vertex="1" parent="t-customer-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r2" value="session_id" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#DC2626;" vertex="1" parent="t-customer-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r3" value="🔒 full_name" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r3c1" value="🔒" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r3c2" value="TEXT (AES-256-GCM encrypted)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r4" value="🔒 aadhaar_last4" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r4c1" value="🔒" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r4c2" value="TEXT (AES-256-GCM encrypted)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r5" value="🔒 pan" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r5c1" value="🔒" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r5c2" value="TEXT (AES-256-GCM encrypted)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r6" value="🔒 dob" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="150" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r6c1" value="🔒" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r6">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r6c2" value="TEXT (AES-256-GCM encrypted)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r6">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r7" value="🔒 address" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#FEF2F2;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="175" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r7c1" value="🔒" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r7">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r7c2" value="TEXT (AES-256-GCM encrypted)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r7">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r8" value="age_estimated" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="200" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r8c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r8">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r8c2" value="INT" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r8">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r9" value="extracted_via" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#991B1B;" vertex="1" parent="t-customer">
+          <mxGeometry y="225" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r9c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-customer-r9">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-customer-r9c2" value="VARCHAR(20) DEFAULT 'speech'" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#991B1B;" vertex="1" parent="t-customer-r9">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verifications" value="&lt;b&gt;verifications&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=12;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="100" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" vertex="1" parent="t-verifications">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#059669;" vertex="1" parent="t-verif-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" vertex="1" parent="t-verif-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r2" value="session_id" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" vertex="1" parent="t-verifications">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#059669;" vertex="1" parent="t-verif-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" vertex="1" parent="t-verif-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r3" value="provider" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" vertex="1" parent="t-verifications">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-verif-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r3c2" value="VARCHAR(50) (uidai, digilocker, ckyc, cibil, aa)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" vertex="1" parent="t-verif-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r4" value="status" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" vertex="1" parent="t-verifications">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-verif-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r4c2" value="VARCHAR(20) (success, failed, pending)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" vertex="1" parent="t-verif-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r5" value="match_score" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" vertex="1" parent="t-verifications">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r5c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-verif-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r5c2" value="DECIMAL (0-100)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" vertex="1" parent="t-verif-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r6" value="response_data" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#065F46;" vertex="1" parent="t-verifications">
+          <mxGeometry y="150" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r6c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-verif-r6">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-verif-r6c2" value="JSONB (full provider response)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#065F46;" vertex="1" parent="t-verif-r6">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit" value="&lt;b&gt;audit_log&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=12;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="100" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-audit">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" vertex="1" parent="t-audit-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-audit-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r2" value="session_id" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-audit">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" vertex="1" parent="t-audit-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-audit-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r3" value="event_type" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-audit">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-audit-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r3c2" value="VARCHAR(100)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-audit-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r4" value="payload" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-audit">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-audit-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r4c2" value="JSONB" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-audit-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r5" value="prev_hash" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-audit">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r5c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-audit-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r5c2" value="VARCHAR(64) SHA-256" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-audit-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r6" value="hash" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-audit">
+          <mxGeometry y="150" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r6c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-audit-r6">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-audit-r6c2" value="VARCHAR(64) SHA-256 (chained)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-audit-r6">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-recordings" value="&lt;b&gt;recordings&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=12;fontColor=#4C1D95;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="450" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-recordings">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" vertex="1" parent="t-rec-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-rec-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r2" value="session_id" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-recordings">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" vertex="1" parent="t-rec-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-rec-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r3" value="total_chunks" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-recordings">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-rec-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r3c2" value="INT DEFAULT 0" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-rec-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r4" value="duration_seconds" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-recordings">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-rec-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r4c2" value="INT DEFAULT 0" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-rec-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r5" value="codec" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-recordings">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r5c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-rec-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r5c2" value="VARCHAR(100) (video/webm;codecs=vp9,opus)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-rec-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r6" value="composite_sha256" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-recordings">
+          <mxGeometry y="150" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r6c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-rec-r6">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-rec-r6c2" value="VARCHAR(64)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-rec-r6">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks" value="&lt;b&gt;recording_chunks&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=12;fontColor=#4C1D95;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="450" width="280" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-chunks">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" vertex="1" parent="t-chunks-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-chunks-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r2" value="session_id" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-chunks">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#7C3AED;" vertex="1" parent="t-chunks-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-chunks-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r3" value="chunk_index" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-chunks">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-chunks-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r3c2" value="INT NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-chunks-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r4" value="storage_path" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-chunks">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-chunks-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r4c2" value="TEXT NOT NULL (Supabase Storage path)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-chunks-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r5" value="sha256_hash" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#4C1D95;" vertex="1" parent="t-chunks">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r5c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-chunks-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-chunks-r5c2" value="VARCHAR(64)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#4C1D95;" vertex="1" parent="t-chunks-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-loan-offers" value="&lt;b&gt;loan_offers&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=12;fontColor=#78350F;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="370" width="280" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" vertex="1" parent="t-loan-offers">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#D97706;" vertex="1" parent="t-offers-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" vertex="1" parent="t-offers-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r2" value="session_id" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" vertex="1" parent="t-loan-offers">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#D97706;" vertex="1" parent="t-offers-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" vertex="1" parent="t-offers-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r3" value="amount / rate / tenure / emi" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" vertex="1" parent="t-loan-offers">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-offers-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r3c2" value="DECIMAL / DECIMAL / INT / DECIMAL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" vertex="1" parent="t-offers-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r4" value="product_type" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" vertex="1" parent="t-loan-offers">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-offers-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r4c2" value="VARCHAR(50) (personal, business, education)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" vertex="1" parent="t-offers-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r5" value="accepted" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#78350F;" vertex="1" parent="t-loan-offers">
+          <mxGeometry y="125" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r5c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-offers-r5">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-offers-r5c2" value="BOOLEAN DEFAULT FALSE" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#78350F;" vertex="1" parent="t-offers-r5">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm" value="&lt;b&gt;llm_decisions&lt;/b&gt;" style="shape=table;startSize=25;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=12;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="370" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r1" value="&lt;b&gt;id&lt;/b&gt;" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-llm">
+          <mxGeometry y="25" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r1c1" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" vertex="1" parent="t-llm-r1">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r1c2" value="UUID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-llm-r1">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r2" value="session_id (FK)" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-llm">
+          <mxGeometry y="50" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r2c1" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;fontSize=9;fontColor=#EA580C;" vertex="1" parent="t-llm-r2">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r2c2" value="UUID REFERENCES sessions(id)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-llm-r2">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r3" value="risk_tier / reasoning / rbi_citations" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-llm">
+          <mxGeometry y="75" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r3c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-llm-r3">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r3c2" value="INT / TEXT / JSONB" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-llm-r3">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r4" value="composite_score" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=10;fontColor=#7C2D12;" vertex="1" parent="t-llm">
+          <mxGeometry y="100" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r4c1" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;" vertex="1" parent="t-llm-r4">
+          <mxGeometry width="40" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="t-llm-r4c2" value="DECIMAL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=9;fontColor=#7C2D12;" vertex="1" parent="t-llm-r4">
+          <mxGeometry x="40" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-session-customer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#DC2626;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=62;" edge="1" source="t-sessions-r1" target="t-customer" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-session-customer-label" value="1:1" style="edgeLabel;html=1;fontSize=10;fontColor=#DC2626;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-customer">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-verif" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#059669;strokeWidth=2;" edge="1" source="t-sessions-r1" target="t-verif-r2" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="125" />
+              <mxPoint x="400" y="60" />
+              <mxPoint x="780" y="60" />
+              <mxPoint x="780" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-verif-label" value="1:N" style="edgeLabel;html=1;fontSize=10;fontColor=#059669;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-verif">
+          <mxGeometry x="0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-audit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;" edge="1" source="t-sessions-r1" target="t-audit-r2" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="125" />
+              <mxPoint x="400" y="60" />
+              <mxPoint x="1140" y="60" />
+              <mxPoint x="1140" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-audit-label" value="1:N" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-audit">
+          <mxGeometry x="0.5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-rec" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7C3AED;strokeWidth=2;" edge="1" source="t-sessions" target="t-recordings" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-session-rec-label" value="1:1" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-rec">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-chunks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7C3AED;strokeWidth=2;" edge="1" source="t-sessions" target="t-chunks" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="430" />
+              <mxPoint x="580" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-chunks-label" value="1:N" style="edgeLabel;html=1;fontSize=10;fontColor=#7C3AED;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-chunks">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-offers" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D97706;strokeWidth=2;" edge="1" source="t-sessions" target="t-loan-offers" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="430" />
+              <mxPoint x="780" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-offers-label" value="1:N" style="edgeLabel;html=1;fontSize=10;fontColor=#D97706;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-offers">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-llm" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;" edge="1" source="t-sessions" target="t-llm" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="430" />
+              <mxPoint x="1140" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-session-llm-label" value="1:1" style="edgeLabel;html=1;fontSize=10;fontColor=#EA580C;fontStyle=1;" vertex="1" connectable="0" parent="rel-session-llm">
+          <mxGeometry x="0.5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#D1D5DB;strokeWidth=1;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="100" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;fontSize=12;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="1570" y="105" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-session-t" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="132" width="18" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-session-text" value="Session / Recording" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="130" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-pii-t" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="155" width="18" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-pii-text" value="PII (Encrypted)" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#991B1B;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="153" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-verif-t" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="178" width="18" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-verif-text" value="Verifications" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#065F46;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="176" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-ai-t" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="201" width="18" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-ai-text" value="AI / Audit" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#7C2D12;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="199" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-offer-t" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="224" width="18" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-offer-text" value="Offers" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#78350F;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="222" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="note-encrypted" value="&lt;font style=&quot;font-size:11px&quot;&gt;🔒 = AES-256-GCM encrypted fields&lt;br&gt;Stored as base64(IV + authTag + ciphertext)&lt;br&gt;Requires ENCRYPTION_KEY env var (32 bytes hex)&lt;/font&gt;" style="text;html=1;fontSize=11;align=left;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;rounded=1;spacingLeft=8;spacingRight=8;spacingTop=4;spacingBottom=4;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="300" width="300" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

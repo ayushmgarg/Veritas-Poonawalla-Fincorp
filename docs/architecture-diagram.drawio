@@ -1,0 +1,251 @@
+<mxfile host="app.diagrams.net" agent="VERITAS">
+  <diagram id="veritas-arch" name="System Architecture">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;VERITAS — System Architecture&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Agentic V-CIP Platform | Poonawalla Fincorp&lt;/font&gt;" style="text;html=1;fontSize=22;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="600" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="client-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#6366F1;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="380" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="client-label" value="&lt;b&gt;Client Layer&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#4338CA;" vertex="1" parent="1">
+          <mxGeometry x="55" y="95" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" value="&lt;b&gt;Browser&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;React 19 + Next.js 16&lt;br&gt;App Router (CSR)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="130" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="webrtc" value="&lt;b&gt;WebRTC&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Camera + Microphone&lt;br&gt;getUserMedia()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="130" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="speech-api" value="&lt;b&gt;Web Speech API&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;STT (en-IN)&lt;br&gt;TTS (Agent voice)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="210" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mediapipe" value="&lt;b&gt;MediaPipe&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Face Landmarker (468 pts)&lt;br&gt;Blink + Liveness&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="210" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="media-recorder" value="&lt;b&gt;MediaRecorder&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;VP9/Opus 30s chunks&lt;br&gt;SHA-256 per chunk&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="290" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="geolocation" value="&lt;b&gt;Geolocation API&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;GPS + India boundary&lt;br&gt;navigator.geolocation&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="290" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zustand" value="&lt;b&gt;Zustand Store&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Session state management&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="370" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="app-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="480" y="90" width="300" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="app-label" value="&lt;b&gt;Application Layer&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="495" y="95" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vercel" value="&lt;b&gt;Vercel Serverless&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;26 API Routes&lt;br&gt;Fluid Compute (Node.js)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=11;fontColor=#4C1D95;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="130" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="proxy" value="&lt;b&gt;proxy.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Rate Limiting (Token Bucket)&lt;br&gt;Security Headers (CSP, HSTS)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;fontSize=11;fontColor=#4C1D95;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="210" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="validation" value="&lt;b&gt;Zod Validation&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Input schemas for all routes&lt;br&gt;Type-safe request parsing&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=11;fontColor=#78350F;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="290" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="encryption" value="&lt;b&gt;AES-256-GCM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Field-level PII encryption&lt;br&gt;IV + AuthTag + Ciphertext&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=11;fontColor=#78350F;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="370" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="840" y="90" width="340" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-label" value="&lt;b&gt;AI / ML Layer&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#EA580C;" vertex="1" parent="1">
+          <mxGeometry x="855" y="95" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="groq" value="&lt;b&gt;Groq LLM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;llama-3.3-70b-versatile&lt;br&gt;Risk classification + NER&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=11;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="130" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gemini" value="&lt;b&gt;Gemini 1.5 Flash&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Fallback LLM&lt;br&gt;Rate limit failover&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=11;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="130" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="policy-engine" value="&lt;b&gt;Policy Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;13 hard rules&lt;br&gt;LLM cannot override&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=11;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="210" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="risk-engine" value="&lt;b&gt;Risk Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Live 0-100 score&lt;br&gt;15 event types&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=11;fontColor=#7C2D12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="210" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="india-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="840" y="320" width="340" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="india-label" value="&lt;b&gt;India Stack (Mock/Sandbox/Prod)&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#059669;" vertex="1" parent="1">
+          <mxGeometry x="855" y="325" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="uidai" value="&lt;b&gt;UIDAI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Aadhaar&lt;br&gt;Face Auth&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="360" width="90" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="digilocker" value="&lt;b&gt;DigiLocker&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;PAN + DL&lt;br&gt;OAuth 2.0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="360" width="90" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="cibil" value="&lt;b&gt;CIBIL&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Credit&lt;br&gt;Bureau&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="360" width="90" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="setu-aa" value="&lt;b&gt;Setu AA&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Account&lt;br&gt;Aggregator&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="425" width="90" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ckyc" value="&lt;b&gt;CKYC&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;CERSAI&lt;br&gt;Registry&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;fontColor=#065F46;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="425" width="90" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="data-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#2563EB;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="560" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="data-label" value="&lt;b&gt;Data Layer&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#2563EB;" vertex="1" parent="1">
+          <mxGeometry x="55" y="525" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="supabase-db" value="&lt;b&gt;Supabase PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;15 tables + RLS + Realtime&lt;br&gt;Sessions, Verifications, Audit Log&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="560" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="supabase-storage" value="&lt;b&gt;Supabase Storage&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;vcip-recordings bucket&lt;br&gt;VP9/WebM chunks (private)&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=11;fontColor=#1E40AF;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="560" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="audit-chain" value="&lt;b&gt;SHA-256 Hash Chain&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Append-only audit trail&lt;br&gt;PMLA Section 12 compliant&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=11;fontColor=#991B1B;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="660" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="notify-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="520" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="notify-label" value="&lt;b&gt;Notifications&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#DC2626;" vertex="1" parent="1">
+          <mxGeometry x="675" y="525" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="twilio" value="&lt;b&gt;Twilio&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;WhatsApp Business API&lt;br&gt;Offer sanction notification&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;fontSize=11;fontColor=#991B1B;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="560" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="deploy-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#16A34A;strokeWidth=2;dashed=1;dashPattern=5 5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="900" y="520" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="deploy-label" value="&lt;b&gt;Deployment&lt;/b&gt;" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#16A34A;" vertex="1" parent="1">
+          <mxGeometry x="915" y="525" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="vercel-deploy" value="&lt;b&gt;Vercel&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Auto-deploy from GitHub&lt;br&gt;veritas-theta.vercel.app&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=11;fontColor=#14532D;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="github" value="&lt;b&gt;GitHub&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Source control&lt;br&gt;CI trigger&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=11;fontColor=#14532D;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="560" width="110" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-browser-vercel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#7C3AED;fontSize=10;" edge="1" source="browser" target="vercel" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-browser-vercel-label" value="HTTPS" style="edgeLabel;html=1;fontSize=9;fontColor=#7C3AED;" vertex="1" connectable="0" parent="arrow-browser-vercel">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-groq" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=10;" edge="1" source="vercel" target="groq" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-vercel-groq-label" value="LLM API" style="edgeLabel;html=1;fontSize=9;fontColor=#EA580C;" vertex="1" connectable="0" parent="arrow-vercel-groq">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-india" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#059669;strokeWidth=2;fontColor=#059669;fontSize=10;" edge="1" source="vercel" target="uidai" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="390" />
+              <mxPoint x="830" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-india-label" value="India Stack" style="edgeLabel;html=1;fontSize=9;fontColor=#059669;" vertex="1" connectable="0" parent="arrow-vercel-india">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-db" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2563EB;strokeWidth=2;fontColor=#2563EB;fontSize=10;" edge="1" source="vercel" target="supabase-db" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="500" />
+              <mxPoint x="170" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-db-label" value="PostgreSQL" style="edgeLabel;html=1;fontSize=9;fontColor=#2563EB;" vertex="1" connectable="0" parent="arrow-vercel-db">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-recorder-storage" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2563EB;strokeWidth=2;dashed=1;fontColor=#2563EB;fontSize=10;" edge="1" source="media-recorder" target="supabase-storage" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="500" />
+              <mxPoint x="400" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-recorder-storage-label" value="Chunk Upload" style="edgeLabel;html=1;fontSize=9;fontColor=#2563EB;" vertex="1" connectable="0" parent="arrow-recorder-storage">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-twilio" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#DC2626;fontSize=10;" edge="1" source="vercel" target="twilio" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="500" />
+              <mxPoint x="760" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-vercel-twilio-label" value="WhatsApp" style="edgeLabel;html=1;fontSize=9;fontColor=#DC2626;" vertex="1" connectable="0" parent="arrow-vercel-twilio">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-gh-vercel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#16A34A;strokeWidth=2;fontColor=#16A34A;fontSize=10;" edge="1" source="github" target="vercel-deploy" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-gh-vercel-label" value="Auto-deploy" style="edgeLabel;html=1;fontSize=9;fontColor=#16A34A;" vertex="1" connectable="0" parent="arrow-gh-vercel">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#D1D5DB;strokeWidth=1;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="90" width="180" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;fontSize=12;fontStyle=1;align=center;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="95" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-blue" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="120" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-blue-text" value="Client / Data" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#1E40AF;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="118" width="120" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-purple" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#7C3AED;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="145" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-purple-text" value="Application" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#4C1D95;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="143" width="120" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-orange" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="170" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-orange-text" value="AI / ML" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#7C2D12;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="168" width="120" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-green" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="195" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-green-text" value="India Stack" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#065F46;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="193" width="120" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-amber" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="220" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-amber-text" value="Security / Infra" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#78350F;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="218" width="120" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-red" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FECACA;strokeColor=#DC2626;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="245" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-red-text" value="Audit / Notify" style="text;html=1;fontSize=10;align=left;fillColor=none;strokeColor=none;fontColor=#991B1B;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="243" width="120" height="18" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
