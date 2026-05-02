@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     .update({
       pan: encryptField(result.pan.number),
       full_name: encryptField(result.pan.name),
-      dob: result.pan.dob,
+      dob: encryptField(result.pan.dob),
       address: encryptField(result.dl.address),
     })
     .eq("session_id", session_id);

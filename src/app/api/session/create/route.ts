@@ -6,7 +6,7 @@ import { validateRequest, sessionCreateSchema } from "@/lib/validation";
 export async function POST(request: Request) {
   const validation = await validateRequest(request, sessionCreateSchema);
   if (!validation.success) return validation.response;
-  const { phone } = validation.data;
+  const { phone, geo } = validation.data;
 
   const db = getServiceClient();
 
@@ -28,13 +28,9 @@ export async function POST(request: Request) {
       status: "initiated",
       current_step: 0,
       device_info: {},
-      geo_location: {
-        lat: 12.9716,
-        lng: 77.5946,
-        ip: "203.0.113.42",
-        city: "Bangalore",
-        state: "Karnataka",
-      },
+      geo_location: geo
+        ? { lat: geo.lat, lng: geo.lng, accuracy: geo.accuracy }
+        : null,
     })
     .select()
     .single();

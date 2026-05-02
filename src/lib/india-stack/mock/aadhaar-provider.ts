@@ -5,6 +5,10 @@ export class MockAadhaarProvider implements AadhaarProvider {
   async verify(_sessionId: string, phone: string): Promise<AadhaarVerifyResult> {
     await new Promise((r) => setTimeout(r, 1500));
     const persona = getPersonaForPhone(phone);
-    return persona.aadhaar as AadhaarVerifyResult;
+    return {
+      ...(persona.aadhaar as AadhaarVerifyResult),
+      full_name: persona.customer.full_name,
+      aadhaar_last4: persona.customer.aadhaar_last4,
+    };
   }
 }

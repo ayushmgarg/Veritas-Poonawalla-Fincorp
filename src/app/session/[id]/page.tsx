@@ -3,13 +3,15 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, MicOff, Video, VideoOff, PhoneOff, Lock, Shield, Zap } from "lucide-react";
+import { Mic, MicOff, Video, VideoOff, PhoneOff, Lock, Shield, Zap, ChevronRight, MapPin } from "lucide-react";
 
 import { useWebRTC } from "@/hooks/useWebRTC";
 import { useFaceDetection } from "@/hooks/useFaceDetection";
 import { useLiveness } from "@/hooks/useLiveness";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import { useSession } from "@/hooks/useSession";
+import { useMediaRecorder } from "@/hooks/useMediaRecorder";
+import { useGeolocation } from "@/hooks/useGeolocation";
 
 import { AgentPanel } from "@/components/session/AgentPanel";
 import { TranscriptPanel } from "@/components/session/TranscriptPanel";
@@ -39,11 +41,14 @@ export default function SessionPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const spoofCheckRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const nextStepRef = useRef<(() => void) | null>(null);
 
   const { videoRef, state: webrtcState, start: startCamera, stop: stopCamera, toggleMute, toggleCamera } = useWebRTC();
   const { result: faceResult, isReady: faceReady } = useFaceDetection(videoRef, canvasRef, webrtcState.isActive);
   const { liveness } = useLiveness(faceResult);
   const sessionCtx = useSession(id);
+  const recorder = useMediaRecorder({ sessionId: id });
+  const geo = useGeolocation();
 
   const [sessionTimer, setSessionTimer] = useState(0);
   const [transcriptLines, setTranscriptLines] = useState<TranscriptLine[]>([]);
@@ -59,6 +64,7 @@ export default function SessionPage() {
   const [stepsDone, setStepsDone] = useState<Set<number>>(new Set());
   const [interimText, setInterimText] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState<{ text: string; hint?: string } | null>(null);
+  const [canAdvance, setCanAdvance] = useState(false);
 
   const speakAgent = useCallback((text: string) => {
     setIsAgentTyping(true);
@@ -84,6 +90,18 @@ export default function SessionPage() {
     setXpCelebration({ show: true, xp: step.xpReward, label: `${step.label} complete` });
   }, [stepsDone]);
 
+  const enableAdvance = useCallback((nextFn: () => void) => {
+    setCanAdvance(true);
+    nextStepRef.current = nextFn;
+  }, []);
+
+  const handleAdvance = useCallback(() => {
+    setCanAdvance(false);
+    const fn = nextStepRef.current;
+    nextStepRef.current = null;
+    fn?.();
+  }, []);
+
   const handleSpeechResult = useCallback(
     async (text: string, confidence: number) => {
       setInterimText("");
@@ -94,6 +112,37 @@ export default function SessionPage() {
   );
 
   const { state: speechState, start: startSpeech, stop: stopSpeech } = useSpeechRecognition(handleSpeechResult);
+
+  // Start recording when stream becomes available
+  useEffect(() => {
+    if (webrtcState.stream && !recorder.state.isRecording) {
+      recorder.start(webrtcState.stream);
+    }
+  }, [webrtcState.stream]);
+
+  // Request geolocation and send to server
+  useEffect(() => {
+    async function captureGeo() {
+      const position = await geo.requestPosition();
+      if (position && id) {
+        try {
+          await fetch("/api/geo/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              session_id: id,
+              latitude: position.latitude,
+              longitude: position.longitude,
+              accuracy: position.accuracy,
+            }),
+          });
+        } catch {
+          // Geo verification is non-blocking
+        }
+      }
+    }
+    if (id) captureGeo();
+  }, [id]);
 
   useEffect(() => {
     async function init() {
@@ -110,6 +159,7 @@ export default function SessionPage() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (spoofCheckRef.current) clearInterval(spoofCheckRef.current);
+      recorder.stop();
       stopCamera();
       stopSpeech();
       window.speechSynthesis?.cancel();
@@ -144,10 +194,12 @@ export default function SessionPage() {
     celebrateStep(0);
     startSpeech();
     setCurrentQuestion({ text: "Please state your full name and date of birth clearly.", hint: "e.g. \"My name is Arjun Kumar, born 15th March 1990\"" });
-    setTimeout(() => runStep2(), 8000);
+    // User speaks, then clicks Continue to proceed
+    enableAdvance(runStep2);
   }
 
   async function runStep2() {
+    setCanAdvance(false);
     setCurrentQuestion({ text: "Please blink twice slowly, then turn your head left and right.", hint: "Keep your face centred in the frame" });
     speakAgent(AGENT_CONVERSATION_PROMPTS[2]);
     try {
@@ -175,18 +227,19 @@ export default function SessionPage() {
     } catch {
       setCurrentQuestion(null);
     }
-    // Always advance — never stall here
-    setTimeout(() => runStep3(), 2000);
+    enableAdvance(runStep3);
   }
 
   async function runStep3() {
+    setCanAdvance(false);
     setCurrentQuestion({ text: "Is this mobile number registered with your Aadhaar?", hint: "Say \"Yes\" or confirm your Aadhaar-linked number" });
     speakAgent(AGENT_CONVERSATION_PROMPTS[3]);
+    let aadhaarData: Record<string, unknown> | null = null;
     try {
       await sessionCtx.advanceStep(3);
       setCurrentStep(3);
       setIsProcessing(true);
-      await sessionCtx.verifyAadhaar();
+      aadhaarData = await sessionCtx.verifyAadhaar();
     } catch {
       // continue even if Aadhaar API fails
     } finally {
@@ -194,11 +247,14 @@ export default function SessionPage() {
     }
     celebrateStep(2);
     setCurrentQuestion(null);
-    speakAgent("Identity verified. Your Aadhaar face match score is 98.4%. Age confirmed: 34 years.");
-    setTimeout(() => runStep4(), 3000);
+    const matchScore = (aadhaarData as { result?: { match_score?: number } })?.result?.match_score ?? "N/A";
+    const ageEstimated = (aadhaarData as { result?: { age_estimated?: number } })?.result?.age_estimated ?? "N/A";
+    speakAgent(`Identity verified. Your Aadhaar face match score is ${matchScore}%. Age confirmed: ${ageEstimated} years.`);
+    enableAdvance(runStep4);
   }
 
   async function runStep4() {
+    setCanAdvance(false);
     speakAgent(AGENT_CONVERSATION_PROMPTS[4]);
     try {
       await sessionCtx.advanceStep(4);
@@ -210,46 +266,54 @@ export default function SessionPage() {
   }
 
   async function handleDigiLockerAuth() {
+    let dlData: Record<string, unknown> | null = null;
     try {
-      await sessionCtx.verifyDigiLocker();
+      dlData = await sessionCtx.verifyDigiLocker();
     } catch {
       // continue
     }
     celebrateStep(3);
-    speakAgent("Documents retrieved. PAN and Driving License verified. Application auto-filled.");
-    setTimeout(() => runStep5(), 2500);
+    const panVerified = (dlData as { dl?: { result?: { pan?: { verified?: boolean } } } })?.dl?.result?.pan?.verified;
+    const panStatus = panVerified ? "verified" : "retrieved";
+    speakAgent(`Documents retrieved. PAN ${panStatus}. Driving License verified. Application auto-filled.`);
+    setModalState("none");
+    enableAdvance(runStep5);
   }
 
   async function runStep5() {
-    setModalState("none");
+    setCanAdvance(false);
     setCurrentQuestion({ text: "What is your current monthly income from all sources?", hint: "Include salary, freelance, rental income etc." });
     speakAgent(AGENT_CONVERSATION_PROMPTS[5]);
+    let financialData: Record<string, unknown> | null = null;
     try {
       await sessionCtx.advanceStep(5);
       setCurrentStep(5);
       setIsProcessing(true);
-      await sessionCtx.verifyFinancials();
+      financialData = await sessionCtx.verifyFinancials();
     } catch {
       // continue
     } finally {
       setIsProcessing(false);
     }
     celebrateStep(4);
-    const store = sessionCtx.store;
     setCurrentQuestion(null);
-    const cibil = store.financialData?.cibil_score || 762;
+    const cibil = (financialData as { cibil?: { result?: { score?: number } } })?.cibil?.result?.score
+      ?? sessionCtx.store.financialData?.cibil_score
+      ?? 0;
     speakAgent(`Financial data received. CIBIL score: ${cibil} — ${cibil >= 750 ? "Excellent" : cibil >= 650 ? "Good" : "Fair"} rating.`);
-    setTimeout(() => runStep6(), 3000);
+    enableAdvance(runStep6);
   }
 
   async function runStep6() {
+    setCanAdvance(false);
     setCurrentQuestion({ text: "Do you have any existing EMIs or outstanding loan obligations?", hint: "Mention the approximate monthly EMI amount if any" });
     speakAgent(AGENT_CONVERSATION_PROMPTS[6]);
+    let riskData: Record<string, unknown> | null = null;
     try {
       await sessionCtx.advanceStep(6);
       setCurrentStep(6);
       setIsProcessing(true);
-      await sessionCtx.runRiskAssessment();
+      riskData = await sessionCtx.runRiskAssessment();
     } catch {
       // continue
     } finally {
@@ -257,13 +321,16 @@ export default function SessionPage() {
     }
     celebrateStep(5);
     setCurrentQuestion(null);
-    const tier = sessionCtx.store.llmDecision?.risk_tier || 1;
+    const tier = (riskData as { risk?: { decision?: { risk_tier?: number } } })?.risk?.decision?.risk_tier
+      ?? sessionCtx.store.llmDecision?.risk_tier
+      ?? 1;
     const tierLabel = tier === 1 ? "TIER 1 — LOW RISK" : tier === 2 ? "TIER 2 — MEDIUM RISK" : "TIER 3 — HIGH RISK";
     speakAgent(`Risk assessment complete. Classification: ${tierLabel}. Generating your personalized offers now.`);
-    setTimeout(() => runStep7(), 3000);
+    enableAdvance(runStep7);
   }
 
   async function runStep7() {
+    setCanAdvance(false);
     speakAgent(AGENT_CONVERSATION_PROMPTS[7]);
     try {
       await sessionCtx.advanceStep(7);
@@ -277,6 +344,8 @@ export default function SessionPage() {
     }
     celebrateStep(6);
     speakAgent("Your loan offers are ready. Redirecting you to your personalized offers now.");
+    // Stop recording before navigating
+    await recorder.stop();
     setTimeout(() => router.push(`/session/${id}/offer`), 2500);
   }
 
@@ -287,6 +356,12 @@ export default function SessionPage() {
     setIsReVerifying(false);
     setGanScore(0);
     speakAgent("Identity re-verified successfully. Session continues with elevated monitoring.");
+  }
+
+  async function handleHangup() {
+    await recorder.stop();
+    stopCamera();
+    router.push("/");
   }
 
   const formatTimer = (s: number) => {
@@ -314,8 +389,8 @@ export default function SessionPage() {
           <span className="hidden sm:block text-xs text-text-muted">
             Step {currentStep + 1}/8 — {SESSION_STEPS[currentStep]?.label}
           </span>
-          {/* REC indicator — RBI V-CIP §3.1 session recording */}
-          {webrtcState.isActive && (
+          {/* REC indicator — reflects actual recording state */}
+          {recorder.state.isRecording && (
             <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FF4136]/10 border border-[#FF4136]/20 ml-1">
               <motion.div
                 animate={{ opacity: [1, 0.2, 1] }}
@@ -323,6 +398,15 @@ export default function SessionPage() {
                 className="w-1.5 h-1.5 rounded-full bg-[#FF4136]"
               />
               <span className="text-[9px] font-semibold text-[#FF4136] tracking-widest">REC</span>
+            </div>
+          )}
+          {/* Geo indicator */}
+          {geo.isInIndia !== null && (
+            <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full ml-1 border ${geo.isInIndia ? "bg-[#00C9A7]/10 border-[#00C9A7]/20" : "bg-[#FFB800]/10 border-[#FFB800]/20"}`}>
+              <MapPin className={`w-2.5 h-2.5 ${geo.isInIndia ? "text-[#00C9A7]" : "text-[#FFB800]"}`} />
+              <span className={`text-[9px] font-semibold tracking-wide ${geo.isInIndia ? "text-[#00C9A7]" : "text-[#FFB800]"}`}>
+                {geo.isInIndia ? "IN" : "GEO"}
+              </span>
             </div>
           )}
         </div>
@@ -418,8 +502,25 @@ export default function SessionPage() {
             >
               {webrtcState.isCameraOff ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
             </button>
+
+            {/* Continue button — user-controlled step advancement */}
+            <AnimatePresence>
+              {canAdvance && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  onClick={handleAdvance}
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#0074D9] to-[#00C9A7] text-white font-medium text-sm shadow-lg shadow-[#0074D9]/20 hover:shadow-[#0074D9]/30 transition-all"
+                >
+                  Continue
+                  <ChevronRight className="w-4 h-4" />
+                </motion.button>
+              )}
+            </AnimatePresence>
+
             <button
-              onClick={() => { stopCamera(); router.push("/"); }}
+              onClick={handleHangup}
               className="p-3 rounded-xl bg-[#FF4136]/10 border border-[#FF4136]/20 text-[#FF4136] hover:bg-[#FF4136]/20 transition-all"
             >
               <PhoneOff className="w-4 h-4" />

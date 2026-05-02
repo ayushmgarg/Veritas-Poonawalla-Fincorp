@@ -37,6 +37,8 @@ export async function POST(request: Request) {
     .from("customer_data")
     .update({
       age_estimated: result.age_estimated,
+      full_name: encryptField(result.full_name ?? null),
+      aadhaar_last4: encryptField(result.aadhaar_last4 ?? null),
     })
     .eq("session_id", session_id);
 

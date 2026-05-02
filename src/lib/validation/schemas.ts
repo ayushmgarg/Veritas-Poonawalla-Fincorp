@@ -19,6 +19,11 @@ export const sessionIdBody = z.object({
 
 export const sessionCreateSchema = z.object({
   phone: phoneSchema,
+  geo: z.object({
+    lat: z.number().min(-90).max(90),
+    lng: z.number().min(-180).max(180),
+    accuracy: z.number().min(0).optional(),
+  }).optional(),
 });
 
 export const sessionStepSchema = z.object({
@@ -28,7 +33,7 @@ export const sessionStepSchema = z.object({
 // ─── Consent ─────────────────────────────────────────────────────────────────
 
 export const consentSchema = z.object({
-  consent_type: z.enum(["kyc", "data_sharing", "offer_acceptance", "recording"]),
+  consent_type: z.enum(["kyc", "data_sharing", "offer_acceptance", "recording", "verbal_kyc"]),
   consent_text: z.string().max(1000).optional(),
   language: z.string().min(2).max(10).optional(),
 });

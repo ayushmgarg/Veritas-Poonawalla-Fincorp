@@ -13,6 +13,8 @@ export interface AadhaarVerifyResult {
   uidai_reference: string;
   face_quality: "HIGH" | "MEDIUM" | "LOW";
   liveness_server: "PASS" | "FAIL";
+  full_name?: string;
+  aadhaar_last4?: string;
 }
 
 export interface AadhaarProvider {
