@@ -7,8 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://typescriptlang.org)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green?logo=supabase)](https://supabase.com)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
-[![Tests](https://img.shields.io/badge/Tests-83_passing-brightgreen)](.)
-[![Coverage](https://img.shields.io/badge/Coverage-80%25+-brightgreen)](.)
+[![Groq](https://img.shields.io/badge/LLM-Groq_llama--3.3--70b-orange?logo=meta)](https://groq.com)
 
 **Live:** [veritas-theta.vercel.app](https://veritas-theta.vercel.app/)
 
@@ -16,35 +15,56 @@
 
 ## Architecture
 
-> Full architecture diagrams available in [`docs/`](./docs/) — open `.drawio` files in [app.diagrams.net](https://app.diagrams.net/) or VS Code draw.io extension.
+### System Architecture
 
-| Diagram | Description |
-|---------|-------------|
-| [`architecture-diagram.drawio`](./docs/architecture-diagram.drawio) | System-level: Client, Vercel, AI, India Stack, Supabase, Twilio |
-| [`block-diagram.drawio`](./docs/block-diagram.drawio) | Internal modules: Frontend, 26 API Routes, Core Logic, Security |
-| [`database-er-diagram.drawio`](./docs/database-er-diagram.drawio) | All 15 tables with columns, types, PK/FK, encrypted fields |
-| [`microservice-architecture-diagram.drawio`](./docs/microservice-architecture-diagram.drawio) | 6 bounded contexts + cross-cutting concerns + patterns |
+> Client Layer → Application Layer → AI/ML Layer → India Stack → Data Layer → Notifications
+
+![System Architecture](./docs/Images/architecture-diagram.drawio.png)
+
+### Module Block Diagram
+
+> Frontend modules, 29 API routes, core business logic, security & infrastructure
+
+![Block Diagram](./docs/Images/block-diagram.drawio.png)
+
+### Bounded Context Architecture
+
+> 6 bounded contexts: Identity & Verification, Financial, Security, Risk & Intelligence, Offer, Session
+
+![Microservice Architecture](./docs/Images/microservice-architecture-diagram.drawio.png)
+
+### Database ER Diagram
+
+> All 15 tables with columns, types, PK/FK, encrypted fields — open in [app.diagrams.net](https://app.diagrams.net/)
+
+[`docs/database-er-diagram.drawio`](./docs/database-er-diagram.drawio)
+
+---
+
+### Data Flow (Mermaid)
 
 ```mermaid
 graph TD
-    subgraph Browser["Customer Browser (Chrome)"]
-        CAM[WebRTC Camera/Mic]
+    subgraph Browser["Customer Browser — Chrome"]
+        CAM[WebRTC Camera + Mic]
         MP[MediaPipe Face Landmarker]
-        STT[Web Speech API STT]
-        TTS[Web Speech API TTS]
+        STT[Web Speech API — STT]
+        TTS[Web Speech API — TTS]
+        REC[MediaRecorder VP9/Opus]
+        GEO[Geolocation API — GPS]
     end
 
-    subgraph SessionFlow["Session Flow (8 Steps)"]
-        S1[1. Session Init] --> S2[2. Consent Capture]
-        S2 --> S3[3. Liveness Check]
-        S3 --> S4[4. Aadhaar Face Auth]
-        S4 --> S5[5. DigiLocker Pull]
-        S5 --> S6[6. AA + CIBIL]
-        S6 --> S7[7. AI Risk Assessment]
-        S7 --> S8[8. Offer Generation]
+    subgraph SessionFlow["Session Flow — 8 Steps, User-Controlled"]
+        S1[1. Session Init + Geo Capture] --> S2[2. Consent + Recording Start]
+        S2 -->|Continue| S3[3. Liveness Check]
+        S3 -->|Continue| S4[4. Aadhaar Face Auth]
+        S4 -->|Continue| S5[5. DigiLocker Pull]
+        S5 -->|Continue| S6[6. AA + CIBIL]
+        S6 -->|Continue| S7[7. AI Risk Assessment]
+        S7 -->|Continue| S8[8. Offer Generation]
     end
 
-    subgraph IndiaStack["India Stack (Mock / Sandbox / Production)"]
+    subgraph IndiaStack["India Stack — Mock / Sandbox / Production"]
         UIDAI[UIDAI Face Auth]
         DL[DigiLocker OAuth]
         CKYC[CKYC Registry]
@@ -54,34 +74,46 @@ graph TD
 
     subgraph AI["AI Pipeline"]
         GROQ[Groq llama-3.3-70b]
-        GEMINI[Gemini 1.5 Flash fallback]
-        POLICY[Policy Engine 13 rules]
+        GEMINI[Gemini 1.5 Flash — fallback]
+        POLICY[Policy Engine — 13 hard rules]
         SPEECH[Speech Analyser]
         DRIFT[Intent Drift Detector]
         TRUST[Trust Graph]
-        RISK[Live Risk Meter]
+        RISK[Live Risk Meter — 15 event types]
     end
 
-    subgraph DB["Supabase PostgreSQL (15 tables)"]
+    subgraph Security["Security Layer"]
+        AES[AES-256-GCM Encryption]
+        ZOD[Zod Validation — 29 routes]
+        RL[Rate Limiter — Token Bucket]
+        SANITIZE[Prompt Injection Prevention]
+        HASH[SHA-256 Hash Chain Audit]
+    end
+
+    subgraph DB["Supabase PostgreSQL — 15 Tables"]
         SESSIONS[(sessions)]
         TRANSCRIPTS[(transcripts)]
         OFFERS[(loan_offers)]
         AUDIT[(audit_log)]
         TRUST_NODES[(trust_nodes)]
+        RECORDINGS[(recordings + chunks)]
     end
 
     CAM --> MP --> S3
+    CAM --> REC -->|30s chunks| STORAGE[Supabase Storage]
+    GEO --> S1
     STT --> SPEECH --> S7
     S4 --> UIDAI
     S5 --> DL & CKYC
     S6 --> AA & CIBIL
-    S7 --> GROQ -->|rate limit| GEMINI
+    S7 --> GROQ -->|429 rate limit| GEMINI
     S7 --> POLICY
     SPEECH --> DRIFT --> RISK
     TRUST --> RISK
-    S8 -->|accepted| WA[Twilio WhatsApp]
-    SessionFlow --> DB
+    S8 -->|offer accepted| WA[Twilio WhatsApp]
+    SessionFlow --> Security --> DB
     AI --> DB
+    STORAGE --> HASH
 ```
 
 ---
@@ -92,37 +124,51 @@ graph TD
 sequenceDiagram
     participant C as Customer
     participant UI as Session Page
-    participant API as Next.js API
+    participant API as Next.js API (29 routes)
     participant DB as Supabase
     participant LLM as Groq / Gemini
     participant WA as WhatsApp
+    participant S3 as Supabase Storage
 
     C->>UI: Enter phone, Begin KYC
     UI->>API: POST /api/session/create
     API->>DB: Insert session + customer_data
     API-->>UI: session.id + QR URL
 
-    C->>UI: Allow camera, I Consent
+    par Parallel on session start
+        UI->>API: POST /api/geo/verify (GPS coords)
+        API->>DB: Update session geo_location
+    end
+
+    C->>UI: Allow camera + mic, I Consent
     UI->>API: POST /api/session/consent
+    Note over UI: MediaRecorder starts (VP9/Opus)
+    Note over UI: Recording uploads 30s chunks
+
+    C->>UI: Click Continue →
     UI->>API: POST /api/fraud/liveness
     API->>DB: Insert liveness_check, update live_risk_score
 
+    C->>UI: Click Continue →
     UI->>API: POST /api/verify/aadhaar
     API->>DB: Insert verification, update risk
+
+    C->>UI: Authorize DigiLocker
     UI->>API: POST /api/verify/digilocker + ckyc (parallel)
     UI->>API: POST /api/verify/aa + cibil (parallel)
     API->>DB: Insert financial_data
 
-    loop Every speech transcript
+    loop Every speech transcript (continuous)
         UI->>API: POST /api/speech/process
-        API->>DB: Insert transcript, run NER
-        API->>API: Intent drift check, speech score
+        API->>DB: Insert transcript, NER extraction
+        API->>API: Intent drift + speech score
         API->>DB: Update live_risk_score
     end
 
+    C->>UI: Click Continue →
     UI->>API: POST /api/credit/risk-classify
-    API->>LLM: Risk classification prompt
-    LLM-->>API: Risk tier 1/2/3 + citations
+    API->>LLM: Risk classification prompt (sanitized)
+    LLM-->>API: Risk tier 1/2/3 + RBI citations
     API->>DB: Insert llm_decision
 
     UI->>API: POST /api/offer/generate
@@ -132,8 +178,13 @@ sequenceDiagram
     C->>UI: Accept offer
     UI->>API: PUT /api/offer/accept
     API->>DB: Seal session (is_immutable=true)
-    API->>WA: POST /api/notify/whatsapp
-    WA-->>C: WhatsApp sanction message
+
+    par Post-acceptance
+        API->>WA: POST /api/notify/whatsapp
+        WA-->>C: WhatsApp sanction letter
+        UI->>API: POST /api/recording/seal
+        API->>S3: Composite SHA-256 hash
+    end
 ```
 
 ---
@@ -172,7 +223,7 @@ sequenceDiagram
 | Feature | Details |
 |---|---|
 | Encryption | AES-256-GCM on all PII fields (full_name, aadhaar_last4, pan, dob, address) |
-| Validation | Zod schemas on all 26 API routes |
+| Validation | Zod schemas on all 29 API routes, runtime type safety |
 | Rate Limiting | Token bucket per endpoint (5-100 req/min) via Next.js 16 `proxy.ts` |
 | Prompt Sanitization | LLM input sanitized against injection attacks |
 | Security Headers | CSP, HSTS, X-Frame-Options, X-Content-Type-Options |
@@ -208,7 +259,8 @@ sequenceDiagram
 | State | Zustand |
 | Encryption | AES-256-GCM (Node.js crypto) |
 | Validation | Zod |
-| Testing | Vitest (83 tests, 80%+ coverage) |
+| Recording | MediaRecorder VP9/Opus, 30s chunks → Supabase Storage |
+| Testing | Vitest |
 | Deploy | Vercel |
 
 ---
@@ -303,7 +355,7 @@ Open `http://localhost:3000` in **Chrome** — required for Web Speech API.
 ### 7. Run tests
 
 ```bash
-npm test          # Run all 83 tests
+npm test          # Run all tests
 npm run test:ui   # Vitest UI
 ```
 
@@ -334,7 +386,7 @@ src/
     session/              AgentPanel, LiveRiskMeter, QuestionPrompt,
                           ConsentModal, DigiLockerModal, FraudAlertOverlay,
                           LivenessIndicator, StepProgress, TranscriptPanel,
-                          XPCelebration, OfferCard
+                          XPCelebration
     dashboard/            EventTimeline, FinancialSummary, FraudGauges,
                           IndiaStackChecklist, LLMReasoningPanel, SessionCard
     ui/                   ThemeToggle, GoogleSignIn, QRCode, Modal, Badge
@@ -354,11 +406,18 @@ src/
     hash-chain.ts         SHA-256 chained audit trail
     encryption.ts         AES-256-GCM encrypt/decrypt
     rate-limiter.ts       Token bucket with endpoint presets
-    sanitizer.ts          LLM prompt injection prevention
+    prompt-sanitizer.ts   LLM prompt injection prevention
     geo-verifier.ts       India boundary + VPN detection
-    validation/           Zod schemas for all 26 routes
+    session-token.ts      HMAC session token generation
+    audit-logger.ts       Structured audit event logging
+    api-response.ts       Standardised API response helpers
+    env.ts                Environment variable validation
+    mock-data.ts          Persona-based test data (Rahul / Priya)
+    store.ts              Zustand session store
+    utils.ts              Shared utilities
+    validation/           Zod schemas for all 29 routes
     india-stack/          Factory + mock/sandbox/production providers
-    __tests__/            6 test suites (83 tests)
+    __tests__/            6 test suites
   constants/              steps, prompts, policy-rules
   types/                  TypeScript interfaces
   proxy.ts                Next.js 16 proxy (rate limiting + headers)
@@ -367,6 +426,10 @@ docs/
   block-diagram.drawio
   database-er-diagram.drawio
   microservice-architecture-diagram.drawio
+  Images/
+    architecture-diagram.drawio.png
+    block-diagram.drawio.png
+    microservice-architecture-diagram.drawio.png
 ```
 
 ---
@@ -376,12 +439,12 @@ docs/
 1. Open `/` → click **Apply for a Loan**
 2. Enter any 10-digit number → **Begin KYC** (or Continue with Google)
 3. Scan QR to continue on mobile, or **Continue here**
-4. Allow camera + microphone
+4. Allow camera + microphone (recording starts automatically)
 5. Consent modal → **I Consent**
-6. Blink twice when prompted (liveness)
-7. Speak your details — agent extracts income / employer / loan purpose
+6. Click **Continue →** → Blink twice when prompted (liveness)
+7. Click **Continue →** → Speak your details — agent extracts income / employer / loan purpose
 8. DigiLocker modal → **Authorize**
-9. AI risk + speech assessment → 3 personalised offers
+9. Click **Continue →** → AI risk + speech assessment → 3 personalised offers
 10. Accept → confetti + WhatsApp sanction message
 
 **Try different personas:**
@@ -454,37 +517,3 @@ Click **Deploy**. Build takes ~60 seconds.
 | UIDAI KUA Section 4(e) | Face authentication via Aadhaar |
 | CERT-In Guidelines | AES-256-GCM encryption for all PII at rest |
 
----
-
-## Testing
-
-- **83 tests** across 6 suites (Vitest)
-- **80%+ coverage** thresholds enforced
-- Core modules tested: policy-engine, risk-engine, offer-calculator, encryption, hash-chain, geo-verifier, sanitizer
-
-```bash
-npm test                 # Run all tests
-npm run test:coverage    # With coverage report
-```
-
----
-
-## Current Status: L4 (Production-Grade Beta)
-
-| Capability | Status |
-|---|---|
-| Video recording (MediaRecorder → upload → hash → seal) | Done |
-| Geolocation (browser GPS + IP verification) | Done |
-| AES-256-GCM encryption for all PII | Done |
-| Zod validation on all 26 API routes | Done |
-| Rate limiting on all endpoints | Done |
-| LLM prompt injection prevention | Done |
-| Security headers (CSP, HSTS, X-Frame-Options) | Done |
-| Unit tests (83 tests, 80%+ coverage) | Done |
-| India Stack abstraction (mock/sandbox/production) | Done |
-| Environment variable validation | Done |
-| Integration tests for API routes | Pending |
-| E2E tests (Playwright) | Pending |
-| Error monitoring (Sentry) | Pending |
-| CI/CD pipeline (GitHub Actions) | Pending |
-| Human-in-the-loop approval (RBI Section 18A) | Pending |
